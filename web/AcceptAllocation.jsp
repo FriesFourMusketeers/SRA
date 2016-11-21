@@ -1,7 +1,7 @@
 <%-- 
     Document   : AcceptAllocation
     Created on : Nov 2, 2016, 1:16:34 PM
-    Author     : bryan lol bobo bry
+    Author     : bryan de jk di ka bobo
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
