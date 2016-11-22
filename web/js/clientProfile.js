@@ -35,26 +35,69 @@ $(document).ready(function () {
 function setEmployeeGrade(print) {
 
     var data = [];
-    for (var i = 0; i < print[0].series.length; i++) {
+    var drilldownValues = [];
+    var threshold = [];
+    var month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+    for (var x = 0; x < month.length; x++) {
         var totals = 0;
         item = {};
-        item["name"] = print[0].series[i].clientMonth; //x axis
-        item["y"] = print[0].series[i].clientScore; // y axis
-//        item["empID"] = print[0].series[i].empID;
-        if (print[0].series[i].clientScore <= 85) {
+        item["name"] = month[x]; // x axis
+
+        for (var i = 0; i < print[0].series.length; i++) {
+            if (month [x] === print[0].series[i].clientMonth) {
+                totals += print[0].series[i].clientScore;
+                item["drilldown"] = month[x] // id
+
+                var drilldownData = [];
+                for (var j = 0; j < print[0].series.length; j++) {
+                    if (print[0].series[j].clientMonth === print[0].series[i].clientMonth) {
+                        item2 = {};
+                        item2["name"] = print[0].series[i].clientMonth;
+                        item2["id"] = print[0].series[i].clientMonth;
+                        drilldownfirst = {};
+                        drilldownfirst["name"] = print[0].series[j].clientWeek;
+                        drilldownfirst["y"] = print[0].series[j].clientScore;
+                        if (print[0].series[j].y <= 85) { // 75 (threshold) must be a variable from db
+                            drilldownfirst['color'] = '#ff0000';
+                        }
+                        drilldownData.push(drilldownfirst);
+                        item2["data"] = drilldownData;
+                        drilldownValues.push(item2);
+                    }
+                }
+            }
+        }
+        item["y"] = totals; // y axis
+        if (totals <= 85) { // 75 (threshold) must be a variable from db
             item['color'] = '#ff0000';
         }
+
         data.push(item);
+
     }
 
-    console.log(JSON.stringify(data));
+
+
+//    for (var i = 0; i < print[0].series.length; i++) {
+//        var totals = 0;
+//        item = {};
+//        item["name"] = print[0].series[i].clientMonth; //x axis
+//        item["y"] = print[0].series[i].clientScore; // y axis
+//        if (print[0].series[i].clientScore <= 85) {
+//            item['color'] = '#ff0000';
+//        }
+//        data.push(item);
+//    }
+//
+//    console.log(JSON.stringify(data));
 
     $('#clientGrade').highcharts({
         chart: {
             plotBackgroundColor: null,
             plotBorderWidth: null,
             plotShadow: false,
-            type: 'column',
+            type: 'spline',
             drilled: false,
         },
         title: {
@@ -112,7 +155,7 @@ function setEmployeeGrade(print) {
 //                        JSON.stringify(event.point);
 //                        console.log(event.point.empID + "point");
 //                        window.location.replace("GetEmployeesByClient?SelectedGuard=" + 29);
-                        window.location.href = "Ticketing.jsp";
+//                        window.location.href = "Ticketing.jsp";
                     }
                 }
             }
@@ -120,7 +163,10 @@ function setEmployeeGrade(print) {
         series: [{
                 name: 'Score',
                 data: data
-            }]
+            }],
+        drilldown: {
+            series: drilldownValues
+        }
 
     });
 }
