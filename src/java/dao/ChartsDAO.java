@@ -363,7 +363,7 @@ public class ChartsDAO {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
-            String query = "select c.clientName, cs.clientID, YEAR(cs.date) as 'year', MONTHNAME(STR_TO_DATE(Month(cs.date), '%m')) as 'month', cs.SSERscore as `score` from `client-score` cs join Client c where cs.clientID = c.clientID AND YEAR(cs.date) = ? AND cs.clientID=? order by 'month';";
+            String query = "select c.clientName, cs.clientID, YEAR(cs.date) as 'year', MONTHNAME(STR_TO_DATE(Month(cs.date), '%m')) as 'month', WEEK(cs.date) as 'week', cs.SSERscore as `score` from `client-score` cs join Client c where cs.clientID = c.clientID AND YEAR(cs.date) = ? AND cs.clientID=? group by yearweek(cs.date) order by 'month';";
             PreparedStatement pstmt = conn.prepareStatement(query);
             pstmt.setInt(1, year);
             pstmt.setInt(2, id);
