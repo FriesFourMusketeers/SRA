@@ -976,7 +976,7 @@ public class EmployeeDAO {
 "										 join `employee-safeguard-information` esi on epi.employeeID = esi.employeeID \n" +
 "										 join `allocation` a on esi.employeeID = a.employeeID\n" +
 "                                         join `Client` c on a.clientID = c.clientID\n" +
-"where year(curdate()) = year(eji.licenseExpDate) and month(curdate())+1 = month(eji.licenseExpDate);";
+"where year(curdate()) = year(eji.licenseExpDate) and month(curdate())+4 = month(eji.licenseExpDate);";
             PreparedStatement pstmt = conn.prepareStatement(query);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
@@ -1918,12 +1918,13 @@ public class EmployeeDAO {
         return null;
     }
     
-     public ArrayList<PerformanceReviewScores> getClientEmployeeGrade() {
+     public ArrayList<PerformanceReviewScores> getClientEmployeeGrade(int id) {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
-            String query = "select prs.employeeID, avg(prs.score) as 'score' from client c join allocation a on c.clientID = a.clientID join `performance-review-scores` prs on a.employeeID=prs.employeeID where c.clientID = 1 group by prs.employeeID;";
+            String query = "select prs.employeeID, avg(prs.score) as 'score' from client c join allocation a on c.clientID = a.clientID join `performance-review-scores` prs on a.employeeID=prs.employeeID where c.clientID = ? group by prs.employeeID;";
             PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, id);
             ResultSet rs = pstmt.executeQuery();
             ArrayList <Charts> chartsList = null;
             Charts chart;
