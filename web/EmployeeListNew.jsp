@@ -41,7 +41,7 @@
                                 <ul class="nav nav-tabs">
                                     <li class="active"><a href="#assigned" data-toggle="tab">Assigned Employees</a></li>
                                     <li><a href="#unassigned" data-toggle="tab">Unassigned Employees</a></li>
-                                    <li><a href="#expireAmber" data-toggle="tab">Near Expiration (1 Month)</a></li>
+                                    <li><a href="#expireAmber" data-toggle="tab">Near Expiration (4 Months)</a></li>
                                     <li><a href="#expireRed" data-toggle="tab">Expired</a></li>
                                     <li><a href="#ongoingRetraining" data-toggle="tab">Ongoing Retraining</a></li>
                                 </ul>
