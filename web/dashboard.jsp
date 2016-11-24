@@ -248,42 +248,39 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="modal-title">Clients (low scores)</h4>
+                                        <h4 class="modal-title">Employees (low scores)</h4>
                                     </div>
                                     <div class="modal-body">
                                         <div class="box">
-                                            <div class="box-header">
-                                                <h3 class="box-title">Assigned Employees</h3>
-                                            </div>
                                             <!-- /.box-header -->
                                             <div class="box-body">
-                                                <table id="example2" class="table table-bordered table-striped">
+                                                <table id="example1" class="table table-bordered table-striped">
                                                     <thead>
                                                         <tr>
-                                                            <th>Client</th>
-                                                            <th>Score</th>
+                                                            <th>Name</th>
+                                                            <th>Assigned to</th>
+                                                            <th>Grade</th>
                                                             <th></th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody>     
-                                                        <tr  class="table" data-target="#ViewAssigned" data-toggle="modal">
-                                                            <td>Alabang Town Center </td>
-                                                            <td>72</td>
-                                                            <td><button type="submit" class="btn btn-primary" id="retrain">Retrain</button>   </td>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Eugene See</td>
+                                                            <td>Alabang Town Center</td>
+                                                            <td>77</td>
+                                                            <td><button type="button" class="btn btn-primary">Retrain</button></td>
                                                         </tr>
-
                                                     </tbody>
                                                     <tfoot>
                                                         <tr>
-                                                            <th>Client</th>
-                                                            <th>Score</th>
+                                                            <th>Name</th>
+                                                            <th>Assigned to</th>
+                                                            <th>Grade</th>
                                                             <th></th>
-
                                                         </tr>
                                                     </tfoot>
                                                 </table>
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
