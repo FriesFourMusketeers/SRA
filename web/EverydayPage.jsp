@@ -67,12 +67,12 @@
                                                             <table id="example1" name="example1" class="table table-bordered table-striped">
                                                                 <thead>
                                                                     <tr>
-
                                                                         <th>Name</th>
-                                                                        <th>Position</th>
                                                                         <th>Attendance</th>
-                                                                        <th>Violations Incurred</th>
-                                                                        <th>Activity Log</th>
+                                                                        <th>Grooming and Appearance</th>
+                                                                        <th>Routine Log</th>
+                                                                        <th>Courteousness</th>
+                                                                        <th>Answers Customer Queries</th>
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
@@ -82,10 +82,11 @@
                                                                     <tr>
 
                                                                         <th>Name</th>
-                                                                        <th>Position</th>
                                                                         <th>Attendance</th>
-                                                                        <th>Violations Incurred</th>
-                                                                        <th>Activity Log</th>
+                                                                        <th>Grooming and Appearance</th>
+                                                                        <th>Routine Log</th>
+                                                                        <th>Courteousness</th>
+                                                                        <th>Answers Customer Queries</th>
                                                                     </tr>
                                                                 </tfoot>
                                                             </table>

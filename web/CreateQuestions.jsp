@@ -284,24 +284,17 @@
                                 <select class="form-control select2" style="width: 100%;" name="clientName" id="clientName">
                                 </select>
                             </div>
-                            <div class="col-xs-3">
-                                <label>Question Type</label>
-                                <select class="form-control select2" style="width: 100%;" name="assessmentformTypeOG" id="assessmentformQuestionTypeOG">
-                                    <option>Default + custom</option>
-                                    <option>Custom</option>
-                                </select>
-                            </div>
+                            
                         </div>
                     </div>
 
                     <fieldset>
 
+                        
                         <!-- Form Name -->
 
                         <!-- Select Basic -->
-
-
-                        <table class="table" id="tblGrid">
+                        <table class="table custom" id="tblGrid">
                             <td>
                                 <table class="table" id="tblGrid2" CELLPADDING="3" CELLSPACING="3">
                                     <thead id="tblHead">
@@ -360,7 +353,7 @@
 
                     $(document).ready(function () {
 
-                        $(document).on("click", "#addPM", function () {
+                        $(document).on("click", ".addPM", function () {
                             $("tr.tabRow:first").clone(true).appendTo($(this).parents("thead").next("tbody"));
                             $(".tabRow:last").children("td").children("input").each(function (index, element) {
                                 $(element).val("");
@@ -402,5 +395,11 @@
             <!-- AdminLTE for demo purposes -->
             <script src="dist/js/demo.js"></script>
             <script src="/SRA/js/searchClientKPI.js"></script>
+            <script>
+                    $(function () {
+                        //Initialize Select2 Elements
+                        $(".select2").select2();
+                    });
+            </script>
     </body>
 </html>

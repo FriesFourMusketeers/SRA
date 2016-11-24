@@ -95,11 +95,16 @@ function addEmployees(data) {
             '<option value="0">Day-Off</option>' +
             '<option value="0">Leave</option>' +
             '</select></td>' +
-            '<td> <input type="checkbox" name="violation' + data.employeeID + '" id="violation' + data.employeeID + '" value="Hair"> Hair <br>' +
-            '<input type="checkbox" name="violation' + data.employeeID + '" id="violation' + data.employeeID + '" value="Uniform"> Uniform <br>' +
-            '<input type="checkbox" name="violation' + data.employeeID + '" id="violation' + data.employeeID + '" value="Shoes"> Shoes <br>' +
-            '<input type="checkbox" name="violation' + data.employeeID + '" id="violation' + data.employeeID + '" value="Equiptments"> Equipments </td>' +
-            '<td> <input type="checkbox" name="log' + data.employeeID + '" id="log' + data.employeeID + '" value="Rovered all floors"> Rovered all floors <br>' +
+            '<td>'+
+            '<select class="form-control select2" style="width: 100%;" name="uniform" id="uniform">' +
+            '<option value="5">Complete</option>' +
+            '<option value="4">Incomplete</option>' +
+            '</select>' +
+            '<input type="checkbox" name="violation' + data.employeeID + '" id="violation' + data.employeeID + '" value="Uniform"> Proper Haircut <br>' +
+            '<input type="checkbox" name="violation' + data.employeeID + '" id="violation' + data.employeeID + '" value="Shoes"> Good hygiene throughout the day <br>' +
+            '<td> <input type="radiogroup" name="log' + data.employeeID + '" id="log' + data.employeeID + '" value="Rovered all floors"> Courteousness <br>' +
             '<input type="checkbox" name="log' + data.employeeID + '" id="log' + data.employeeID + '" value="Greets all tenants"> Greets all tenants </td>' +
-            '</tr>');
+            '</tr>'
+            
+            );
 }

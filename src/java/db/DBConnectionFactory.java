@@ -13,7 +13,7 @@ import java.sql.Connection;
 public abstract class DBConnectionFactory {
         String url = "jdbc:mysql://127.0.0.1:3306/safeguard";
         String username = "root";
-        String password = "fourmusketeers";
+        String password = "icedew123";
 
     public static DBConnectionFactory getInstance(){
         return new DBConnectionFactoryImpl();
