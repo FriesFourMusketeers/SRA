@@ -41,32 +41,31 @@
                                 <ul class="nav nav-tabs">
                                     <li class="active"><a href="#assigned" data-toggle="tab">Assigned Employees</a></li>
                                     <li><a href="#unassigned" data-toggle="tab">Unassigned Employees</a></li>
-                                    <li><a href="#expireAmber" data-toggle="tab">Soon to Expire</a></li>
+                                    <li><a href="#expireAmber" data-toggle="tab">Near Expiration (1 Month)</a></li>
                                     <li><a href="#expireRed" data-toggle="tab">Expired</a></li>
-                                    <li><a href="#onGoingRetraining" data-toggle="tab">Ongoing Retraining</a></li>
+                                    <li><a href="#ongoingRetraining" data-toggle="tab">Ongoing Retraining</a></li>
                                 </ul>
                             </div>
                             <br />
                             <!-- Main content -->
-                            <div class ="col-xs-4"></div>
-
-                            <div class ="col-xs-4" align="center">
-                                <div class="form-group">
-                                    <label>Client:</label>
-                                    <select class="form-control select2" name="clientName" id="clientName">
-
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class ="col-xs-4"></div>
-
-
-
 
                             <div class="tab-content">
                                 <!-- PART 1 Assigned Employee START-->
                                 <div id="assigned" class="tab-pane active">
+
+                                    <div class ="col-xs-4"></div>
+
+                                    <div class ="col-xs-4" align="center">
+                                        <div class="form-group">
+                                            <label>Client:</label>
+                                            <select class="form-control select2" name="clientName" id="clientName">
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class ="col-xs-4"></div>
+
                                     <section class="content">
                                         <div class="row">
                                             <div class="col-xs-12">
@@ -81,7 +80,6 @@
                                                         <table id="example1" class="table table-bordered table-striped">
                                                             <thead>
                                                                 <tr>
-
                                                                     <th>Name</th>
                                                                     <th>Area</th>
                                                                     <th>Height</th>
@@ -99,7 +97,6 @@
                                                             </tbody>
                                                             <tfoot>
                                                                 <tr>
-
                                                                     <th>Name</th>
                                                                     <th>Area</th>
                                                                     <th>Height</th>
@@ -134,53 +131,61 @@
 
 
                                                 <div class="box">
-                                                    <div class="box-header">
-                                                        <h3 class="box-title">Unassigned Employees</h3>
-                                                    </div>
                                                     <!-- /.box-header -->
                                                     <div class="box-body">
-                                                        <table id="example1" class="table table-bordered table-striped">
+                                                        <table id="example2" class="table table-bordered table-striped">
                                                             <thead>
                                                                 <tr>
                                                                     <th>Name</th>
-                                                                    <th>Area</th>
+                                                                    <th>City</th>
+                                                                    <th>Education</th>
+                                                                    <th>Age</th>
                                                                     <th>Height</th>
-                                                                    <th>Weight </th>
+                                                                    <th>Weight</th>
                                                                     <th>Body Build</th>
                                                                     <th>Skin Complexion</th>
-                                                                    <th>Type of License</th>
-                                                                    <th>Assigned to</th>
-                                                                    <th>Position</th>
+                                                                    <th>Marital Status</th>
                                                                     <th>Grade</th>
+                                                                    <th>License</th>
                                                                 </tr>
                                                             </thead>
+
                                                             <tbody>
+                                                                <% EmployeeDAO personalInfo = new EmployeeDAO();%>
+                                                                <% for (int i = 0; i < personalInfo.getAllUnallocated().size(); i++) {%>
                                                                 <tr>
-                                                                    <td>Eugene See</td>
-                                                                    <td>Manila
-                                                                    </td>
-                                                                    <td>180cm</td>
-                                                                    <td>70kg</td>
-                                                                    <td>Medium</td>
-                                                                    <td>Fair</td>
-                                                                    <td>Mall</td>
-                                                                    <td>Alabang Town Center</td>
-                                                                    <td>Mall Security</td>
-                                                                    <td>Over 9000</td>
+
+
+                                                                    <td class="table"><%=personalInfo.getAllUnallocated().get(i).getLastName() + ", " + personalInfo.getAllUnallocated().get(i).getFirstName()%></td>   
+                                                                    <td class="table"><%=personalInfo.getAllUnallocated().get(i).getCity()%></td>
+                                                                    <td class="table"><%=personalInfo.getAllUnallocated().get(i).getEducation()%></td> 
+                                                                    <td class="table"><%=personalInfo.getAllUnallocated().get(i).getAge()%></td>
+                                                                    <td class="table"><%=personalInfo.getAllUnallocated().get(i).getHeight()%></td>  
+                                                                    <td class="table"><%=personalInfo.getAllUnallocated().get(i).getWeight()%></td>  
+                                                                    <td class="table"><%=personalInfo.getAllUnallocated().get(i).getBodyBuild()%></td>  
+                                                                    <td class="table"><%=personalInfo.getAllUnallocated().get(i).getSkinColor()%></td> 
+                                                                    <td class="table"><%=personalInfo.getAllUnallocated().get(i).getMarriageStatus()%></td>
+                                                                    <td class="table">90</td>   <!-- hard coded score -->
+                                                                    <td class="table"><%=personalInfo.getAllUnallocated().get(i).getLicense()%></td>  
+
+
+                                                                    <%};%>
                                                                 </tr>
                                                             </tbody>
+
                                                             <tfoot>
                                                                 <tr>
                                                                     <th>Name</th>
-                                                                    <th>Area</th>
+                                                                    <th>City</th>
+                                                                    <th>Education</th>
+                                                                    <th>Age</th>
                                                                     <th>Height</th>
-                                                                    <th>Weight </th>
+                                                                    <th>Weight</th>
                                                                     <th>Body Build</th>
                                                                     <th>Skin Complexion</th>
-                                                                    <th>Type of License</th>
-                                                                    <th>Assigned to</th>
-                                                                    <th>Position</th>
+                                                                    <th>Marital Status</th>
                                                                     <th>Grade</th>
+                                                                    <th>License</th>
                                                                 </tr>
                                                             </tfoot>
                                                         </table>
@@ -205,53 +210,42 @@
 
 
                                                 <div class="box">
-                                                    <div class="box-header">
-                                                        <h3 class="box-title">Near Expiration License</h3>
-                                                    </div>
                                                     <!-- /.box-header -->
                                                     <div class="box-body">
-                                                        <table id="example1" class="table table-bordered table-striped">
+                                                        <table id="example3" class="table table-bordered table-striped">
                                                             <thead>
                                                                 <tr>
-                                                                    <th>Name</th>
-                                                                    <th>Area</th>
-                                                                    <th>Height</th>
-                                                                    <th>Weight </th>
-                                                                    <th>Body Build</th>
-                                                                    <th>Skin Complexion</th>
-                                                                    <th>Type of License</th>
-                                                                    <th>Assigned to</th>
-                                                                    <th>Position</th>
-                                                                    <th>Grade</th>
+                                                                    <th>Employee Name</th>
+                                                                    <th>Client Name</th>
+                                                                    <th>License Start</th>
+                                                                    <th>License End </th>
+                                                                    <th>Days Remaining</th>
+                                                                    <th>Action</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
+
+                                                                <% for (int i = 0; i < jobInfo.getNearExpirationEmployeeLicense().size(); i++) {%>
+
                                                                 <tr>
-                                                                    <td><font color="#FFA500">John San Agustin</font></td>
-                                                                    <td>Manila
+                                                                    <td><a href="viewEmployeeProfile?id=<%=jobInfo.getNearExpirationEmployeeLicense().get(i).getEmployeeID()%>"><font color="#FFA500"><%=jobInfo.getNearExpirationEmployeeLicense().get(i).getFirstName() + " " + jobInfo.getNearExpirationEmployeeLicense().get(i).getLastName()%></font></a></td>
+                                                                    <td><%=jobInfo.getNearExpirationEmployeeLicense().get(i).getAssignedTo()%>
                                                                     </td>
-                                                                    <td>180cm</td>
-                                                                    <td>70kg</td>
-                                                                    <td>Medium</td>
-                                                                    <td>Fair</td>
-                                                                    <td>Mall</td>
-                                                                    <td>Alabang Town Center</td>
-                                                                    <td>Roving Guard</td>
-                                                                    <td>Over 9000</td>
+                                                                    <td>License Start</td>
+                                                                    <td><%=jobInfo.getNearExpirationEmployeeLicense().get(i).getLicenseExpDate()%></td>
+                                                                    <td><%=jobInfo.getNearExpirationEmployeeLicense().get(i).getNumberOfDays()%></td>
+                                                                    <td><button type="submit" method="post" class="btn btn-primary" id="">Print   </button></td>
                                                                 </tr>
+                                                                <%};%>
                                                             </tbody>
                                                             <tfoot>
                                                                 <tr>
-                                                                    <th>Name</th>
-                                                                    <th>Area</th>
-                                                                    <th>Height</th>
-                                                                    <th>Weight </th>
-                                                                    <th>Body Build</th>
-                                                                    <th>Skin Complexion</th>
-                                                                    <th>Type of License</th>
-                                                                    <th>Assigned to</th>
-                                                                    <th>Position</th>
-                                                                    <th>Grade</th>
+                                                                    <th>Employee Name</th>
+                                                                    <th>Client Name</th>
+                                                                    <th>License Start</th>
+                                                                    <th>License End </th>
+                                                                    <th>Days Remaining</th>
+                                                                    <th>Action</th>
                                                                 </tr>
                                                             </tfoot>
                                                         </table>
@@ -273,56 +267,43 @@
                                     <section class="content">
                                         <div class="row">
                                             <div class="col-xs-12">
-
-
                                                 <div class="box">
-                                                    <div class="box-header">
-                                                        <h3 class="box-title">Expired License Employees</h3>
-                                                    </div>
                                                     <!-- /.box-header -->
                                                     <div class="box-body">
-                                                        <table id="example1" class="table table-bordered table-striped">
+                                                        <table id="example4" class="table table-bordered table-striped">
                                                             <thead>
                                                                 <tr>
-                                                                    <th>Name</th>
-                                                                    <th>Area</th>
-                                                                    <th>Height</th>
-                                                                    <th>Weight </th>
-                                                                    <th>Body Build</th>
-                                                                    <th>Skin Complexion</th>
-                                                                    <th>Type of License</th>
-                                                                    <th>Assigned to</th>
-                                                                    <th>Position</th>
-                                                                    <th>Grade</th>
+                                                                    <th>Employee Name</th>
+                                                                    <th>Client Name</th>
+                                                                    <th>License Start</th>
+                                                                    <th>License End </th>
+                                                                    <th>Days Remaining</th>
+                                                                    <th>Action</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
+
+                                                                <% for (int i = 0; i < jobInfo.getExpiredEmployeeLicense().size(); i++) {%>
+
                                                                 <tr>
-                                                                    <td><font color="#ff0000">JM Gonzales</font></td>
-                                                                    <td>Manila
+                                                                    <td><a href="viewEmployeeProfile?id=<%=jobInfo.getExpiredEmployeeLicense().get(i).getEmployeeID()%>"> <font color="#FF0000"><%=jobInfo.getExpiredEmployeeLicense().get(i).getFirstName() + " " + jobInfo.getExpiredEmployeeLicense().get(i).getLastName()%></font></a></td>
+                                                                    <td><%=jobInfo.getExpiredEmployeeLicense().get(i).getAssignedTo()%>
                                                                     </td>
-                                                                    <td>180cm</td>
-                                                                    <td>70kg</td>
-                                                                    <td>Medium</td>
-                                                                    <td>Fair</td>
-                                                                    <td>Mall</td>
-                                                                    <td>BPI</td>
-                                                                    <td>Roving Guard</td>
-                                                                    <td>Over 9000</td>
+                                                                    <td>License Start</td>
+                                                                    <td><%=jobInfo.getExpiredEmployeeLicense().get(i).getLicenseExpDate()%></td>
+                                                                    <td><%=jobInfo.getExpiredEmployeeLicense().get(i).getNumberOfDays()%></td>
+                                                                    <td><button type="submit" method="post" class="btn btn-primary" id="">Print   </button></td>
                                                                 </tr>
+                                                                <%};%>
                                                             </tbody>
                                                             <tfoot>
                                                                 <tr>
-                                                                    <th>Name</th>
-                                                                    <th>Area</th>
-                                                                    <th>Height</th>
-                                                                    <th>Weight </th>
-                                                                    <th>Body Build</th>
-                                                                    <th>Skin Complexion</th>
-                                                                    <th>Type of License</th>
-                                                                    <th>Assigned to</th>
-                                                                    <th>Position</th>
-                                                                    <th>Grade</th>
+                                                                    <th>Employee Name</th>
+                                                                    <th>Client Name</th>
+                                                                    <th>License Start</th>
+                                                                    <th>License End </th>
+                                                                    <th>Days Remaining</th>
+                                                                    <th>Action</th>
                                                                 </tr>
                                                             </tfoot>
                                                         </table>
@@ -341,28 +322,52 @@
 
                                 <!-- PART 5 Ongoing Retraining START-->
                                 <div id="ongoingRetraining" class="tab-pane">
-                                    <!-- /.control-sidebar -->
-                                    <!-- Add the sidebar's background. This div must be placed
-                                         immediately after the control sidebar -->
-                                    <div class="control-sidebar-bg"></div>
-                                    <div class="box box-info">
-                                        <!-- /.box-header -->
-                                        <!-- form start -->
-                                        <div class="box-body">
+                                    <section class="content">
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <div class="box">
+                                                    <!-- /.box-header -->
+                                                    <div class="box-body">
+                                                        <table id="example5" class="table table-bordered table-striped">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Employee Name</th>
+                                                                    <th>Retraining Start</th>
+                                                                    <th>Retraining End </th>
+                                                                    <th>Days Remaining</th>
+                                                                    <th>Action</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
 
+                                                            </tbody>
+                                                            <tfoot>
+                                                                <tr>
+                                                                    <th>Employee Name</th>
+                                                                    <th>Retraining Start</th>
+                                                                    <th>Retraining End </th>
+                                                                    <th>Days Remaining</th>
+                                                                    <th>Action</th>
+                                                                </tr>
+                                                            </tfoot>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <!-- /.box-body -->
 
-
+                                                <!-- /.box -->
+                                            </div>
+                                            <!-- /.col -->
                                         </div>
-                                        <!-- here-->
-                                    </div>
+                                        <!-- /.row -->
+                                    </section>
+                                    <!-- PART 5 Ongoing Retraining END-->
+
                                 </div>
-                                <!-- PART 5 Ongoing Retraining END-->
-
                             </div>
-                        </div>
 
 
-                    </div> <!-- Additional -->
+                        </div> <!-- Additional -->
                 </section> <!-- Additional -->
             </div>
         </div>
@@ -383,6 +388,8 @@
                 $("#example1").DataTable();
                 $("#example2").DataTable();
                 $("#example3").DataTable();
+                $("#example4").DataTable();
+                $("#example5").DataTable();
             });
 
             $(function () {
