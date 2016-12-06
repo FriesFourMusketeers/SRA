@@ -8,6 +8,7 @@ package dao;
 import db.DBConnectionFactory;
 import entity.Allocation;
 import entity.Charts;
+import entity.Criteria;
 import entity.Employee;
 import entity.EmployeeJobInfo;
 import entity.EmployeePersonalInfo;
@@ -33,6 +34,64 @@ import java.util.logging.Logger;
  * @author John San Agustin
  */
 public class EmployeeDAO {
+    
+    public Criteria getCriteria() {
+        Criteria criteria = new Criteria();
+        try {
+            
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+            String query = "select * from `safeguard-criteria`";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                
+
+               criteria.setMinAge(rs.getInt("minAge"));
+               criteria.setMaxAge(rs.getInt("maxAge"));
+               criteria.setMinWeight(rs.getInt("minWeight"));
+               criteria.setMaxWeight(rs.getInt("maxWeight"));
+               criteria.setMinHeight(rs.getInt("minHeight"));
+               criteria.setBodybuild(rs.getString("bodybuild"));
+               criteria.setTrainingAttended(rs.getString("trainingAttended"));
+           
+            }
+            conn.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Employee.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return criteria;
+    }
+    
+    /*
+     This function rejects the Applicant
+     */
+    public boolean updateCriteria(Criteria criteria) {
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+            String query = "update`Safeguard-Criteria`set minAge=?,maxAge=? ,minWeight=?,maxWeight=?,minHeight=?,bodybuild=?,trainingAttended=?";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+
+            pstmt.setInt(1, criteria.getMinAge());
+            pstmt.setInt(2, criteria.getMaxAge());
+            pstmt.setInt(3,criteria.getMinWeight());
+            pstmt.setInt(4,criteria.getMinWeight());
+            pstmt.setInt(5,criteria.getMinHeight());
+            pstmt.setString(6,criteria.getBodybuild());
+            pstmt.setString(7, criteria.getTrainingAttended());
+                    
+
+            int rows = pstmt.executeUpdate();
+            conn.close();
+            return rows == 1;
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
 
     /*
      This function gets All Personal Infos of the Employees
@@ -372,14 +431,14 @@ public class EmployeeDAO {
         return null;
     }
 
-    /*
+ /*
      This function inputs the Applicants Personal Info
      */
-    public boolean inputPersonalInfo(EmployeePersonalInfo personalInfo, InputStream inputStream) {
+    public boolean inputPersonalInfo(EmployeePersonalInfo personalInfo, InputStream inputStream, InputStream inputStream2) {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
-            String query = "insert into `employee-personal-information`(lastName,firstName,middleName,nickname,birthday,age,sex,religion,cellphoneNo,telephoneNo,education,city,marriageStatus, picture, dateInputted) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String query = "insert into `employee-personal-information`(lastName,firstName,middleName,nickname,birthday,age,sex,religion,cellphoneNo,telephoneNo,education,city,marriageStatus, picture, dateInputted, resume,status,details) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement pstmt = conn.prepareStatement(query);
             pstmt.setInt(1, personalInfo.getEmployeeID());
             pstmt.setString(1, personalInfo.getLastName());
@@ -395,9 +454,11 @@ public class EmployeeDAO {
             pstmt.setString(11, personalInfo.getEducation());
             pstmt.setString(12, personalInfo.getCity());
             pstmt.setString(13, personalInfo.getMarriageStatus());
-
             pstmt.setBlob(14, inputStream);
             pstmt.setDate(15, personalInfo.getDateInput());
+            pstmt.setBlob(16, inputStream2);
+            pstmt.setString(17, personalInfo.getStatus());
+            pstmt.setString(18, personalInfo.getDetails());
 
             int rows = pstmt.executeUpdate();
             conn.close();
@@ -554,18 +615,19 @@ public class EmployeeDAO {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
-            String query = "insert into `employee-job-information`(driversLicense,driversLicenseExpDate,license,licenseExpDate,trainingAttended,formerEmployer,inclusiveDate,formerJob,reasonForLeaving) values (?,?,?,?,?,?,?,?,?)";
+            String query = "insert into `employee-job-information`(driversLicense,driversLicenseExpDate,licenseNo,licenseExpDate,licenseType,trainingAttended,formerEmployer,inclusiveDate,formerJob,reasonForLeaving) values (?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement pstmt = conn.prepareStatement(query);
             //pstmt.setInt(1, jobInfo.getEmployeeID());
             pstmt.setString(1, jobInfo.getDriversLicense());
             pstmt.setDate(2, jobInfo.getDriversLicenseExpDate());
-            pstmt.setString(3, jobInfo.getLicense());
+            pstmt.setString(3, jobInfo.getLicenseNo());
             pstmt.setDate(4, jobInfo.getLicenseExpDate());
-            pstmt.setString(5, jobInfo.getTrainingAttended());
-            pstmt.setString(6, jobInfo.getFormerEmployer());
-            pstmt.setString(7, jobInfo.getInclusiveDate());
-            pstmt.setString(8, jobInfo.getFormerJob());
-            pstmt.setString(9, jobInfo.getReasonForLeaving());
+            pstmt.setString(5, jobInfo.getLicenseType());
+            pstmt.setString(6, jobInfo.getTrainingAttended());
+            pstmt.setString(7, jobInfo.getFormerEmployer());
+            pstmt.setString(8, jobInfo.getInclusiveDate());
+            pstmt.setString(9, jobInfo.getFormerJob());
+            pstmt.setString(10, jobInfo.getReasonForLeaving());
 
             int rows = pstmt.executeUpdate();
             conn.close();
@@ -1454,6 +1516,25 @@ public class EmployeeDAO {
             Logger.getLogger(Employee.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+    
+      public int getEmployeeID() {
+        int employeeID = 0;
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+            String query = "Select max(employeeID) from `Employee-Personal-Information`;";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                employeeID = rs.getInt("max(employeeID)");
+            }
+            conn.close();
+            return employeeID;
+        } catch (SQLException ex) {
+            Logger.getLogger(Employee.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return employeeID;
     }
 
     public int getAllocationID() {

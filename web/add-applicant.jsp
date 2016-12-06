@@ -287,6 +287,15 @@
                                                 <label>Security License No.</label>
                                                 <input type="text" class="form-control" name="applicantSecurityLicenseNo" id="applicantSecurityLicenseNo" placeholder="Enter Security License No." required>
                                             </div>
+                                             <div class="col-xs-3">
+                                                <label>Security License No.</label>
+                                                <select class="form-control select2" style="width: 100%;" name="applicantSecurityLicenseType" id="applicantSecurityLicenseType" required>
+                                                    <option>Basic Security</option>
+                                                    <option>Mall Security</option>
+                                                    <option>Bank Security</option>
+                                                    <option>Supervisory</option>
+                                                </select>
+                                            </div>
                                             <div class="form-group col-xs-3">
                                                 <label>Expiry Date</label>
 
@@ -335,7 +344,7 @@
                                                                     $('#TrainingOthers').hide();
                                                                 }">
                                                     <option>Pre-licensing Training</option>
-                                                    <option value="others">Others</option>
+                                                    <option value="Others">Others</option>
                                                 </select>
                                                 <input type = 'text' name = 'TrainingOthers' id = 'TrainingOthers' style="display:none"/>
                                             </div>
@@ -501,6 +510,7 @@
                 var driversDate = document.getElementById('driverslicenseexpirydate').value;
                 var securityLicense = document.getElementById('applicantSecurityLicenseNo').value;
                 var securityDate = document.getElementById('securitylicenseexpirydate').value;
+                var securityType = document.getElementById('applicantSecurityLicenseType').value;
                 var TIN = document.getElementById('applicantTINNo').value;
                 var TINDate = document.getElementById('applicantTINexpirydate').value;
                 var marriage = document.getElementById('marriageStatus').value;
@@ -510,13 +520,13 @@
                 var employerName = document.getElementById('applicantEmployerName1').value;
                 var employerReason = document.getElementById('applicantEmployerReason1').value;
 
-                if (photo === "" || lastName === "" || firstName === "" || middleName === "" || nickname === ""
+                if (resume ==="" || photo === "" || lastName === "" || firstName === "" || middleName === "" || nickname === ""
                         || birthday === "" || age === "" || sex === "" || religion === "" || cellno === ""
                         || telno === "" || education === "" || city === "" || height === "" || weight === ""
                         || marks === "" || defects === "" || illness === "" || build === false || skin === false || health === false
-                        || driversLicense === "" || driversDate === "" || securityLicense === "" || securityDate === ""
+                        || driversLicense === "" || driversDate === "" || securityLicense === "" || securityDate === "" || securityType ===""
                         || marriage === "" || seminar === "" || employerDate === "" || employerJob === "" || employerName === ""
-                        || employerReason === "") {
+                        || employerReason === "" || TIN === "" || TINDate === "" ) {
                     alert("Complete All Details" + build + "" + skin + "" + health);
 
                 }

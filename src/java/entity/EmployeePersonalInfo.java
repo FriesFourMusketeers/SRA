@@ -16,6 +16,7 @@ public class EmployeePersonalInfo extends EmployeeSafeguardInfo{
 
     private int employeeID;
     private Blob picture;
+    private Blob resume;
     private String lastName;
     private String firstName;
     private String middleName;
@@ -32,6 +33,14 @@ public class EmployeePersonalInfo extends EmployeeSafeguardInfo{
     private Date dateInput;
     private String details;
     private String status;
+
+    public Blob getResume() {
+        return resume;
+    }
+
+    public void setResume(Blob resume) {
+        this.resume = resume;
+    }
 
     public String getDetails() {
         return details;

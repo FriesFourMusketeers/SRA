@@ -40,14 +40,14 @@ public class ScheduleDAO {
                 int scheduleID = rs.getInt("scheduleID");
                 int employeeID = rs.getInt("employeeID");
                 Date scheduledDate = rs.getDate("scheduledDate");
-                String scheduledTime = rs.getString("scheduledTime");
+                
                 
                 String name = (rs.getString("firstName")+" "+rs.getString("lastName"));
                 
                 schedule.setScheduleID(scheduleID);
                 schedule.setEmployeeID(employeeID);
                 schedule.setScheduledDate((java.sql.Date) scheduledDate);
-                schedule.setScheduledTime(scheduledTime);
+               
                 schedule.setName(name);
 
                 scheduleList.add(schedule);
@@ -67,12 +67,11 @@ public class ScheduleDAO {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
-            String query = "insert into `application-schedule`(employeeID,scheduledDate,scheduledTime) values (?,?,?)";
+            String query = "insert into `application-schedule`(employeeID,scheduledDate) values (?,date_add(current_date, Interval 3 DAY))";
             PreparedStatement pstmt = conn.prepareStatement(query);
 
             pstmt.setInt(1, schedule.getEmployeeID());
-            pstmt.setDate(2, schedule.getScheduledDate());
-            pstmt.setString(3, schedule.getScheduledTime());
+           
            
        
             

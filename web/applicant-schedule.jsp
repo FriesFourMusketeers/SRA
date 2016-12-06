@@ -100,7 +100,7 @@
                                                         </td>
                                                         <td for="applicantName" id="applicantName<%=+i%>"><%=schedule.getAllInterview().get(i).getName()%></td>
                                                         <td for="scheduledDate" id="scheduledDate<%=+i%>"><%=schedule.getAllInterview().get(i).getScheduledDate()%></td>
-                                                        <td for="scheduledTime" id="scheduledTime<%=+i%>"><%=schedule.getAllInterview().get(i).getScheduledTime()%></td>
+                                                        
 
                                                         <td><button type="submit" method="post" class="btnSelect label-success btn btn-primary" name="first" value="Qualified">Qualified</button>
                                                             <button type="submit" method="post" class="btnSelect label-primary btn btn-primary" name="third" value="Waitlisted">WaitListed</button>
@@ -196,6 +196,7 @@
 
                                 <!-- PART 4 Safeguard Criteria START-->
                                 <div id="SafeguardCriteria" class="tab-pane">
+                                    
                                     <!-- /.control-sidebar -->
                                     <!-- Add the sidebar's background. This div must be placed
                                          immediately after the control sidebar -->
@@ -265,15 +266,17 @@
                                             
                                             <div class="footer" >
                                                 <span style="float:right;">
-                                                    <button type="submit" class="btn btn-primary" id="safeguardCriteriaUpdate">Save</button>
+                                                    <button type="submit" class="btn btn-primary" id="safeguardCriteriaUpdate" name="fourth" value="updateCriteria">Save</button>
                                                 </span>
                                             </div>
 
                                         </div>
                                         <!-- here-->
                                     </div>
+                                    
                                 </div>
                                 <!-- PART 4 Safeguard Criteria END-->
+                       
                             </div>
 
                         </form>

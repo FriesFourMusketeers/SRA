@@ -15,7 +15,7 @@ public class EmployeeJobInfo extends EmployeePhysicalInfo{
     
     private String driversLicense;
     private Date driversLicenseExpDate;
-    private String license;
+    private String licenseNo;
     private Date licenseExpDate;
     private String trainingAttended;
     private String formerEmployer;
@@ -24,6 +24,23 @@ public class EmployeeJobInfo extends EmployeePhysicalInfo{
     private String reasonForLeaving;
     private String TINno;
     private Date TINdate;
+    private String licenseType;
+
+    public String getLicenseNo() {
+        return licenseNo;
+    }
+
+    public void setLicenseNo(String licenseNo) {
+        this.licenseNo = licenseNo;
+    }
+
+    public String getLicenseType() {
+        return licenseType;
+    }
+
+    public void setLicenseType(String licenseType) {
+        this.licenseType = licenseType;
+    }
 
     public String getDriversLicense() {
         return driversLicense;
@@ -40,15 +57,6 @@ public class EmployeeJobInfo extends EmployeePhysicalInfo{
     public void setDriversLicenseExpDate(Date driversLicenseExpDate) {
         this.driversLicenseExpDate = driversLicenseExpDate;
     }
-
-    public String getLicense() {
-        return license;
-    }
-
-    public void setLicense(String license) {
-        this.license = license;
-    }
-
 
     public Date getLicenseExpDate() {
         return licenseExpDate;
