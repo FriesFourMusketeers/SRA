@@ -7,6 +7,7 @@ package controller;
 
 import dao.EmployeeDAO;
 import dao.ScheduleDAO;
+import entity.Criteria;
 import entity.EmployeeSafeguardInfo;
 import entity.Schedule;
 import java.io.IOException;
@@ -76,6 +77,7 @@ public class finalDecision extends HttpServlet {
             throws ServletException, IOException {
         
         System.out.println(request.getParameter("employeeID"));
+        
          
        if (request.getParameter("first") != null) {
         
@@ -89,6 +91,7 @@ public class finalDecision extends HttpServlet {
             safeguardInfo.setNumberOfYears(0);
             safeguardInfo.setStatus("Unallocated");
             
+            //hi
             
             Calendar date = Calendar.getInstance();
             
@@ -156,6 +159,32 @@ public class finalDecision extends HttpServlet {
             EmployeeDAO employeeDAO = new EmployeeDAO();
             System.out.println(request.getParameter("employeeID"));
             boolean successful = employeeDAO.Waitlisted(Integer.parseInt(request.getParameter("employeeID")));
+        
+        
+            if (successful == true){
+                ServletContext context= getServletContext();
+                RequestDispatcher rd= context.getRequestDispatcher("/dashboard.jsp");
+                rd.forward(request, response);
+                System.out.println("successful");
+            }else{
+                ServletContext context= getServletContext();
+                RequestDispatcher rd= context.getRequestDispatcher("/applicant-schedule.jsp");
+                rd.forward(request, response);
+            }
+                out.close();
+           }
+        else if (request.getParameter("fourth") != null) {
+        
+            EmployeeDAO employeeDAO = new EmployeeDAO();
+            Criteria criteria = new Criteria();
+            criteria.setMinAge(Integer.parseInt(request.getParameter("ageMinCriteria")));
+            criteria.setMaxAge(Integer.parseInt(request.getParameter("ageMaxCriteria")));
+            criteria.setMinHeight(Integer.parseInt(request.getParameter("heightMinCriteria")));
+            criteria.setMinWeight(Integer.parseInt(request.getParameter("weightMinCriteria")));
+            criteria.setMaxWeight(Integer.parseInt(request.getParameter("weightMaxCriteria")));
+            criteria.setBodybuild(request.getParameter("bodyBuildCriteria"));
+            criteria.setTrainingAttended(request.getParameter("trainingCriteria"));
+            boolean successful = employeeDAO.updateCriteria(criteria);
         
         
             if (successful == true){
