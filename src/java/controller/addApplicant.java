@@ -6,9 +6,13 @@
 package controller;
 
 import dao.EmployeeDAO;
+import dao.ScheduleDAO;
+import entity.Criteria;
+
 import entity.EmployeeJobInfo;
 import entity.EmployeePersonalInfo;
 import entity.EmployeePhysicalInfo;
+import entity.Schedule;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -19,6 +23,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -77,7 +82,7 @@ public class addApplicant extends HttpServlet {
         }
     }
 
-    /**
+ /**
      * Handles the HTTP <code>POST</code> method.
      *
      * @param request servlet request
@@ -126,9 +131,9 @@ public class addApplicant extends HttpServlet {
             
             DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             String birthDate = request.getParameter("BirthDate");
-            String driverslicensedate = request.getParameter("driverslicenseexpirydate");
-            String securitylicensedate = request.getParameter("securitylicenseexpirydate");
-            String TINdate = request.getParameter("applicantTINexpirydate");
+            String driverslicensedate;
+            String securitylicensedate;
+            String TINdate;
             
             
             System.out.println(birthDate);
@@ -138,6 +143,7 @@ public class addApplicant extends HttpServlet {
             personalInfo.setBirthday(sql);
             
             java.sql.Date dateInputted = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+
             personalInfo.setDateInput(dateInputted);
             
             personalInfo.setAge(Integer.parseInt(request.getParameter("applicantAge")));
@@ -164,7 +170,9 @@ public class addApplicant extends HttpServlet {
             java.sql.Date sql2 = new java.sql.Date(date.getTime());
             jobInfo.setDriversLicenseExpDate(sql2);
             
-            jobInfo.setLicense(request.getParameter("applicantSecurityLicenseNo"));
+            jobInfo.setLicenseNo(request.getParameter("applicantSecurityLicenseNo"));
+            
+            jobInfo.setLicenseType(request.getParameter("applicantSecurityLicenseType"));
             
             
             securitylicensedate = request.getParameter("securitylicenseexpirydate");
@@ -176,13 +184,13 @@ public class addApplicant extends HttpServlet {
             
             
             TINdate = request.getParameter("applicantTINexpirydate");
-            date = format.parse(securitylicensedate);
+            date = format.parse(TINdate);
             java.sql.Date sql4 = new java.sql.Date(date.getTime());
             jobInfo.setTINdate(sql4);
             
             personalInfo.setMarriageStatus(request.getParameter("marriageStatus"));
             
-            jobInfo.setTrainingAttended(request.getParameter("applicantSeminars1"));
+            jobInfo.setTrainingAttended(request.getParameter("applicantTrainings"));
             jobInfo.setInclusiveDate(request.getParameter("applicantEmployerDate1"));
             jobInfo.setFormerJob(request.getParameter("applicantEmployerJob1"));
             jobInfo.setFormerEmployer(request.getParameter("applicantEmployerName1"));
@@ -190,10 +198,73 @@ public class addApplicant extends HttpServlet {
             
             
             EmployeeDAO employeeDAO = new EmployeeDAO();
+            Criteria criteria = employeeDAO.getCriteria();
             
-            boolean successful = employeeDAO.inputPersonalInfo(personalInfo,inputStream);
+            long difference = sql3.getTime()-dateInputted.getTime();
+            long daysDifference = TimeUnit.DAYS.convert(difference, TimeUnit.MILLISECONDS)+1;
+            
+            int training = 0;
+            String trainingAttended = request.getParameter("applicantTrainings");
+            
+            switch(trainingAttended){
+                case "Pre-licensing Training": training = 1;break;
+                case "Others": training = 2;break;
+            }
+            
+            int trainingNeeded = 0;
+            String trainingRequirement = criteria.getTrainingAttended();
+            
+            switch(trainingRequirement){
+                case "Pre-licensing Training": trainingNeeded = 1;break;
+                case "Others": trainingNeeded = 2;break;
+            }
+            
+             System.out.println(trainingAttended);
+                System.out.println(trainingRequirement);
+            
+            if(!(personalInfo.getAge() >= criteria.getMinAge() && personalInfo.getAge() <= criteria.getMaxAge())){
+                personalInfo.setStatus("Not Qualified");
+                personalInfo.setDetails("Age");
+            }else if(!(physicalInfo.getHeight() >= criteria.getMinHeight())){
+                personalInfo.setStatus("Not Qualified");
+                personalInfo.setDetails("Height");
+            }
+            else if(!(physicalInfo.getWeight() >= criteria.getMinWeight() && (physicalInfo.getWeight() <= criteria.getMaxWeight()))){
+                personalInfo.setStatus("Not Qualified");
+                personalInfo.setDetails("Weight");
+            }
+            else if(trainingNeeded == 2 && training != 2){
+                personalInfo.setStatus("Not Qualified");
+                personalInfo.setDetails("Training Defeciency");
+                
+            }
+             else if(!(daysDifference >= 365)){
+                personalInfo.setStatus("Not Qualified");
+                personalInfo.setDetails("Nearing License Expiry");
+                
+                
+                
+            }
+            else{
+                
+                personalInfo.setStatus("Interview Scheduled");
+            }
+  
+            boolean successful = employeeDAO.inputPersonalInfo(personalInfo,inputStream,inputStream2);
             boolean successful2 = employeeDAO.inputJobInfo(jobInfo);
             boolean successful3 = employeeDAO.inputPhysicalInfo(physicalInfo);
+            
+            if(personalInfo.getStatus().equalsIgnoreCase("Interview Scheduled")){
+                int employeeID = employeeDAO.getEmployeeID();
+                System.out.println(employeeID);
+                ScheduleDAO scheduleDAO = new ScheduleDAO();
+                Schedule schedule = new Schedule();
+                
+                schedule.setEmployeeID(employeeID);
+                scheduleDAO.inputSchedule(schedule);
+                
+            }
+            
             
             
             
