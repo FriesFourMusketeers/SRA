@@ -120,51 +120,17 @@ public class KpiDAO {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
-            String query1 = "insert into `custom-kpi`(clientID,performanceArea) values (?,?)";
+            String query1 = "insert into `KPI-List`(clientID,kpiID,measureID,weight,greenTarget,yellowTarget,redTarget) values (?,?,?,?,?,?,?)";
             PreparedStatement pstmt = conn.prepareStatement(query1);
-            pstmt.setInt(1, kpi.getClientKPI());
-            pstmt.setString(2, kpi.getPerformanceArea());
+            pstmt.setInt(1, kpi.getClientID());
+            pstmt.setInt(2, kpi.getKpiID());
+            pstmt.setInt(3, kpi.getMeasureID());
+            pstmt.setDouble(4, kpi.getWeight());
+            pstmt.setInt(5, kpi.getGreenTarget());
+            pstmt.setInt(6, kpi.getYellowTarget());
+            pstmt.setInt(7, kpi.getRedTarget());
 
             int rows = pstmt.executeUpdate();
-
-            conn.close();
-            return rows == 1;
-        } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return false;
-    }
-
-    public boolean createNewKPI1(KPI kpi) {
-        try {
-            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
-            Connection conn = myFactory.getConnection();
-            String query = "insert into `custom-measure`(performanceMeasure,operator,target) values (?,?,?)";
-            PreparedStatement pstmt2 = conn.prepareStatement(query);
-            pstmt2.setString(1, kpi.getPerformanceMeasure());
-            pstmt2.setString(2, kpi.getOperator());
-            pstmt2.setString(3, kpi.getTarget());
-            int rows = pstmt2.executeUpdate();
-
-            conn.close();
-            return rows == 1;
-        } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return false;
-    }
-
-    public boolean createNewKPI3(FinalKPI kpi) {
-        try {
-            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
-            Connection conn = myFactory.getConnection();
-            String query = "insert into `kpi`(customKPI,clientID,customMeasure,weight) values (?,?,?,?)";
-            PreparedStatement pstmt2 = conn.prepareStatement(query);
-            pstmt2.setInt(1, kpi.getKpiID());
-            pstmt2.setInt(2, kpi.getClientID());
-            pstmt2.setInt(3, kpi.getMeasureID());
-            pstmt2.setDouble(4, kpi.getWeight());
-            int rows = pstmt2.executeUpdate();
 
             conn.close();
             return rows == 1;

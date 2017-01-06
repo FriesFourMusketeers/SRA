@@ -45,166 +45,42 @@ public class addKPI extends HttpServlet {
 
         try {
             String url = "";
-            KPI kpiinfo = new KPI();
             KPI defaultinfo = new KPI();
-            FinalKPI defaultkpi = new FinalKPI();
+
+            int length = 0;
+
+            String[] green = request.getParameterValues("weeklytarget");
+            String[] yellow = request.getParameterValues("belowtargetend");
+            String[] red = request.getParameterValues("wellbelowtarget");
+            String[] weight = request.getParameterValues("defaultweight");
+
+            String[] kpimeasurenumber = request.getParameterValues("kpi");
+
+            for (int i = 0; i < kpimeasurenumber.length; i++) {
+                int measurenumber = Integer.parseInt(kpimeasurenumber[i]);
+
+                defaultinfo.setKpiID(i);
+                for (int j = 0; j < measurenumber; j++) {
+                    defaultinfo.setMeasureID(length + 1);
+                    defaultinfo.setGreenTarget(Integer.parseInt(green[length]));
+                    defaultinfo.setYellowTarget(Integer.parseInt(yellow[length]));
+                    defaultinfo.setRedTarget(Integer.parseInt(red[length]));
+                    defaultinfo.setWeight(Double.parseDouble(weight[length]));
+                    length++;
+                }
+            }
+
             KpiDAO kpiDAO = new KpiDAO();
 
-            String assessmentformTypeOG = request.getParameter("assessmentformTypeOG");
-            System.out.println(assessmentformTypeOG);
+            boolean successful = kpiDAO.createNewKPI(defaultinfo);
 
-            if (assessmentformTypeOG.equals("Default")) {
-                String[] defaultname = request.getParameterValues("defaultname");
-                System.out.println(defaultname.length);
-                String[] defaulttarget = request.getParameterValues("defaultmeasure");
-                String[] defaultoperator = request.getParameterValues("defaultoperator");
-                String[] defaultweight = request.getParameterValues("defaultweight");
-
-                for (int i = 0; i < defaultname.length; i++) {
-                    defaultinfo.setPerformanceMeasure(defaultname[i]);
-                    defaultinfo.setOperator(defaultoperator[i]);
-                    defaultinfo.setTarget(defaulttarget[i]);
-                    boolean successful3 = kpiDAO.createNewKPI1(defaultinfo);
-
-                    defaultkpi.setClientID(Integer.parseInt(request.getParameter("clientName")));
-                    defaultkpi.setKpiID(1);
-                    defaultkpi.setMeasureID(kpiDAO.getLastMeasure().get(0).getMeasureID());
-                    defaultkpi.setWeight(Double.parseDouble(defaultweight[i]));
-                    defaultkpi.setComputeFor("Everyday");
-                    boolean successful4 = kpiDAO.createNewKPI3(defaultkpi);
-
-                    if (successful3 && successful4 == true) {
-                        HttpSession session = request.getSession();
-                        session.setAttribute("", kpiinfo);
-                        url = "/dashboard.jsp";
-                        System.out.println("successful");
-                    } else {
-                        url = "/addKPI.jsp";
-                    }
-                }
-            }
-
-            if (assessmentformTypeOG.equals("Custom")) {
-
-                String[] kpiname = request.getParameterValues("kpiname");
-                String[] measurename = request.getParameterValues("name");
-                String[] operator = request.getParameterValues("target");
-                String[] measuretarget = request.getParameterValues("target");
-                String[] measureweight = request.getParameterValues("weight");
-                String[] measurecount = request.getParameterValues("measurecount");
-
-                for (int i = 0; i < kpiname.length; i++) {
-                    kpiinfo.setClientKPI(Integer.parseInt(request.getParameter("clientName")));
-                    System.out.println(request.getParameter("clientName"));
-                    kpiinfo.setPerformanceArea(kpiname[i]);
-                    System.out.println(kpiname[i]);
-
-                    boolean successful1 = kpiDAO.createNewKPI(kpiinfo);
-
-                    for (int j = 0; j < Integer.parseInt(measurecount[i]); j++) {
-                        kpiinfo.setPerformanceMeasure(measurename[j]);
-                        kpiinfo.setOperator(operator[j]);
-                        kpiinfo.setTarget(measuretarget[j]);
-                        System.out.println(measurename[j]);
-                        System.out.println(measuretarget[j]);
-                        System.out.println(measureweight[j]);
-
-                        boolean successful = kpiDAO.createNewKPI1(kpiinfo);
-
-                        FinalKPI kpi1 = new FinalKPI();
-                        kpi1.setKpiID(kpiDAO.getLastCustomKpi().get(0).getKpiID());
-                        kpi1.setClientID(kpiDAO.getLastCustomKpi().get(0).getClientID());
-                        kpi1.setMeasureID(kpiDAO.getLastMeasure().get(0).getMeasureID());
-                        kpi1.setWeight(Double.parseDouble(measureweight[j]));
-                        kpi1.setComputeFor("PRT");
-
-                        boolean successful2 = kpiDAO.createNewKPI3(kpi1);
-
-                        if (successful && successful1 && successful2 == true) {
-                            HttpSession session = request.getSession();
-                            session.setAttribute("", kpiinfo);
-                            url = "/dashboard.jsp";
-                            System.out.println("successful");
-                        } else {
-                            url = "/addKPI.jsp";
-                        }
-                    }
-                }
-            }
-
-            if (assessmentformTypeOG.equals("Default + custom")) {
-
-                boolean successful = false;
-                boolean successful1 = false;
-                boolean successful2 = false;
-                boolean successful3 = false;
-                boolean successful4 = false;
-                
-                String[] defaultname = request.getParameterValues("defaultname");
-                String[] defaulttarget = request.getParameterValues("defaultmeasure");
-                String[] defaultoperator = request.getParameterValues("defaultoperator");
-                String[] defaultweight = request.getParameterValues("defaultweight");
-
-                for (int i = 0; i < defaultname.length; i++) {
-                    defaultinfo.setPerformanceMeasure(defaultname[i]);
-                    defaultinfo.setOperator(defaultoperator[i]);
-                    defaultinfo.setTarget(defaulttarget[i]);
-                    successful3 = kpiDAO.createNewKPI1(defaultinfo);
-
-                    defaultkpi.setClientID(Integer.parseInt(request.getParameter("clientName")));
-                    defaultkpi.setKpiID(1);
-                    defaultkpi.setMeasureID(kpiDAO.getLastMeasure().get(0).getMeasureID());
-                    defaultkpi.setWeight(Double.parseDouble(defaultweight[i]));
-                    defaultkpi.setComputeFor("Everyday");
-                    successful4 = kpiDAO.createNewKPI3(defaultkpi);
-                }
-                
-                String[] kpiname = request.getParameterValues("kpiname");
-                String[] measurename = request.getParameterValues("name");
-                String[] operator = request.getParameterValues("target");
-                String[] measuretarget = request.getParameterValues("target");
-                String[] measureweight = request.getParameterValues("weight");
-                String[] measurecount = request.getParameterValues("measurecount");
-
-                for (int i = 0; i < kpiname.length; i++) {
-                    kpiinfo.setClientKPI(Integer.parseInt(request.getParameter("clientName")));
-                    System.out.println(request.getParameter("clientName"));
-                    kpiinfo.setPerformanceArea(kpiname[i]);
-                    System.out.println(kpiname[i]);
-
-                    successful1 = kpiDAO.createNewKPI(kpiinfo);
-
-                    for (int j = 0; j < Integer.parseInt(measurecount[i]); j++) {
-                        kpiinfo.setPerformanceMeasure(measurename[j]);
-                        kpiinfo.setOperator(operator[j]);
-                        kpiinfo.setTarget(measuretarget[j]);
-                        System.out.println(measurename[j]);
-                        System.out.println(measuretarget[j]);
-                        System.out.println(measureweight[j]);
-
-                        successful = kpiDAO.createNewKPI1(kpiinfo);
-
-                        FinalKPI kpi1 = new FinalKPI();
-                        kpi1.setKpiID(kpiDAO.getLastCustomKpi().get(0).getKpiID());
-                        kpi1.setClientID(kpiDAO.getLastCustomKpi().get(0).getClientID());
-                        kpi1.setMeasureID(kpiDAO.getLastMeasure().get(0).getMeasureID());
-                        kpi1.setWeight(Double.parseDouble(measureweight[j]));
-                        kpi1.setComputeFor("PRT");
-
-                        successful2 = kpiDAO.createNewKPI3(kpi1);
-
-                        
-                    }
-                }
-                if (successful && successful1 && successful2 && successful3 && successful4 == true) {
-                            HttpSession session = request.getSession();
-                            session.setAttribute("", kpiinfo);
-                            url = "/dashboard.jsp";
-                            System.out.println("successful");
-                        } else {
-                            url = "/addKPI.jsp";
-                        }
-
+            if (successful == true) {
+                HttpSession session = request.getSession();
+                session.setAttribute("", defaultinfo);
+                url = "/dashboard.jsp";
+                System.out.println("successful");
+            } else {
+                url = "/addKPI.jsp";
             }
 
             ServletContext context = getServletContext();

@@ -11,109 +11,110 @@ package entity;
  */
 public class KPI {
 
-    private int clientKPI;
-    private int customKPI;
-    private int customMeasure;
-    private String performanceArea;
-    private String performanceMeasure;
-    private String operator;
-    private String target;
+    private int clientID;
+    private int kpiID;
+    private int measureID;
+    private Double weight;
+    private int greenTarget;
+    private int yellowTarget;
+    private int redTarget;
 
     /**
-     * @return the performanceArea
+     * @return the clientID
      */
-    public String getPerformanceArea() {
-        return performanceArea;
+    public int getClientID() {
+        return clientID;
     }
 
     /**
-     * @param performanceArea the performanceArea to set
+     * @param clientID the clientID to set
      */
-    public void setPerformanceArea(String performanceArea) {
-        this.performanceArea = performanceArea;
+    public void setClientID(int clientID) {
+        this.clientID = clientID;
     }
 
     /**
-     * @return the performanceMeasure
+     * @return the kpiID
      */
-    public String getPerformanceMeasure() {
-        return performanceMeasure;
+    public int getKpiID() {
+        return kpiID;
     }
 
     /**
-     * @param performanceMeasure the performanceMeasure to set
+     * @param kpiID the kpiID to set
      */
-    public void setPerformanceMeasure(String performanceMeasure) {
-        this.performanceMeasure = performanceMeasure;
+    public void setKpiID(int kpiID) {
+        this.kpiID = kpiID;
     }
 
     /**
-     * @return the target
+     * @return the measureID
      */
-    public String getTarget() {
-        return target;
+    public int getMeasureID() {
+        return measureID;
     }
 
     /**
-     * @param target the target to set
+     * @param measureID the measureID to set
      */
-    public void setTarget(String target) {
-        this.target = target;
+    public void setMeasureID(int measureID) {
+        this.measureID = measureID;
     }
 
     /**
-     * @return the clientKPI
+     * @return the weight
      */
-    public int getClientKPI() {
-        return clientKPI;
+    public Double getWeight() {
+        return weight;
     }
 
     /**
-     * @param clientKPI the clientKPI to set
+     * @param weight the weight to set
      */
-    public void setClientKPI(int clientKPI) {
-        this.clientKPI = clientKPI;
+    public void setWeight(Double weight) {
+        this.weight = weight;
     }
 
     /**
-     * @return the operator
+     * @return the greenTarget
      */
-    public String getOperator() {
-        return operator;
+    public int getGreenTarget() {
+        return greenTarget;
     }
 
     /**
-     * @param operator the operator to set
+     * @param greenTarget the greenTarget to set
      */
-    public void setOperator(String operator) {
-        this.operator = operator;
+    public void setGreenTarget(int greenTarget) {
+        this.greenTarget = greenTarget;
     }
 
     /**
-     * @return the customKPI
+     * @return the yellowTarget
      */
-    public int getCustomKPI() {
-        return customKPI;
+    public int getYellowTarget() {
+        return yellowTarget;
     }
 
     /**
-     * @param customKPI the customKPI to set
+     * @param yellowTarget the yellowTarget to set
      */
-    public void setCustomKPI(int customKPI) {
-        this.customKPI = customKPI;
+    public void setYellowTarget(int yellowTarget) {
+        this.yellowTarget = yellowTarget;
     }
 
     /**
-     * @return the customMeasure
+     * @return the redTarget
      */
-    public int getCustomMeasure() {
-        return customMeasure;
+    public int getRedTarget() {
+        return redTarget;
     }
 
     /**
-     * @param customMeasure the customMeasure to set
+     * @param redTarget the redTarget to set
      */
-    public void setCustomMeasure(int customMeasure) {
-        this.customMeasure = customMeasure;
+    public void setRedTarget(int redTarget) {
+        this.redTarget = redTarget;
     }
+
 }
