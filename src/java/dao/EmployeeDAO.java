@@ -373,7 +373,7 @@ public class EmployeeDAO {
                 int employeeID = rs.getInt("employeeID");
                 String driversLicense = rs.getString("driversLicense");
                 Date driversLicenseExpDate = rs.getDate("driversLicenseExpDate");
-                String license = rs.getString("license");
+                String license = rs.getString("licenseNo");
                 Date licenseExpDate = rs.getDate("licenseExpDate");
                 String trainingAttended = rs.getString("trainingAttended");
                 String formerEmployer = rs.getString("formerEmployer");
