@@ -20,6 +20,33 @@ import java.util.logging.Logger;
  * @author JohnMichael
  */
 public class ClientDAO {
+    
+    public boolean inputClient(Client client) {
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+            String query = "insert into `client` (clientName, contactPerson, contactNumber, email, address, city, numberOfGuards, type) values (?,?,?,?,?,?,?,?);";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+
+            pstmt.setString(1, client.getClientName());
+            pstmt.setString(2, client.getContactPerson());
+            pstmt.setString(3, client.getContactNumber());
+            pstmt.setString(4, client.getEmail());
+            pstmt.setString(5, client.getAddress());
+            pstmt.setString(6, client.getCity());
+            pstmt.setInt(7, client.getNumberOfGuards());
+            pstmt.setString(8, client.getType());
+
+            int rows = pstmt.executeUpdate();
+            conn.close();
+            return rows == 1;
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    
+    
       public ArrayList<Client> getAllClients() {
         try {
             ArrayList<Client> clientList = new ArrayList();
@@ -35,9 +62,10 @@ public class ClientDAO {
                 int clientID = rs.getInt("clientID");
                 String clientName = rs.getString("clientName");
                 String contactPerson = rs.getString("contactPerson");
-                int contactNumber = rs.getInt("contactNumber");
+                String contactNumber = rs.getString("contactNumber");
                 String email = rs.getString("email");
                 String address = rs.getString("address");
+                String city = rs.getString("city");
                 int numberOfGuards = rs.getInt("numberOfGuards");
                 String type = rs.getString("type");
 
@@ -47,6 +75,7 @@ public class ClientDAO {
                 client.setContactNumber(contactNumber);
                 client.setEmail(email);
                 client.setAddress(address);
+                client.setCity(city);
                 client.setNumberOfGuards(numberOfGuards);
                 client.setType(type);
 
@@ -62,7 +91,7 @@ public class ClientDAO {
       
       public Client searchClient(int clientID) {
         try {
-            ArrayList<Client> clientList = new ArrayList();
+            
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
             String query = "select * from client where clientID = ?";
@@ -77,7 +106,7 @@ public class ClientDAO {
                 
                 String clientName = rs.getString("clientName");
                 String contactPerson = rs.getString("contactPerson");
-                int contactNumber = rs.getInt("contactNumber");
+                String contactNumber = rs.getString("contactNumber");
                 String email = rs.getString("email");
                 String address = rs.getString("address");
                 int numberOfGuards = rs.getInt("numberOfGuards");
