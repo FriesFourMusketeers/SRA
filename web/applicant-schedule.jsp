@@ -206,7 +206,7 @@
                                         </div>
                                         <!-- /.box-body -->
                                     </div>
-                                    <!-- /.content-wrapper -->
+                                    <!-- .content-wrapper -->
 
                                 </div>
                                 <!-- PART 3 Rejected Applicants END-->        
