@@ -136,6 +136,7 @@ function setChart(print) {
                 plotLines: [{
                         color: '#FF0000', // passing grade
                         width: 2,
+                        id: 'passinggrade',
                         value: 75,
                         zIndex: 5
                     }],
@@ -170,6 +171,24 @@ function setChart(print) {
                 enableMouseTracking: false,
                 type: 'trendline',
                 algorithm: 'linear'
+            }, {
+                color: '#FF0000',
+                name: 'Passing Grade',
+                marker: {
+                    enabled: false
+                }
+//                ,
+//                events: {
+//                    // Event for showing/hiding plot line
+//                    legendItemClick: function (e) {
+//                        if (this.visible) {
+//                            this.chart.yAxis[0].removePlotLine(passinggrade);
+//                        }
+//                        else {
+//                            this.chart.yAxis[0].addPlotLine(passinggrade);
+//                        }
+//                    }
+//                }
             }
         ],
         drilldown: {
@@ -895,7 +914,7 @@ function setChartLicense(print) {
 //                        JSON.stringify(event.point);
 //                        console.log(event.point.empID + "point");
 //                        window.location.replace("GetEmployeesByClient?SelectedGuard=" + 29);
-                        window.location.href = "License-of-Employee.jsp";
+                        window.location.href = "EmployeeListNew.jsp";
                     }
                 }
             },

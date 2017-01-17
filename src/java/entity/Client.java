@@ -14,9 +14,10 @@ public class Client {
     private int clientID;
     private String clientName;
     private String contactPerson;
-    private int contactNumber;
+    private String contactNumber;
     private String email;
     private String address;
+    private String city;
     private int numberOfGuards;
     private String type;
 
@@ -44,11 +45,11 @@ public class Client {
         this.contactPerson = contactPerson;
     }
 
-    public int getContactNumber() {
+    public String getContactNumber() {
         return contactNumber;
     }
 
-    public void setContactNumber(int contactNumber) {
+    public void setContactNumber(String contactNumber) {
         this.contactNumber = contactNumber;
     }
 
@@ -84,6 +85,14 @@ public class Client {
         this.type = type;
     }
 
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+    
     public Client() {
     }
 

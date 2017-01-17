@@ -2212,10 +2212,10 @@ public class EmployeeDAO {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
             String query = "SELECT epim.employeeID, epim.lastName, epim.firstName, epim.age, epim.sex, epim.city, epi.height, epi.bodyBuild, epi.skinColor, "
-                    + "epi.weight, esi.license, c.clientName FROM `employee-personal-information` epim join `employee-physical-information` "
+                    + "epi.weight, eji.licenseNo, c.clientName FROM `employee-personal-information` epim join `employee-physical-information` "
                     + "epi on epim.employeeID = epi.employeeID join `employee-job-information` eji on epim.employeeID = eji.employeeID join `"
                     + "employee-safeguard-information` esi on epim.employeeID = esi.employeeID join `allocation` a on esi.employeeID = a.employeeID "
-                    + "join `client` c on a.clientID = c.clientID where c.clientID=?";
+                    + "join `client` c on a.clientID = c.clientID where c.clientID=? and a.status='On-going'";
             PreparedStatement pstmt = conn.prepareStatement(query);
             pstmt.setInt(1, id);
             ResultSet rs = pstmt.executeQuery();
@@ -2232,7 +2232,7 @@ public class EmployeeDAO {
                 String lastName = rs.getString("lastName");
                 String firstName = rs.getString("firstName");
                 String city = rs.getString("city");
-                String license = rs.getString("license");
+                String license = rs.getString("licenseNo");
                 String clientName = rs.getString("clientName");
                 String skinColor = rs.getString("skinColor");
 
