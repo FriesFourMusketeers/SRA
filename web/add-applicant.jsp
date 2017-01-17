@@ -10,7 +10,7 @@
 <html>
     <head>
         <title>Safeguard | Add Applicant</title>
-        <!-- daterange picker -->
+        <!-- daterange picker --
         <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
     </head>
     <body>
