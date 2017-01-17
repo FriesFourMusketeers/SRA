@@ -36,7 +36,7 @@
                                 <li class="active"><a href="#PendingApplicants" data-toggle="tab">Pending Applicants</a></li>
                                 <li><a href="#WaitlistedApplicants" data-toggle="tab">Waitlisted Applicants</a></li>
                                 <li><a href="#RejectedApplicants" data-toggle="tab">Rejected Applicants</a></li>
-                                <li><a href="#SafeguardCriteria" data-toggle="tab">Safeguard Criteria</a></li>
+                                <li><a href="#SafeguardCriteria" data-toggle="tab">Waitlisted Criteria</a></li>
                             </ul>
                         </div>
 
@@ -66,7 +66,7 @@
 
                             <div class="tab-content">
                                 <!-- PART 1 Pending Applicants START-->
-                               <div id="PendingApplicants" class="tab-pane active">
+                                <div id="PendingApplicants" class="tab-pane active">
                                     <div class="box">
                                         <div class="box-header">
                                             <h3 class="box-title">Pending Applicants</h3>
@@ -133,15 +133,17 @@
                                                 <thead>
                                                     <tr>
                                                         <th>Waitlisted Applicant Name</th>
-
+                                                        <th>Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>    
                                                     <% EmployeeDAO employeeDAO = new EmployeeDAO();%>
                                                     <% for (int i = 0; i < employeeDAO.getAllWaitlisted().size(); i++) {%>
                                                     <tr>
-                                                        <td><%=employeeDAO.getAllWaitlisted().get(i).getFirstName() + " " + employeeDAO.getAllWaitlisted().get(i).getLastName()%></td>
+                                                        <td data-target="#ViewWaitListed<%=+i%>" data-toggle="modal"><%=employeeDAO.getAllWaitlisted().get(i).getFirstName() + " " + employeeDAO.getAllWaitlisted().get(i).getLastName()%></td>
+                                                        <td><button type="submit" class="btn btn-primary">Hire</button></td>
                                                     </tr>
+
                                                     <%}%>   
                                                 </tbody>
                                             </table>
@@ -171,6 +173,7 @@
                                                     <tr>
                                                         <th>Rejected Applicant Name</th>
                                                         <th>Reason</th>
+                                                        <th>Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>    
@@ -179,8 +182,22 @@
                                                     <tr>
                                                         <td data-target="#ViewProfileNew<%=+i%>" data-toggle="modal"><%=employeeDAO2.getAllRejectedPersonalInfo().get(i).getFirstName() + " " + employeeDAO2.getAllRejectedPersonalInfo().get(i).getLastName()%></td>
                                                         <td><%=employeeDAO2.getAllRejectedPersonalInfo().get(i).getDetails()%></td>
+                                                        <td><button type="button" class="btn btn-danger" id="ReviewApplicant<%=+i%>" name="ReviewApplicant<%=+i%>">Review Applicant (High Demand)</button></td>
                                                     </tr>
-                                                    <%}%>   
+                                                <script>
+                                                    $(document).ready(function () {
+                                                        $("#ReviewApplicant<%=+i%>").hide();
+                                                        $('#DemandCriteria').change(function () {
+                                                            if ($('#DemandCriteria').val() == 0) {
+                                                                $("#ReviewApplicant<%=+i%>").hide();
+                                                            } else {
+                                                                $("#ReviewApplicant<%=+i%>").show();
+                                                            }
+                                                        });
+
+                                                    });
+                                                </script>
+                                                <%}%>   
                                                 </tbody>
                                             </table>
 
@@ -264,6 +281,23 @@
                                                 </select>
                                             </div>
 
+
+                                            <div class="form-group col-xs-3">
+                                                <label>Demand</label>
+                                                <select class="form-control select2" style="width: 100%;"
+                                                        id = 'DemandCriteria' name = 'DemandCriteria' required>
+
+
+                                                    <option>Select an Option</option>
+                                                    <option value="0">Normal</option>
+                                                    <option value="1">High</option>
+
+                                                </select>
+                                            </div>
+                                            
+
+
+
                                             <div class="footer" >
                                                 <span style="float:right;">
                                                     <button type="submit" class="btn btn-primary" id="safeguardCriteriaUpdate" name="fourth" value="updateCriteria">Save</button>
@@ -281,12 +315,231 @@
 
                         </form>
 
-                   <div class="container">
-                            
+                        <div class="container">
+
+                            <% for (int i = 0; i < employeeDAO.getAllWaitlistedPersonalInfo().size(); i++) {%>
+
+
+                            <div class="modal fade bs-example-modal-lg" tabindex="-1" id="ViewWaitListed<%=+i%>" role="dialog" name="ViewProfileNew<%=+i%>">
+                                <div class="modal-dialog modal-lg">
+
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+
+                                        <div class="modal-header">
+                                            <div class="modal-body">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <!-- START TABS -->
+                                                <h2 class="page-header"></h2>
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <!-- Custom Tabs -->
+                                                        <div class="nav-tabs-custom">
+
+                                                            <ul class="nav nav-tabs">
+                                                                <li class="active"><a href="#WaitlistedPersonalData<%=+i%>" data-toggle="tab">Data</a></li>
+                                                                <li><a href="#WaitlistedPersonalCharacteristics<%=+i%>" data-toggle="tab">Characteristics</a></li>
+                                                                <li><a href="#WaitlistedOfficialData<%=+i%>" data-toggle="tab">Official Data</a></li>
+                                                                <li><a href="#WaitlistedEmploymentBackground<%=+i%>" data-toggle="tab">Employment Background</a></li>
+                                                            </ul>
+                                                            <!-- /.tab-pane -->
+                                                            <div class="tab-content">
+                                                                <div class="tab-pane active" id="WaitlistedPersonalData<%=+i%>">
+                                                                    <table class="table table-striped" id="tblGrid">
+                                                                        <thead id="tblHead">
+                                                                            <tr>
+                                                                                <th class="text-left">Category</th>
+                                                                                <th class="text-left">Value</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="display:none">
+                                                                                    <select name="applicantID" id="applicantID">
+                                                                                        <option class ="ap-id"><%=employeeDAO.getAllWaitlistedPersonalInfo().get(i).getEmployeeID()%></option>
+                                                                                    </select>
+                                                                                </td>
+                                                                                <td class="text-left">Last Name:</td>
+                                                                                <td class="text-left"><%=employeeDAO.getAllWaitlistedPersonalInfo().get(i).getLastName()%></td>
+
+                                                                            </tr>
+
+                                                                            <tr><td class="text-left">First Name:</td>
+                                                                                <td class="text-left"><%=employeeDAO.getAllWaitlistedPersonalInfo().get(i).getFirstName()%></td>
+
+                                                                            </tr>
+                                                                            <tr><td class="text-left">Birth Date:</td>
+                                                                                <td class="text-left"><%=employeeDAO.getAllWaitlistedPersonalInfo().get(i).getBirthday()%></td>
+
+                                                                            </tr>
+                                                                            <tr><td class="text-left">Age:</td>
+                                                                                <td class="text-left"><%=employeeDAO.getAllWaitlistedPersonalInfo().get(i).getAge()%></td>
+
+                                                                            </tr>
+                                                                            <tr><td class="text-left">Sex:</td>
+                                                                                <td class="text-left"><%=employeeDAO.getAllWaitlistedPersonalInfo().get(i).getSex()%></td>
+
+                                                                            </tr>
+                                                                            <tr><td class="text-left">Religion:</td>
+                                                                                <td class="text-left"><%=employeeDAO.getAllWaitlistedPersonalInfo().get(i).getReligion()%></td>
+
+                                                                            </tr>
+                                                                            <tr><td class="text-left">Cellphone Number:</td>
+                                                                                <td class="text-left"><%=employeeDAO.getAllWaitlistedPersonalInfo().get(i).getCellphoneNo()%></td>
+
+                                                                            </tr>
+                                                                            <tr><td class="text-left">Telephone Number:</td>
+                                                                                <td class="text-left"><%=employeeDAO.getAllWaitlistedPersonalInfo().get(i).getTelephoneNo()%></td>
+
+                                                                            </tr>
+                                                                            <tr><td class="text-left">City</td>
+                                                                                <td class="text-left"><%=employeeDAO.getAllWaitlistedPersonalInfo().get(i).getCity()%></td>
+
+                                                                            </tr>
+
+
+                                                                        </tbody>
+                                                                    </table>
+
+                                                                </div>
+
+                                                                <div class="tab-pane" id="WaitlistedPersonalCharacteristics<%=+i%>">
+
+
+                                                                    <table class="table table-striped" id="tblGrid">
+                                                                        <thead id="tblHead">
+                                                                            <tr>
+                                                                                <th class="text-left">Category</th>
+                                                                                <th class="text-left">Value</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr><td class="text-left">Height:</td>
+                                                                                <td class="text-left"><%=employeeDAO.getAllWaitlistedPhysicalInfo().get(i).getHeight()%></td>
+
+                                                                            </tr>
+
+                                                                            <tr><td class="text-left">Weight:</td>
+                                                                                <td class="text-left"><%=employeeDAO.getAllWaitlistedPhysicalInfo().get(i).getWeight()%></td>
+
+                                                                            </tr>
+                                                                            <tr><td class="text-left">Sears or other distinguishing marks:</td>
+                                                                                <td class="text-left"><%=employeeDAO.getAllWaitlistedPhysicalInfo().get(i).getSears()%></td>
+
+                                                                            </tr>
+                                                                            <tr><td class="text-left">Physical Defects:</td>
+                                                                                <td class="text-left"><%=employeeDAO.getAllWaitlistedPhysicalInfo().get(i).getPhysicalDefects()%></td>
+
+                                                                            </tr>
+                                                                            <tr><td class="text-left">Recent Serious Illnesses:</td>
+                                                                                <td class="text-left"><%=employeeDAO.getAllWaitlistedPhysicalInfo().get(i).getIllnesses()%></td>
+
+                                                                            </tr>
+                                                                            <tr><td class="text-left">Body Build:</td>
+                                                                                <td class="text-left"><%=employeeDAO.getAllWaitlistedPhysicalInfo().get(i).getBodyBuild()%></td>
+
+                                                                            </tr>
+                                                                            <tr><td class="text-left">Skin Color:</td>
+                                                                                <td class="text-left"><%=employeeDAO.getAllWaitlistedPhysicalInfo().get(i).getSkinColor()%></td>
+
+                                                                            </tr>
+                                                                            <tr><td class="text-left">State of Health:</td>
+                                                                                <td class="text-left"><%=employeeDAO.getAllWaitlistedPhysicalInfo().get(i).getStateOfHealth()%></td>
+                                                                            </tr>
+
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+
+                                                                <div class="tab-pane" id="WaitlistedOfficialData<%=+i%>">
+
+                                                                    <table class="table table-striped" id="tblGrid">
+                                                                        <thead id="tblHead">
+                                                                            <tr>
+                                                                                <th class="text-left">Seminars/Trainings Attended</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td class="text-left"><%=employeeDAO.getAllWaitlistedJobInfo().get(i).getTrainingAttended()%></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="text-left"><%=employeeDAO.getAllWaitlistedJobInfo().get(i).getTrainingAttended()%></td>
+                                                                            </tr>   
+                                                                    </table>
+                                                                </div>
+
+
+                                                                <div class="tab-pane" id="WaitlistedEmploymentBackground<%=+i%>">
+                                                                    <table class="table table-striped" id="tblGrid">
+                                                                        <thead id="tblHead">
+                                                                            <tr>
+                                                                                <th class="text-left">Type of Job</th>
+                                                                                <th class="text-left">Name of Employer</th>
+                                                                                <th class="text-left">Reason for Leaving</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td class="text-left"><%=employeeDAO.getAllWaitlistedJobInfo().get(i).getFormerJob()%></td>
+                                                                                <td class="text-left"><%=employeeDAO.getAllWaitlistedJobInfo().get(i).getFormerEmployer()%></td>
+                                                                                <td class="text-left"><%=employeeDAO.getAllWaitlistedJobInfo().get(i).getReasonForLeaving()%></td>
+                                                                            </tr>
+
+                                                                            <tr>
+                                                                                <td class="text-left"><%=employeeDAO.getAllWaitlistedJobInfo().get(i).getFormerJob()%></td>
+                                                                                <td class="text-left"><%=employeeDAO.getAllWaitlistedJobInfo().get(i).getFormerEmployer()%></td>
+                                                                                <td class="text-left"><%=employeeDAO.getAllWaitlistedJobInfo().get(i).getReasonForLeaving()%></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="text-left"><%=employeeDAO.getAllWaitlistedJobInfo().get(i).getFormerJob()%></td>
+                                                                                <td class="text-left"><%=employeeDAO.getAllWaitlistedJobInfo().get(i).getFormerEmployer()%></td>
+                                                                                <td class="text-left"><%=employeeDAO.getAllWaitlistedJobInfo().get(i).getReasonForLeaving()%></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="text-left"><%=employeeDAO.getAllWaitlistedJobInfo().get(i).getFormerJob()%></td>
+                                                                                <td class="text-left"><%=employeeDAO.getAllWaitlistedJobInfo().get(i).getFormerEmployer()%></td>
+                                                                                <td class="text-left"><%=employeeDAO.getAllWaitlistedJobInfo().get(i).getReasonForLeaving()%></td>
+                                                                            </tr>
+
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+
+                                                                <!-- /.tab-pane -->
+
+
+
+                                                            </div>                                                  
+                                                            <!-- /.tab-content -->
+
+                                                        </div>                                                           
+                                                        <!-- nav-tabs-custom -->
+                                                    </div>                                                       
+                                                    <!-- /.col -->
+                                                </div>                                                        
+                                                <!-- /.row -->
+                                                <!-- END TABS -->
+                                                <div class="modal-footer pull-right-container" >
+                                                    <span style="float:right;">
+                                                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="NewTicketSubmit">Close</button>
+                                                    </span>
+                                                </div> 
+                                            </div>
+                                        </div> 
+                                    </div>                                                        
+                                </div>                                                        
+                            </div>
+                            <%}%>  
+                        </div>
+
+                        <div class="container">
+
                             <% for (int i = 0; i < employeeDAO.getAllRejectedPersonalInfo().size(); i++) {%>
 
 
-                            <div class="modal fade bs-example-modal-lg" tabindex="-1" id="ViewProfileNew<%=+i%>" role="dialog" name="ViewProfileNew<%=+i%>">
+                            <div class="modal fade bs-example-modal-lg" tabindex="-1" id="ViewProfileNew<%=+i%>" role="dialog" name="ViewWaitListed<%=+i%>">
                                 <div class="modal-dialog modal-lg">
 
                                     <!-- Modal content-->
@@ -369,109 +622,109 @@
                                                                     </table>
 
                                                                 </div>
-                                                                                
-                                                                                 <div class="tab-pane" id="PersonalCharacteristics<%=+i%>">
+
+                                                                <div class="tab-pane" id="PersonalCharacteristics<%=+i%>">
 
 
-                                                                        <table class="table table-striped" id="tblGrid">
-                                                                            <thead id="tblHead">
-                                                                                <tr>
-                                                                                    <th class="text-left">Category</th>
-                                                                                    <th class="text-left">Value</th>
-                                                                                </tr>
-                                                                            </thead>
-                                                                            <tbody>
-                                                                                <tr><td class="text-left">Height:</td>
-                                                                                    <td class="text-left"><%=employeeDAO.getAllRejectedPhysicalInfo().get(i).getHeight()%></td>
+                                                                    <table class="table table-striped" id="tblGrid">
+                                                                        <thead id="tblHead">
+                                                                            <tr>
+                                                                                <th class="text-left">Category</th>
+                                                                                <th class="text-left">Value</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr><td class="text-left">Height:</td>
+                                                                                <td class="text-left"><%=employeeDAO.getAllRejectedPhysicalInfo().get(i).getHeight()%></td>
 
-                                                                                </tr>
+                                                                            </tr>
 
-                                                                                <tr><td class="text-left">Weight:</td>
-                                                                                    <td class="text-left"><%=employeeDAO.getAllRejectedPhysicalInfo().get(i).getWeight()%></td>
+                                                                            <tr><td class="text-left">Weight:</td>
+                                                                                <td class="text-left"><%=employeeDAO.getAllRejectedPhysicalInfo().get(i).getWeight()%></td>
 
-                                                                                </tr>
-                                                                                <tr><td class="text-left">Sears or other distinguishing marks:</td>
-                                                                                    <td class="text-left"><%=employeeDAO.getAllRejectedPhysicalInfo().get(i).getSears()%></td>
+                                                                            </tr>
+                                                                            <tr><td class="text-left">Sears or other distinguishing marks:</td>
+                                                                                <td class="text-left"><%=employeeDAO.getAllRejectedPhysicalInfo().get(i).getSears()%></td>
 
-                                                                                </tr>
-                                                                                <tr><td class="text-left">Physical Defects:</td>
-                                                                                    <td class="text-left"><%=employeeDAO.getAllRejectedPhysicalInfo().get(i).getPhysicalDefects()%></td>
+                                                                            </tr>
+                                                                            <tr><td class="text-left">Physical Defects:</td>
+                                                                                <td class="text-left"><%=employeeDAO.getAllRejectedPhysicalInfo().get(i).getPhysicalDefects()%></td>
 
-                                                                                </tr>
-                                                                                <tr><td class="text-left">Recent Serious Illnesses:</td>
-                                                                                    <td class="text-left"><%=employeeDAO.getAllRejectedPhysicalInfo().get(i).getIllnesses()%></td>
+                                                                            </tr>
+                                                                            <tr><td class="text-left">Recent Serious Illnesses:</td>
+                                                                                <td class="text-left"><%=employeeDAO.getAllRejectedPhysicalInfo().get(i).getIllnesses()%></td>
 
-                                                                                </tr>
-                                                                                <tr><td class="text-left">Body Build:</td>
-                                                                                    <td class="text-left"><%=employeeDAO.getAllRejectedPhysicalInfo().get(i).getBodyBuild()%></td>
+                                                                            </tr>
+                                                                            <tr><td class="text-left">Body Build:</td>
+                                                                                <td class="text-left"><%=employeeDAO.getAllRejectedPhysicalInfo().get(i).getBodyBuild()%></td>
 
-                                                                                </tr>
-                                                                                <tr><td class="text-left">Skin Color:</td>
-                                                                                    <td class="text-left"><%=employeeDAO.getAllRejectedPhysicalInfo().get(i).getSkinColor()%></td>
+                                                                            </tr>
+                                                                            <tr><td class="text-left">Skin Color:</td>
+                                                                                <td class="text-left"><%=employeeDAO.getAllRejectedPhysicalInfo().get(i).getSkinColor()%></td>
 
-                                                                                </tr>
-                                                                                <tr><td class="text-left">State of Health:</td>
-                                                                                    <td class="text-left"><%=employeeDAO.getAllRejectedPhysicalInfo().get(i).getStateOfHealth()%></td>
-                                                                                </tr>
+                                                                            </tr>
+                                                                            <tr><td class="text-left">State of Health:</td>
+                                                                                <td class="text-left"><%=employeeDAO.getAllRejectedPhysicalInfo().get(i).getStateOfHealth()%></td>
+                                                                            </tr>
 
-                                                                            </tbody>
-                                                                        </table>
-                                                                    </div>
-                                                                                
-                                                                                <div class="tab-pane" id="OfficialData<%=+i%>">
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
 
-                                                                        <table class="table table-striped" id="tblGrid">
-                                                                            <thead id="tblHead">
-                                                                                <tr>
-                                                                                    <th class="text-left">Seminars/Trainings Attended</th>
-                                                                                </tr>
-                                                                            </thead>
-                                                                            <tbody>
-                                                                                <tr>
-                                                                                    <td class="text-left"><%=employeeDAO.getAllRejectedJobInfo().get(i).getTrainingAttended()%></td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                    <td class="text-left"><%=employeeDAO.getAllRejectedJobInfo().get(i).getTrainingAttended()%></td>
-                                                                                </tr>
-                                                                        </table>
-                                                                    </div>
+                                                                <div class="tab-pane" id="OfficialData<%=+i%>">
+
+                                                                    <table class="table table-striped" id="tblGrid">
+                                                                        <thead id="tblHead">
+                                                                            <tr>
+                                                                                <th class="text-left">Seminars/Trainings Attended</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td class="text-left"><%=employeeDAO.getAllRejectedJobInfo().get(i).getTrainingAttended()%></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="text-left"><%=employeeDAO.getAllRejectedJobInfo().get(i).getTrainingAttended()%></td>
+                                                                            </tr>   
+                                                                    </table>
+                                                                </div>
 
 
-                                                                    <div class="tab-pane" id="EmploymentBackground<%=+i%>">
-                                                                        <table class="table table-striped" id="tblGrid">
-                                                                            <thead id="tblHead">
-                                                                                <tr>
-                                                                                    <th class="text-left">Type of Job</th>
-                                                                                    <th class="text-left">Name of Employer</th>
-                                                                                    <th class="text-left">Reason for Leaving</th>
-                                                                                </tr>
-                                                                            </thead>
-                                                                            <tbody>
-                                                                                <tr>
-                                                                                    <td class="text-left"><%=employeeDAO.getAllRejectedJobInfo().get(i).getFormerJob()%></td>
-                                                                                    <td class="text-left"><%=employeeDAO.getAllRejectedJobInfo().get(i).getFormerEmployer()%></td>
-                                                                                    <td class="text-left"><%=employeeDAO.getAllRejectedJobInfo().get(i).getReasonForLeaving()%></td>
-                                                                                </tr>
+                                                                <div class="tab-pane" id="EmploymentBackground<%=+i%>">
+                                                                    <table class="table table-striped" id="tblGrid">
+                                                                        <thead id="tblHead">
+                                                                            <tr>
+                                                                                <th class="text-left">Type of Job</th>
+                                                                                <th class="text-left">Name of Employer</th>
+                                                                                <th class="text-left">Reason for Leaving</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td class="text-left"><%=employeeDAO.getAllRejectedJobInfo().get(i).getFormerJob()%></td>
+                                                                                <td class="text-left"><%=employeeDAO.getAllRejectedJobInfo().get(i).getFormerEmployer()%></td>
+                                                                                <td class="text-left"><%=employeeDAO.getAllRejectedJobInfo().get(i).getReasonForLeaving()%></td>
+                                                                            </tr>
 
-                                                                                <tr>
-                                                                                    <td class="text-left"><%=employeeDAO.getAllRejectedJobInfo().get(i).getFormerJob()%></td>
-                                                                                    <td class="text-left"><%=employeeDAO.getAllRejectedJobInfo().get(i).getFormerEmployer()%></td>
-                                                                                    <td class="text-left"><%=employeeDAO.getAllRejectedJobInfo().get(i).getReasonForLeaving()%></td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                    <td class="text-left"><%=employeeDAO.getAllRejectedJobInfo().get(i).getFormerJob()%></td>
-                                                                                    <td class="text-left"><%=employeeDAO.getAllRejectedJobInfo().get(i).getFormerEmployer()%></td>
-                                                                                    <td class="text-left"><%=employeeDAO.getAllRejectedJobInfo().get(i).getReasonForLeaving()%></td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                    <td class="text-left"><%=employeeDAO.getAllRejectedJobInfo().get(i).getFormerJob()%></td>
-                                                                                    <td class="text-left"><%=employeeDAO.getAllRejectedJobInfo().get(i).getFormerEmployer()%></td>
-                                                                                    <td class="text-left"><%=employeeDAO.getAllRejectedJobInfo().get(i).getReasonForLeaving()%></td>
-                                                                                </tr>
+                                                                            <tr>
+                                                                                <td class="text-left"><%=employeeDAO.getAllRejectedJobInfo().get(i).getFormerJob()%></td>
+                                                                                <td class="text-left"><%=employeeDAO.getAllRejectedJobInfo().get(i).getFormerEmployer()%></td>
+                                                                                <td class="text-left"><%=employeeDAO.getAllRejectedJobInfo().get(i).getReasonForLeaving()%></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="text-left"><%=employeeDAO.getAllRejectedJobInfo().get(i).getFormerJob()%></td>
+                                                                                <td class="text-left"><%=employeeDAO.getAllRejectedJobInfo().get(i).getFormerEmployer()%></td>
+                                                                                <td class="text-left"><%=employeeDAO.getAllRejectedJobInfo().get(i).getReasonForLeaving()%></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="text-left"><%=employeeDAO.getAllRejectedJobInfo().get(i).getFormerJob()%></td>
+                                                                                <td class="text-left"><%=employeeDAO.getAllRejectedJobInfo().get(i).getFormerEmployer()%></td>
+                                                                                <td class="text-left"><%=employeeDAO.getAllRejectedJobInfo().get(i).getReasonForLeaving()%></td>
+                                                                            </tr>
 
-                                                                            </tbody>
-                                                                        </table>
-                                                                    </div>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
 
                                                                 <!-- /.tab-pane -->
 
@@ -499,6 +752,9 @@
                             </div>
                             <%}%>  
                         </div>
+
+
+
 
                         <!-- /.tablinks -->
 
@@ -560,5 +816,8 @@
                 });
             });
         </script>
+
+
+
     </body>
 </html>
