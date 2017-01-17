@@ -86,12 +86,12 @@
                                                 <input type="text" class="form-control" name="clientEmail" id="clientEmail" placeholder="Enter Email" required>
                                             </div>
                                               
-                                            <div class="form-group col-xs-3">
+                                            <div class="form-group col-xs-4">
                                                 <label for="clientAddress">Client Address</label>
                                                 <input type="text" class="form-control" name="clientAddress" id="clientAddress" placeholder="Enter Address" required>
                                             </div>  
                                             
-                                            <div class="form-group col-xs-2">
+                                            <div class="form-group col-xs-4">
                                                 <label>City</label>
                                                 <select class="form-control select2" style="width: 100%;" name="clientCity" id="clientCity" required>
                                                     <option>City 1</option>
@@ -102,12 +102,9 @@
                                                 </select>
                                             </div>  
                                               
-                                            <div class="col-xs-2">
-                                                <label>Number of Guards</label>
-                                                <input type="number" min="1" max="99" class="form-control" name="numberOfGuards" id="numberOfGuards" placeholder="Enter Number of Guards" required>
-                                            </div>  
+                                           
                                      
-                                               <div class="form-group col-xs-2">
+                                               <div class="form-group col-xs-4">
                                                 <label>City</label>
                                                 <select class="form-control select2" style="width: 100%;" name="clientType" id="clientType" required>
                                                     <option>Basic</option>
@@ -115,8 +112,10 @@
                                                     <option>Mall</option>
                                                 </select>
                                             </div>  
+                                             
+                                              <div class="form-group col-xs-12" align="center">
                                               <button type="submit" class="btn btn-primary" id="clientSubmit" onclick="checkFields()">Submit</button>
-                                              
+                                              </div>
                                         </div>
                                         <!-- here-->
 
