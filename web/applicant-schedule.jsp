@@ -512,7 +512,7 @@
 
 
                                                             </div>                                                  
-                                                            <!-- /.tab-content -->
+                                                            <!-- /.tab-content --
 
                                                         </div>                                                           
                                                         <!-- nav-tabs-custom -->
