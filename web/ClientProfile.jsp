@@ -192,47 +192,58 @@
                                                 <!-- /.box-header -->
                                                 <!-- form start -->
                                                 <div class="box-body">
-                                                    <div class="col-xs-2">
+                                                    <div class="form-group col-xs-3">
                                                         <label>Minimum Age</label>
-                                                        <input type="number" min="0" max="99" class="form-control" name="ageMinCriteria" id="ageMinCriteria" placeholder="Enter Minimum Age" required>
+                                                        <input type="number" min="0" max="99" class="form-control" name="ageMinCriteria" id="ageMinCriteria" placeholder="Enter Minimum Age"  disabled> 
                                                     </div>
 
-                                                    <div class="col-xs-2">
+                                                    <div class="form-group col-xs-3">
                                                         <label>Maximum Age</label>
-                                                        <input type="number" min="0" max="99" class="form-control" name="ageMaxCriteria" id="ageMaxCriteria" placeholder="Enter Maximum Age" required>
+                                                        <input type="number" min="0" max="99" class="form-control" name="ageMaxCriteria" id="ageMaxCriteria" placeholder="Enter Maximum Age"  disabled>
                                                     </div>
 
-                                                    <div class="col-sm-2">
+                                                    <div class="form-group col-xs-3">
                                                         <label>Minimum Height</label>
-                                                        <br>
-                                                        <span><input type="number" name="heightMinCriteria" id="heightMinCriteria" placeholder="Enter Minimum Height" required> cm</span>
-                                                        <br><br>
+
+                                                        <input type="number" name="heightMinCriteria" class="form-control" id="heightMinCriteria" placeholder="Enter Minimum Height (cm)"  disabled> 
+
+
+                                                    </div>
+
+                                                    <div class="form-group col-xs-3">
                                                         <label>Maximum Height</label>
-                                                        <br>
-                                                        <span><input type="number" name="heightMaxCriteria" id="heightMaxCriteria" placeholder="Enter Maximum Height" required> cm</span>
+
+                                                        <input type="number" name="heightMaxCriteria" class="form-control" id="heightMaxCriteria" placeholder="Enter Maximum Height(cm)"  disabled> 
                                                     </div>
 
-                                                    <div class="col-sm-2">
+                                                    <div class="form-group col-xs-3">
                                                         <label>Minimum Weight</label>
-                                                        <br>
-                                                        <span><input type="number" name="weightMinCriteria" id="weightMinCriteria" placeholder="Enter Minimum Weight" required> kg</span>
-                                                        <br><br>
+
+                                                        <input type="number" name="weightMinCriteria" class="form-control" id="weightMinCriteria" placeholder="Enter Minimum Weight (kg)"  disabled> 
+                                                    </div>
+
+                                                    <div class="form-group col-xs-3">
                                                         <label>Maximum Weight</label>
-                                                        <br>
-                                                        <span><input type="number" name="weightMaxCriteria" id="weightMaxriteria" placeholder="Enter Maximum Weight" required> kg</span>
+
+                                                        <input type="number" name="weightMaxCriteria" class="form-control" id="weightMaxriteria" placeholder="Enter Maximum Weight (kg)"  disabled> 
                                                     </div>
 
-                                                    <div class="col-xs-2">
+                                                    <div class="form-group col-xs-3">
                                                         <label>Minimum Grade</label>
-                                                        <input type="number" min="0" max="100" class="form-control" name="gradeMinCriteria" id="gradeMinCriteria" placeholder="Enter Minimum Grade" required>
-                                                        <br><br>
-                                                        <label>Maximum Grade</label>
-                                                        <input type="number" min="0" max="100" class="form-control" name="gradeMaxCriteria" id="gradeMaxCriteria" placeholder="Enter Maximum Grade" required>
+
+                                                        <input type="number" min="0" max="100" class="form-control" name="gradeMinCriteria" id="gradeMinCriteria" placeholder="Enter Minimum Grade"  disabled>
+
                                                     </div>
 
-                                                    <div class="col-xs-3">
+                                                    <div class="form-group col-xs-3">
+                                                        <label>Maximum Grade</label>
+
+                                                        <input type="number" min="0" max="100" class="form-control" name="gradeMaxCriteria" id="gradeMaxCriteria" placeholder="Enter Maximum Grade"  disabled>
+                                                    </div>
+
+                                                    <div class="form-group col-xs-2">
                                                         <label>City</label>
-                                                        <select class="form-control select2" style="width: 100%;" name="cityCriteria" id="cityCriteria" required>
+                                                        <select class="form-control select2" style="width: 100%;" name="cityCriteria" id="cityCriteria"  disabled>
                                                             <option>City 1</option>
                                                             <option>City 2</option>
                                                             <option>City 3</option>
@@ -243,7 +254,7 @@
 
                                                     <div class="form-group col-xs-2">
                                                         <label>Sex</label>
-                                                        <select class="form-control select2" style="width: 100%;" name="sexCriteria" id="sexCriteria" required>
+                                                        <select class="form-control select2" style="width: 100%;" name="sexCriteria" id="sexCriteria"  disabled>
                                                             <option>Male</option>
                                                             <option>Female</option>
                                                             <option>Either</option>
@@ -252,7 +263,7 @@
 
                                                     <div class="form-group col-xs-2">
                                                         <label>Status</label>
-                                                        <select class="form-control select2" style="width: 100%;" name="marriageStatusCriteria" id="marriageStatusCriteria" required>
+                                                        <select class="form-control select2" style="width: 100%;" name="marriageStatusCriteria" id="marriageStatusCriteria"  disabled>
                                                             <option>Single</option>
                                                             <option>Married</option>
                                                             <option>Divorced</option>
@@ -264,7 +275,7 @@
 
                                                     <div class="form-group col-xs-2">
                                                         <label>Body Build</label>
-                                                        <select class="form-control select2" style="width: 100%;" name="bodyBuildCriteria" id="bodyBuildCriteria" required>
+                                                        <select class="form-control select2" style="width: 100%;" name="bodyBuildCriteria" id="bodyBuildCriteria"  disabled>
                                                             <option>Light</option>
                                                             <option>Medium</option>
                                                             <option>Heavy</option>
@@ -274,7 +285,7 @@
 
                                                     <div class="form-group col-xs-2">
                                                         <label>Skin Complexion</label>
-                                                        <select class="form-control select2" style="width: 100%;" name="skinComplexionCriteria" id="skinComplexionCriteria" required>
+                                                        <select class="form-control select2" style="width: 100%;" name="skinComplexionCriteria" id="skinComplexionCriteria"  disabled> 
                                                             <option>Dark</option>
                                                             <option>Fair</option>
                                                             <option>Light</option>
@@ -282,11 +293,13 @@
                                                         </select>
                                                     </div>
 
-                                                    <div class="footer" >
-                                                        <span style="float:right;">
-                                                            <button type="submit" class="btn btn-primary" id="clientCriteriaUpdate">Save</button>
-                                                        </span>
+
+
+                                                    <div class="form-group col-xs-12" align="right">
+                                                        <button type="submit" class="btn btn-primary" id="clientCriteriaUpdate" data-target="#CriteriaModal" data-toggle="modal">Edit Preferences</button>
                                                     </div>
+
+
 
                                                 </div>
                                                 <!-- here-->
@@ -336,8 +349,179 @@
                                 </div>
                             </div>
 
-                        </div><!-- @end #content -->
 
+                        </div><!-- @end #content -->
+                        <div class="container">
+
+
+
+                            <div class="modal fade bs-example-modal-lg" tabindex="-1" id="CriteriaModal" role="dialog" name="CriteriaModal">
+                                <div class="modal-dialog modal-lg">
+
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+
+                                        <div class="modal-header">
+                                            <div class="modal-body">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <!-- START TABS -->
+                                                <h2 class="page-header"></h2>
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <!-- Custom Tabs -->
+                                                        <div class="nav-tabs-custom">
+
+                                                            <ul class="nav nav-tabs">
+                                                                <li class="active"><a href="#ClientCriteria" data-toggle="tab">Data</a></li>
+                                                            </ul>
+                                                            <!-- /.tab-pane -->
+                                                            <div class="tab-content">
+                                                                <div class="tab-pane active" id="ClientCriteria">
+                                                                    <table class="table table-striped" id="tblGrid">
+                                                                        <thead id="tblHead">
+                                                                            <tr>
+                                                                                <th class="text-left">Category</th>
+                                                                                <th class="text-left">Value</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                
+                                                                                <td class="text-left">Minimum Age:</td>
+                                                                                <td class="text-left"><input type="number" min="0" max="99" class="form-control" name="ageMinCriteria" id="ageMinCriteria" placeholder="Enter Minimum Age" required > </td>
+
+                                                                            </tr>
+
+                                                                            <tr><td class="text-left">Maximum Age:</td>
+                                                                                <td class="text-left"><input type="number" min="0" max="99" class="form-control" name="ageMaxCriteria" id="ageMaxCriteria" placeholder="Enter Maximum Age" required ></td>
+
+                                                                            </tr>
+                                                                            <tr><td class="text-left">Minimum Height:</td>
+                                                                                <td class="text-left"> <input type="number" name="heightMinCriteria" class="form-control" id="heightMinCriteria" placeholder="Enter Minimum Height (cm)" required > </td>
+
+                                                                            </tr>
+                                                                            <tr><td class="text-left">Maximum Height</td>
+                                                                                <td class="text-left"><input type="number" name="heightMaxCriteria" class="form-control" id="heightMaxCriteria" placeholder="Enter Maximum Height(cm)" required > </td>
+
+                                                                            </tr>
+                                                                            <tr><td class="text-left">Minimum Weight</td>
+                                                                                <td class="text-left"><input type="number" name="weightMinCriteria" class="form-control" id="weightMinCriteria" placeholder="Enter Minimum Weight (kg)" required > </td>
+
+                                                                            </tr>
+                                                                            <tr><td class="text-left">Maximum Weight</td>
+                                                                                <td class="text-left"><input type="number" name="weightMaxCriteria" class="form-control" id="weightMaxriteria" placeholder="Enter Maximum Weight (kg)" required > </td>
+
+                                                                            </tr>
+                                                                            <tr><td class="text-left">Minimum Grade:</td>
+                                                                                <td class="text-left">    <input type="number" min="0" max="100" class="form-control" name="gradeMinCriteria" id="gradeMinCriteria" placeholder="Enter Minimum Grade" required ></td>
+
+                                                                            </tr>
+                                                                            <tr><td class="text-left">Maximum Grade:</td>
+                                                                                <td class="text-left"><input type="number" min="0" max="100" class="form-control" name="gradeMaxCriteria" id="gradeMaxCriteria" placeholder="Enter Maximum Grade" required ></td>
+
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="text-left">City</td>
+                                                                                <td class="text-left">
+                                                                                    <select class="form-control select2" style="width: 100%;" name="cityCriteria" id="cityCriteria"  required>
+                                                                                        <option>City 1</option>
+                                                                                        <option>City 2</option>
+                                                                                        <option>City 3</option>
+                                                                                        <option>City 4</option>
+                                                                                        <option>City 5</option>
+                                                                                    </select>
+                                                                                </td>
+
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="text-left">Sex</td>
+                                                                                <td class="text-left">
+                                                                                    <select class="form-control select2" style="width: 100%;" name="sexCriteria" id="sexCriteria"  required>
+                                                                                        <option>Male</option>
+                                                                                        <option>Female</option>
+                                                                                        <option>Either</option>
+                                                                                    </select>
+                                                                                </td>
+
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="text-left">Status</td>
+                                                                                <td class="text-left">
+                                                                                    <select class="form-control select2" style="width: 100%;" name="marriageStatusCriteria" id="marriageStatusCriteria"  required>
+                                                                                        <option>Single</option>
+                                                                                        <option>Married</option>
+                                                                                        <option>Divorced</option>
+                                                                                        <option>Widowed</option>
+                                                                                        <option>Single or Married</option>
+                                                                                        <option>Any</option>
+                                                                                    </select>
+                                                                                </td>
+
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="text-left">Body Build</td>
+                                                                                <td class="text-left">
+                                                                                    <select class="form-control select2" style="width: 100%;" name="bodyBuildCriteria" id="bodyBuildCriteria"  required>
+                                                                                        <option>Light</option>
+                                                                                        <option>Medium</option>
+                                                                                        <option>Heavy</option>
+                                                                                        <option>Any</option>
+                                                                                    </select>
+                                                                                </td>
+
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="text-left">Skin Complexion</td>
+                                                                                <td class="text-left">
+                                                                                    <select class="form-control select2" style="width: 100%;" name="skinComplexionCriteria" id="skinComplexionCriteria"  required> 
+                                                                                        <option>Dark</option>
+                                                                                        <option>Fair</option>
+                                                                                        <option>Light</option>
+                                                                                        <option>Any</option>
+                                                                                    </select>
+                                                                                </td>
+
+                                                                            </tr>
+
+
+
+
+
+
+                                                                        </tbody>
+                                                                    </table>
+
+                                                                </div>
+
+
+                                                                <!-- /.tab-pane -->
+
+
+
+                                                            </div>                                                  
+                                                            <!-- /.tab-content -->
+
+                                                        </div>                                                           
+                                                        <!-- nav-tabs-custom -->
+                                                    </div>                                                       
+                                                    <!-- /.col -->
+                                                </div>                                                        
+                                                <!-- /.row -->
+                                                <!-- END TABS -->
+                                                <div class="modal-footer pull-right-container" >
+                                                    <span style="float:right;">
+                                                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="CloseCriteria">Close</button>
+                                                        <button type="button" class="btn btn-primary"  id="SaveCriteria">Save</button>
+                                                    </span>
+                                                </div> 
+                                            </div>
+                                        </div> 
+                                    </div>                                                        
+                                </div>                                                        
+                            </div>
+                            
+                        </div>
 
                     </div> <!-- Additional -->
                 </section> <!-- Additional -->
