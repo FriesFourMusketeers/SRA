@@ -4,6 +4,7 @@
     Author     : bryan
 --%>
 
+<%@page import="dao.RecruitmentDashDAO"%>
 <%@page import="entity.TicketRecruitment"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.ArrayList"%>
@@ -28,100 +29,108 @@
         <div class="wrapper"> <!-- Additional -->
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
-                
-                  <div class="col-md-12">
-                            <% TicketDAO ticket = new TicketDAO();
-                                ArrayList<TicketRecruitment> newList = ticket.getNewTicketsDashboard();
-                                int newCount = ticket.getNewTicketsDashboardDetails();
-                                ArrayList<TicketRecruitment> actionTakenList = ticket.getActionTakenTicketsDashboard();
-                                int actionTakenCount = ticket.getActionTakenTicketsDashboardDetails();
-                                ArrayList<TicketRecruitment> onGoingList = ticket.getOnGoingTicketsDashboard();
-                                int onGoingCount = ticket.getOnGoingTicketsDashboardDetails();
-                                ArrayList<TicketRecruitment> resolvedList = ticket.getResolvedTicketsDashboard();
-                                int resolvedCount = ticket.getResolvedTicketsDashboardDetails();
-                            %>
-                            <!-- Info Boxes Style 2 -->
-                            <div class="box-body no-padding">
-                                <ul class="users-list clearfix">
-                                    <li>
-                                        <div class="info-box bg-red">
-                                            <span class="info-box-icon"><i class="fa fa-plus"></i></span>
 
-                                            <div class="info-box-content">
-                                                <span class="info-box-text"><b>Average New Clients</b></span>
-                                                <a href="Ticketing.jsp">
-                                                    <% for (TicketRecruitment tempList1 : newList) {%>
-                                                    <span class="info-box-number"><font color="#000000"><%= tempList1.getCount()%></font></span>
-                                                        <% }%>
-                                                </a>
-                                                <div class="progress">
-                                                    <div class="progress-bar" style="width: 100%"></div>
-                                                </div>
-                                            </div>
+                <div class="col-md-12">
+                    <%  RecruitmentDashDAO counter = new RecruitmentDashDAO();
+                        int avgClientCount = counter.getAverageNewClientsDetails();
+                        int avgApplicantsCount = counter.getAverageApplicantsDetails();
+                        int avgHiredApplicantsCount = counter.getAverageHiredApplicantsDetails();
+                        int avgNeedToHireCount = counter.getApplicantsNeedToHireDetails();
+                    %>
+                    <!-- Info Boxes Style 2 -->
+                    <div class="box-body no-padding">
+                        <ul class="users-list clearfix">
+                            <li>
+                                <div class="info-box bg-red">
+                                    <span class="info-box-icon"><i class="fa fa-plus"></i></span>
 
-                                            <!-- /.info-box-content -->
+                                    <div class="info-box-content">
+                                        <span class="info-box-text"><b>Average New Clients</b></span>
+                                        <a href="Ticketing.jsp">
+                                            <span class="info-box-number"><font color="#000000"><%= avgClientCount%></font></span>
+                                        </a>
+                                        <div class="progress">
+                                            <div class="progress-bar" style="width: 100%"></div>
                                         </div>
-                                    </li>
-                                    <li>
-                                        <!-- /.info-box -->
-                                        <div class="info-box bg-aqua">
-                                            <span class="info-box-icon"><i class="fa fa-users"></i></span>
+                                        <span class="progress-description">
+                                            <i>
+                                                per month
+                                            </i>
+                                        </span>
+                                    </div>
 
-                                            <div class="info-box-content">
-                                                <span class="info-box-text"><b>Average Applicants</b></span>
-                                                <a href="Ticketing.jsp">
-                                                    <% for (TicketRecruitment tempList2 : actionTakenList) {%>
-                                                    <span class="info-box-number"><font color="#000000"><%= tempList2.getCount()%></font></span>
-                                                        <% }%>
-                                                </a>
-                                                <div class="progress">
-                                                    <div class="progress-bar" style="width: 100%"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- /.info-box-content --> 
-                                    </li>
-                                    <li>
-                                        <!-- /.info-box -->
-                                        <div class="info-box bg-orange">
-                                            <span class="info-box-icon"><i class="fa fa-user-plus"></i></span>
+                                    <!-- /.info-box-content -->
+                                </div>
+                            </li>
+                            <li>
+                                <!-- /.info-box -->
+                                <div class="info-box bg-aqua">
+                                    <span class="info-box-icon"><i class="fa fa-users"></i></span>
 
-                                            <div class="info-box-content">
-                                                <span class="info-box-text"><b>Average Hired Applicants</b></span>
-                                                <a href="Ticketing.jsp">
-                                                    <% for (TicketRecruitment tempList3 : onGoingList) {%>
-                                                    <span class="info-box-number"><font color="#000000"><%= tempList3.getCount()%></font></span>
-                                                        <% }%>
-                                                </a>
-                                                <div class="progress">
-                                                    <div class="progress-bar" style="width: 100%"></div>
-                                                </div>
-                                            </div>
-                                            <!-- /.info-box-content -->
+                                    <div class="info-box-content">
+                                        <span class="info-box-text"><b>Average Applicants</b></span>
+                                        <a href="Ticketing.jsp">
+                                            <span class="info-box-number"><font color="#000000"><%= avgApplicantsCount%></font></span>
+                                        </a>
+                                        <div class="progress">
+                                            <div class="progress-bar" style="width: 100%"></div>
                                         </div>
-                                    </li>
-                                    <li>
-                                        <!-- /.info-box -->
-                                        <div class="info-box bg-gray">
-                                            <span class="info-box-icon"><i class="fa fa-odnoklassniki"></i></span>
+                                        <span class="progress-description">
+                                            <i>
+                                                per month
+                                            </i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <!-- /.info-box-content --> 
+                            </li>
+                            <li>
+                                <!-- /.info-box -->
+                                <div class="info-box bg-orange">
+                                    <span class="info-box-icon"><i class="fa fa-user-plus"></i></span>
 
-                                            <div class="info-box-content">
-                                                <span class="info-box-text"><b>Applicants Need to Hire</b></span>
-                                                <a href="Ticketing.jsp">
-                                                    <% for (TicketRecruitment tempList4 : resolvedList) {%>
-                                                    <span class="info-box-number"><font color="#000000"><%= tempList4.getCount()%></font></span>
-                                                        <% }%>
-                                                </a>
-                                                <div class="progress">
-                                                    <div class="progress-bar" style="width: 100%"></div>
-                                                </div>
-                                            </div>
-                                            <!-- /.info-box-content -->
+                                    <div class="info-box-content">
+                                        <span class="info-box-text"><b>Average Hired Applicants</b></span>
+                                        <a href="Ticketing.jsp">
+                                            <span class="info-box-number"><font color="#000000"><%= avgHiredApplicantsCount%></font></span>
+                                        </a>
+                                        <div class="progress">
+                                            <div class="progress-bar" style="width: 100%"></div>
                                         </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+                                        <span class="progress-description">
+                                            <i>
+                                                per month
+                                            </i>
+                                        </span>
+                                    </div>
+                                    <!-- /.info-box-content -->
+                                </div>
+                            </li>
+                            <li>
+                                <!-- /.info-box -->
+                                <div class="info-box bg-gray">
+                                    <span class="info-box-icon"><i class="fa fa-odnoklassniki"></i></span>
+
+                                    <div class="info-box-content">
+                                        <span class="info-box-text"><b>Applicants Need to Hire</b></span>
+                                        <a href="Ticketing.jsp">
+                                            <span class="info-box-number"><font color="#000000"><%= avgNeedToHireCount%></font></span>
+                                        </a>
+                                        <div class="progress">
+                                            <div class="progress-bar" style="width: 100%"></div>
+                                        </div>
+                                        <span class="progress-description">
+                                            <i>
+                                                per month
+                                            </i>
+                                        </span>
+                                    </div>
+                                    <!-- /.info-box-content -->
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
 
                 <div class="modal fade bs-example-modal-lg" id="editCriteria" role="dialog">
                     <div class="modal-dialog modal-lg">
