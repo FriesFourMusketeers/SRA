@@ -287,7 +287,7 @@
                                     if (sessionStorage.data !== JSON.stringify(data)) {
                                         $("#value").html(Math.abs(data.length - recent.length));
                                     } else {
-                                        //do nothing
+                                         //do nothing
                                     }
                                     sessionStorage.data = JSON.stringify(data);
                                 } else {
