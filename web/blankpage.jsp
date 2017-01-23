@@ -269,9 +269,8 @@
 
         <script>
             $(document).ready(function () {
-                var value = null;
-                var recent = 0;
-//                                        setInterval(ajaxCall, 1000); // sets how many milliseconds the notification updates
+         
+                                 //     setInterval(ajaxCall, 1000); // sets how many milliseconds the notification updates
                 ajaxCall();
                 function ajaxCall() {
                     $.ajax({
@@ -279,29 +278,30 @@
                         type: 'POST',
                         dataType: "json",
                         success: function (data) {
-                            value = data;
-                            console.log(JSON.stringify(data));
-                            if (typeof Storage !== "undefined") {
-                                if (sessionStorage.data) {
-                                    var recent = JSON.parse(sessionStorage.data);
-                                    if (sessionStorage.data !== JSON.stringify(data)) {
-                                        $("#value").html(Math.abs(data.length - recent.length));
-                                    } else {
-                                         //do nothing
-                                    }
-                                    sessionStorage.data = JSON.stringify(data);
-                                } else {
-                                    sessionStorage.data = JSON.stringify(data);
-                                    $("#value").html(data.length);
-                                }
-                            }
-                            $("#myDropdown").empty();
-                            if (data.length === 0) {
-                                $("#value").empty();
-                                $("#value").append("");
-                                $("#myDropdown").append('\
-                                                      <li class="padding2" style="text-align:center;">No Notifications</li>');
-                            }
+                           if (typeof Storage !== "undefined") {
+                                                    if (sessionStorage.data) {
+                                                        var recent = JSON.parse(sessionStorage.data);
+                                                        if (sessionStorage.data !== JSON.stringify(data)) {
+                                                           var negative = data.length - recent.length;
+                                                                        if(negative > 0){
+                                                                             
+                                                                            $("#value").html(Math.abs(data.length - recent.length));
+                                                                        }
+                                                        } else {
+                                                            //do nothing
+                                                        }
+                                                        sessionStorage.data = JSON.stringify(data);
+                                                    } else {
+                                                        sessionStorage.data = JSON.stringify(data);
+                                                        $("#value").html(data.length);
+                                                    }
+                                                }
+                             $("#myDropdown").empty();
+                                                if (data.length === 0) {
+                                                    $("#myDropdown").append('<li class="padding2" style="text-align:center;">No New Notifications</li>');
+                                                    $("#value").empty();
+                                                    $("#value").append("");
+                                                }
 
                             for (var i = 0; i < data.length; i++) {
                                 $("#myDropdown").append('<hr/>');
@@ -316,6 +316,36 @@
                         }
                     });
                 }
+                
+                
+                
+                  var dropdown = document.getElementById("dropdownClicked");
+                                dropdown.addEventListener('click', myFunction, false);
+                                /* When the user clicks on the button,
+                                 toggle between hiding and showing the dropdown content */
+                                function myFunction() {
+                                    $("#value").empty();
+                                    document.getElementById("myDropdown").classList.toggle("show");
+                                    console.log("working");
+                                }
+                                function clearStorage() {
+                                    sessionStorage.clear();
+                                }
+                                // Close the dropdown if the user clicks outside of it
+                                window.onclick = function (event) {
+                                    if (!event.target.matches('.dropbtn')) {
+                                        var dropdowns = document.getElementsByClassName("dropdown-content");
+                                        var i;
+                                        for (i = 0; i < dropdowns.length; i++) {
+                                            var openDropdown = dropdowns[i];
+                                            if (openDropdown.classList.contains('show')) {
+                                                openDropdown.classList.remove('show');
+                                            }
+                                        }
+                                    }
+                                }
+                
+                
                 $('body').on('click', 'a.approved', function () {
                     var formName = $(this).text();
                     if (formName === "Enrollment in Public School") {

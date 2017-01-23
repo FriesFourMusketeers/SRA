@@ -43,7 +43,23 @@ public class NotificationServlet extends HttpServlet {
             JSONArray array = new JSONArray();
             NotificationDAO notif = new NotificationDAO();
             ArrayList <Notification> notifList = new ArrayList();
-            notifList = notif.getLicenseAlert();
+            
+            ArrayList <Notification> notifListL = new ArrayList();
+            ArrayList <Notification> notifListS = new ArrayList();
+            notifListL = notif.getLicenseAlert();
+             notifListS = notif.getLowGradeAlert();
+            
+           
+              for (int i = 0; i < notifListL.size(); i++) {
+                notifList.add(notifListL.get(i)) ;
+            }
+              
+                 for (int i = 0; i < notifListS.size(); i++) {
+                notifList.add(notifListS.get(i)) ;
+            }
+            
+      
+            
             
             for (int i = 0; i < notifList.size(); i++) {
                 JSONObject obj = new JSONObject();
