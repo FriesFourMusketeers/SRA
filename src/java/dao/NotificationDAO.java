@@ -52,6 +52,36 @@ public class NotificationDAO {
         }
         return null;
     }
+     
+      public ArrayList<Notification> getLowGradeAlert() {
+        try {
+            ArrayList<Notification> NotificationList = new ArrayList();
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+            String query = " select *, COUNT(employeeID) as 'count' from `performance-review-scores` prs where score < 90";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                Notification notif = new Notification();
+
+                int lowgradecount = rs.getInt("count");
+                Date today = new Date();
+                today.getTime();
+
+                notif.setMessage(lowgradecount + "sadfv");
+                notif.setToday(today);
+
+                NotificationList.add(notif);
+            }
+            conn.close();
+            return NotificationList;
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
 
     
 }
