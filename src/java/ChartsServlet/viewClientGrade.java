@@ -61,10 +61,13 @@ public class viewClientGrade extends HttpServlet {
                 
                 objChartsDAO.put("clientMonth", charts.get(i).getSserMonth());
                 objChartsDAO.put("clientScore", charts.get(i).getSserAverage());
+                objChartsDAO.put("clientWeek", charts.get(i).getSserWeek());
                 
 //                objChartsDAO.put("empID", 3);
                 jarrayChartsDAO.put(objChartsDAO);
             }
+            
+            
             
             ObjectAll.put("series", jarrayChartsDAO);
             response.setContentType("application/json");

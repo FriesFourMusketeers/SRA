@@ -45,7 +45,10 @@ public class viewClientEmployeeGrade extends HttpServlet {
             
             EmployeeDAO employeeDAO = new EmployeeDAO();
             
-            scores = employeeDAO.getClientEmployeeGrade();
+            String year = request.getParameter("yearSelected");
+            scores = employeeDAO.getClientEmployeeGrade(Integer.parseInt(year));
+            
+//            scores2 = employeeDAO.get;
             
             JSONArray jarrayChartsDAO = new JSONArray();
             JSONObject ObjectAll = new JSONObject();

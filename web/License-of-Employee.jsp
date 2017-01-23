@@ -33,7 +33,7 @@
                         <div class="box box-info">
                             <div class="nav-tabs-custom">
                                 <ul class="nav nav-tabs">
-                                    <li class="active"><a href="#allclient" data-toggle="tab">All Clients</a></li>
+                                    <li class="active"><a href="#allclient" data-toggle="tab">All Employees</a></li>
                                     <li><a href="#nearexpiry" data-toggle="tab">Near Expiration (1 Month)</a></li>
                                     <li><a href="#expired" data-toggle="tab">Expired</a></li>
                                 </ul>
@@ -48,9 +48,6 @@
 
 
                                                 <div class="box">
-                                                    <div class="box-header">
-                                                        <h3 class="box-title">All Employees</h3>
-                                                    </div>
                                                     <!-- /.box-header -->
                                                     <div class="box-body">
                                                         <table id="example1" class="table table-bordered table-striped">
@@ -110,9 +107,6 @@
 
 
                                                 <div class="box">
-                                                    <div class="box-header">
-                                                        <h3 class="box-title">Near Expiration (1 month left)</h3>
-                                                    </div>
                                                     <!-- /.box-header -->
                                                     <div class="box-body">
                                                         <table id="example2" class="table table-bordered table-striped">
