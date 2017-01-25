@@ -260,7 +260,7 @@
                                                     <div class="form-group col-xs-3">
                                                         <label>Client</label>
                                                         <select class="form-control select2" disabled style="width: 100%;">
-                                                            <option><<%=clientList.get(ticketList.get(i).getEstablishment()).getClientName()%></option>
+                                                            <option><<%=clientDAO.searchClient(ticketList.get(i).getEstablishment())%></option>
                                                         </select>
                                                     </div>
                                                     <div class="form-group col-xs-3">
@@ -320,18 +320,18 @@
                                             <td class="ap-id"><%=employeeList.get(ticketList.get(i).getGuardInvolved() - 1).getLastName()%>, <%=employeeList.get(ticketList.get(i).getGuardInvolved() - 1).getFirstName()%></td>
                                             <td><%=ticketList.get(i).getSubject()%></td>
                                             <td><span class="label label-danger"><%=ticketList.get(i).getStatus()%></span></td>
-                                            <td><%=clientList.get(ticketList.get(i).getEstablishment()).getClientName()%></td>
+                                            <td><%=clientDAO.searchClient(ticketList.get(i).getEstablishment()).getClientName()%></td>
 
                                             <%if (ticketList.get(i).getSeverity().equalsIgnoreCase("low")) {%>
                                             <td><span class="label label-success">Low</span></td>
                                             <%}%>
 
-                                            <%if (ticketList.get(i).getSeverity().equalsIgnoreCase("moderate")) {%>
-                                            <td><span class="label label-primary">Moderate</span></td>
+                                            <%if (ticketList.get(i).getSeverity().equalsIgnoreCase("medium")) {%>
+                                            <td><span class="label label-primary">Medium</span></td>
                                             <%}%>
 
-                                            <%if (ticketList.get(i).getSeverity().equalsIgnoreCase("major")) {%>
-                                            <td><span class="label label-warning">Major</span></td>
+                                            <%if (ticketList.get(i).getSeverity().equalsIgnoreCase("high")) {%>
+                                            <td><span class="label label-warning">high</span></td>
                                             <%}%>
 
                                             <%if (ticketList.get(i).getSeverity().equalsIgnoreCase("critical")) {%>
