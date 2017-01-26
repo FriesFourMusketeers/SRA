@@ -8,6 +8,11 @@ package dao;
 import entity.Schedule;
 import java.util.ArrayList;
 import db.DBConnectionFactory;
+import entity.Employee;
+import entity.EmployeeJobInfo;
+import entity.EmployeePersonalInfo;
+import entity.EmployeePhysicalInfo;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -82,6 +87,149 @@ public class ScheduleDAO {
             Logger.getLogger(ScheduleDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
+    }
+    
+        public ArrayList<EmployeePersonalInfo> getAllPendingPersonalInfo() {
+        try {
+            ArrayList<EmployeePersonalInfo> personalList = new ArrayList();
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+                       String query = "select * from `employee-personal-information` p left join `Employee-Physical-Information` e on p.employeeID = e.employeeID  join `Employee-Job-Information` s on p.employeeID = s.employeeID where p.status = 'Interview Scheduled';";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                EmployeePersonalInfo personalInfo = new EmployeePersonalInfo();
+                int employeeID = rs.getInt("employeeID");
+                Blob picture = rs.getBlob("picture");
+                String lastName = rs.getString("lastName");
+                String firstName = rs.getString("firstName");
+                String middleName = rs.getString("middleName");
+                String nickname = rs.getString("nickname");
+                java.sql.Date birthday = rs.getDate("birthday");
+                int age = rs.getInt("age");
+                String sex = rs.getString("sex");
+                String religion = rs.getString("religion");
+                String cellphoneNo = rs.getString("cellphoneNo");
+                String telephoneNo = rs.getString("telephoneNo");
+                String education = rs.getString("education");
+                String city = rs.getString("city");
+                String marriageStatus = rs.getString("marriageStatus");
+                String status = rs.getString("status");
+                String details = rs.getString("details");
+
+                personalInfo.setEmployeeID(employeeID);
+                personalInfo.setPicture(picture);
+                personalInfo.setLastName(lastName);
+                personalInfo.setFirstName(firstName);
+                personalInfo.setMiddleName(middleName);
+                personalInfo.setNickname(nickname);
+                personalInfo.setBirthday((java.sql.Date) birthday);
+                personalInfo.setAge(age);
+                personalInfo.setSex(sex);
+                personalInfo.setReligion(religion);
+                personalInfo.setCellphoneNo(cellphoneNo);
+                personalInfo.setTelephoneNo(telephoneNo);
+                personalInfo.setEducation(education);
+                personalInfo.setCity(city);
+                personalInfo.setMarriageStatus(marriageStatus);
+                personalInfo.setStatus(status);
+                personalInfo.setDetails(details);
+
+                personalList.add(personalInfo);
+            }
+            conn.close();
+            return personalList;
+        } catch (SQLException ex) {
+            Logger.getLogger(Employee.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    public ArrayList<EmployeePhysicalInfo> getAllPendingPhysicalInfo() {
+        try {
+            ArrayList<EmployeePhysicalInfo> physicalList = new ArrayList();
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+            String query = "select * from `employee-physical-information` j join `employee-personal-information` p on j.employeeID = p.employeeID where p.status = 'Interview Scheduled'";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                EmployeePhysicalInfo physicalInfo = new EmployeePhysicalInfo();
+
+                int employeeID = rs.getInt("employeeID");
+                int height = rs.getInt("height");
+                int weight = rs.getInt("weight");
+                String sears = rs.getString("sears");
+                String physicalDefects = rs.getString("physicalDefects");
+                String illnesses = rs.getString("illnesses");
+                String bodyBuild = rs.getString("bodyBuild");
+                String skinColor = rs.getString("skinColor");
+                String stateOfHealth = rs.getString("stateOfHealth");
+
+                physicalInfo.setEmployeeID(employeeID);
+                physicalInfo.setHeight(height);
+                physicalInfo.setWeight(weight);
+                physicalInfo.setSears(sears);
+                physicalInfo.setPhysicalDefects(physicalDefects);
+                physicalInfo.setIllnesses(illnesses);
+                physicalInfo.setBodyBuild(bodyBuild);
+                physicalInfo.setSkinColor(skinColor);
+                physicalInfo.setStateOfHealth(stateOfHealth);
+
+                physicalList.add(physicalInfo);
+            }
+            conn.close();
+            return physicalList;
+        } catch (SQLException ex) {
+            Logger.getLogger(Employee.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    public ArrayList<EmployeeJobInfo> getAllPendingJobInfo() {
+        try {
+            ArrayList<EmployeeJobInfo> jobList = new ArrayList();
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+            String query = "select * from `employee-job-information` j join `employee-personal-information` p on j.employeeID = p.employeeID where p.status = 'Interview Scheduled'";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                EmployeeJobInfo jobInfo = new EmployeeJobInfo();
+
+                int employeeID = rs.getInt("employeeID");
+                String driversLicense = rs.getString("driversLicense");
+                java.sql.Date driversLicenseExpDate = rs.getDate("driversLicenseExpDate");
+                String license = rs.getString("licenseNo");
+                java.sql.Date licenseExpDate = rs.getDate("licenseExpDate");
+                String trainingAttended = rs.getString("trainingAttended");
+                String formerEmployer = rs.getString("formerEmployer");
+                String inclusiveDate = rs.getString("inclusiveDate");
+                String formerJob = rs.getString("formerJob");
+                String reasonForLeaving = rs.getString("reasonForLeaving");
+
+                jobInfo.setEmployeeID(employeeID);
+                jobInfo.setDriversLicense(driversLicense);
+                jobInfo.setDriversLicenseExpDate((java.sql.Date) driversLicenseExpDate);
+                jobInfo.setLicense(license);
+                jobInfo.setLicenseExpDate((java.sql.Date) licenseExpDate);
+                jobInfo.setTrainingAttended(trainingAttended);
+                jobInfo.setFormerEmployer(formerEmployer);
+                jobInfo.setInclusiveDate(inclusiveDate);
+                jobInfo.setFormerJob(formerJob);
+                jobInfo.setReasonForLeaving(reasonForLeaving);
+
+                jobList.add(jobInfo);
+            }
+            conn.close();
+            return jobList;
+        } catch (SQLException ex) {
+            Logger.getLogger(Employee.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
     
 }

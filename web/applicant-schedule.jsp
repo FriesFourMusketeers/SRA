@@ -96,7 +96,8 @@
                                                             </select>
 
                                                         </td>
-                                                        <td for="applicantName" id="applicantName<%=+i%>"><%=schedule.getAllInterview().get(i).getName()%></td>
+                                                         
+                                                        <td for="applicantName" id="applicantName<%=+i%>" data-target="#ViewPending<%=+i%>" data-toggle="modal"><%=schedule.getAllInterview().get(i).getName()%></td>
                                                         <td for="scheduledDate" id="scheduledDate<%=+i%>"><%=schedule.getAllInterview().get(i).getScheduledDate()%></td>
                                                         <td for="scheduledTime" id="scheduledTime<%=+i%>"><%=schedule.getAllInterview().get(i).getScheduledTime()%></td>
 
@@ -138,9 +139,9 @@
                                                 </thead>
                                                 <tbody>    
                                                     <% EmployeeDAO employeeDAO = new EmployeeDAO();%>
-                                                    <% for (int i = 0; i < employeeDAO.getAllWaitlisted().size(); i++) {%>
+                                                    <% for (int i = 0; i < employeeDAO.getAllWaitlistedPersonalInfo().size(); i++) {%>
                                                     <tr>
-                                                        <td data-target="#ViewWaitListed<%=+i%>" data-toggle="modal"><%=employeeDAO.getAllWaitlisted().get(i).getFirstName() + " " + employeeDAO.getAllWaitlisted().get(i).getLastName()%></td>
+                                                        <td data-target="#ViewWaitlisted<%=+i%>" data-toggle="modal"><%=employeeDAO.getAllWaitlistedPersonalInfo().get(i).getFirstName() + " " + employeeDAO.getAllWaitlistedPersonalInfo().get(i).getLastName()%></td>
                                                         <td><button type="submit" class="btn btn-primary">Hire</button></td>
                                                     </tr>
 
@@ -178,10 +179,10 @@
                                                 </thead>
                                                 <tbody>    
                                                     <% EmployeeDAO employeeDAO2 = new EmployeeDAO();%>
-                                                    <% for (int i = 0; i < employeeDAO2.getAllRejectedPersonalInfo().size(); i++) {%>
+                                                    <% for (int i = 0; i < employeeDAO.getAllRejectedPersonalInfo().size(); i++) {%>
                                                     <tr>
-                                                        <td data-target="#ViewProfileNew<%=+i%>" data-toggle="modal"><%=employeeDAO2.getAllRejectedPersonalInfo().get(i).getFirstName() + " " + employeeDAO2.getAllRejectedPersonalInfo().get(i).getLastName()%></td>
-                                                        <td><%=employeeDAO2.getAllRejectedPersonalInfo().get(i).getDetails()%></td>
+                                                        <td data-target="#ViewRejected<%=+i%>" data-toggle="modal"><%=employeeDAO.getAllRejectedPersonalInfo().get(i).getFirstName() + " " + employeeDAO.getAllRejectedPersonalInfo().get(i).getLastName()%></td>
+                                                        <td><%=employeeDAO.getAllRejectedPersonalInfo().get(i).getDetails()%></td>
                                                         <td><button type="button" class="btn btn-danger" id="ReviewApplicant<%=+i%>" name="ReviewApplicant<%=+i%>">Review Applicant (High Demand)</button></td>
                                                     </tr>
                                                 <script>
@@ -294,7 +295,7 @@
 
                                                 </select>
                                             </div>
-                                            
+
 
 
 
@@ -316,11 +317,11 @@
                         </form>
 
                         <div class="container">
+                            <% ScheduleDAO scheduleDAO = new ScheduleDAO();%>
+                            <% for (int i = 0; i < scheduleDAO.getAllPendingPersonalInfo().size(); i++) {%>
 
-                            <% for (int i = 0; i < employeeDAO.getAllWaitlistedPersonalInfo().size(); i++) {%>
 
-
-                            <div class="modal fade bs-example-modal-lg" tabindex="-1" id="ViewWaitListed<%=+i%>" role="dialog" name="ViewProfileNew<%=+i%>">
+                            <div class="modal fade bs-example-modal-lg" tabindex="-1" id="ViewPending<%=+i%>" role="dialog" name="ViewPending<%=+i%>">
                                 <div class="modal-dialog modal-lg">
 
                                     <!-- Modal content-->
@@ -338,14 +339,232 @@
                                                         <div class="nav-tabs-custom">
 
                                                             <ul class="nav nav-tabs">
-                                                                <li class="active"><a href="#WaitlistedPersonalData<%=+i%>" data-toggle="tab">Data</a></li>
-                                                                <li><a href="#WaitlistedPersonalCharacteristics<%=+i%>" data-toggle="tab">Characteristics</a></li>
-                                                                <li><a href="#WaitlistedOfficialData<%=+i%>" data-toggle="tab">Official Data</a></li>
-                                                                <li><a href="#WaitlistedEmploymentBackground<%=+i%>" data-toggle="tab">Employment Background</a></li>
+                                                                <li class="active"><a href="#PersonalData<%=+i%>" data-toggle="tab">Data</a></li>
+                                                                <li><a href="#PersonalCharacteristics<%=+i%>" data-toggle="tab">Characteristics</a></li>
+                                                                <li><a href="#OfficialData<%=+i%>" data-toggle="tab">Official Data</a></li>
+                                                                <li><a href="#EmploymentBackground<%=+i%>" data-toggle="tab">Employment Background</a></li>
                                                             </ul>
                                                             <!-- /.tab-pane -->
                                                             <div class="tab-content">
-                                                                <div class="tab-pane active" id="WaitlistedPersonalData<%=+i%>">
+                                                                <div class="tab-pane active" id="PersonalData<%=+i%>">
+                                                                    <table class="table table-striped" id="tblGrid">
+                                                                        <thead id="tblHead">
+                                                                            <tr>
+                                                                                <th class="text-left">Category</th>
+                                                                                <th class="text-left">Value</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="display:none">
+                                                                                    <select name="applicantID" id="applicantID">
+                                                                                        <option class ="ap-id"><%=scheduleDAO.getAllPendingPersonalInfo().get(i).getEmployeeID()%></option>
+                                                                                    </select>
+                                                                                </td>
+                                                                                <td class="text-left">Last Name:</td>
+                                                                                <td class="text-left"><%=scheduleDAO.getAllPendingPersonalInfo().get(i).getLastName()%></td>
+
+                                                                            </tr>
+
+                                                                            <tr><td class="text-left">First Name:</td>
+                                                                                <td class="text-left"><%=scheduleDAO.getAllPendingPersonalInfo().get(i).getFirstName()%></td>
+
+                                                                            </tr>
+                                                                            <tr><td class="text-left">Birth Date:</td>
+                                                                                <td class="text-left"><%=scheduleDAO.getAllPendingPersonalInfo().get(i).getBirthday()%></td>
+
+                                                                            </tr>
+                                                                            <tr><td class="text-left">Age:</td>
+                                                                                <td class="text-left"><%=scheduleDAO.getAllPendingPersonalInfo().get(i).getAge()%></td>
+
+                                                                            </tr>
+                                                                            <tr><td class="text-left">Sex:</td>
+                                                                                <td class="text-left"><%=scheduleDAO.getAllPendingPersonalInfo().get(i).getSex()%></td>
+
+                                                                            </tr>
+                                                                            <tr><td class="text-left">Religion:</td>
+                                                                                <td class="text-left"><%=scheduleDAO.getAllPendingPersonalInfo().get(i).getReligion()%></td>
+
+                                                                            </tr>
+                                                                            <tr><td class="text-left">Cellphone Number:</td>
+                                                                                <td class="text-left"><%=scheduleDAO.getAllPendingPersonalInfo().get(i).getCellphoneNo()%></td>
+
+                                                                            </tr>
+                                                                            <tr><td class="text-left">Telephone Number:</td>
+                                                                                <td class="text-left"><%=scheduleDAO.getAllPendingPersonalInfo().get(i).getTelephoneNo()%></td>
+
+                                                                            </tr>
+                                                                            <tr><td class="text-left">City</td>
+                                                                                <td class="text-left"><%=scheduleDAO.getAllPendingPersonalInfo().get(i).getCity()%></td>
+
+                                                                            </tr>
+
+
+                                                                        </tbody>
+                                                                    </table>
+
+                                                                </div>
+
+                                                                <!-- /.tab-pane -->
+                                                                <div class="tab-pane" id="PersonalCharacteristics<%=+i%>">
+
+
+                                                                    <table class="table table-striped" id="tblGrid">
+                                                                        <thead id="tblHead">
+                                                                            <tr>
+                                                                                <th class="text-left">Category</th>
+                                                                                <th class="text-left">Value</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr><td class="text-left">Height:</td>
+                                                                                <td class="text-left"><%=scheduleDAO.getAllPendingPhysicalInfo().get(i).getHeight()%></td>
+
+                                                                            </tr>
+
+                                                                            <tr><td class="text-left">Weight:</td>
+                                                                                <td class="text-left"><%=scheduleDAO.getAllPendingPhysicalInfo().get(i).getWeight()%></td>
+
+                                                                            </tr>
+                                                                            <tr><td class="text-left">Sears or other distinguishing marks:</td>
+                                                                                <td class="text-left"><%=scheduleDAO.getAllPendingPhysicalInfo().get(i).getSears()%></td>
+
+                                                                            </tr>
+                                                                            <tr><td class="text-left">Physical Defects:</td>
+                                                                                <td class="text-left"><%=scheduleDAO.getAllPendingPhysicalInfo().get(i).getPhysicalDefects()%></td>
+
+                                                                            </tr>
+                                                                            <tr><td class="text-left">Recent Serious Illnesses:</td>
+                                                                                <td class="text-left"><%=scheduleDAO.getAllPendingPhysicalInfo().get(i).getIllnesses()%></td>
+
+                                                                            </tr>
+                                                                            <tr><td class="text-left">Body Build:</td>
+                                                                                <td class="text-left"><%=scheduleDAO.getAllPendingPhysicalInfo().get(i).getBodyBuild()%></td>
+
+                                                                            </tr>
+                                                                            <tr><td class="text-left">Skin Color:</td>
+                                                                                <td class="text-left"><%=scheduleDAO.getAllPendingPhysicalInfo().get(i).getSkinColor()%></td>
+
+                                                                            </tr>
+                                                                            <tr><td class="text-left">State of Health:</td>
+                                                                                <td class="text-left"><%=scheduleDAO.getAllPendingPhysicalInfo().get(i).getStateOfHealth()%></td>
+                                                                            </tr>
+
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+
+                                                                <div class="tab-pane" id="OfficialData<%=+i%>">
+
+                                                                    <table class="table table-striped" id="tblGrid">
+                                                                        <thead id="tblHead">
+                                                                            <tr>
+                                                                                <th class="text-left">Seminars/Trainings Attended</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td class="text-left"><%=scheduleDAO.getAllPendingJobInfo().get(i).getTrainingAttended()%></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="text-left"><%=scheduleDAO.getAllPendingJobInfo().get(i).getTrainingAttended()%></td>
+                                                                            </tr>
+                                                                    </table>
+                                                                </div>
+
+
+                                                                <div class="tab-pane" id="EmploymentBackground<%=+i%>">
+                                                                    <table class="table table-striped" id="tblGrid">
+                                                                        <thead id="tblHead">
+                                                                            <tr>
+                                                                                <th class="text-left">Type of Job</th>
+                                                                                <th class="text-left">Name of Employer</th>
+                                                                                <th class="text-left">Reason for Leaving</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td class="text-left"><%=scheduleDAO.getAllPendingJobInfo().get(i).getFormerJob()%></td>
+                                                                                <td class="text-left"><%=scheduleDAO.getAllPendingJobInfo().get(i).getFormerEmployer()%></td>
+                                                                                <td class="text-left"><%=scheduleDAO.getAllPendingJobInfo().get(i).getReasonForLeaving()%></td>
+                                                                            </tr>
+
+                                                                            <tr>
+                                                                                <td class="text-left"><%=scheduleDAO.getAllPendingJobInfo().get(i).getFormerJob()%></td>
+                                                                                <td class="text-left"><%=scheduleDAO.getAllPendingJobInfo().get(i).getFormerEmployer()%></td>
+                                                                                <td class="text-left"><%=scheduleDAO.getAllPendingJobInfo().get(i).getReasonForLeaving()%></td>
+                                                                            <tr>
+                                                                                <td class="text-left"><%=scheduleDAO.getAllPendingJobInfo().get(i).getFormerJob()%></td>
+                                                                                <td class="text-left"><%=scheduleDAO.getAllPendingJobInfo().get(i).getFormerEmployer()%></td>
+                                                                                <td class="text-left"><%=scheduleDAO.getAllPendingJobInfo().get(i).getReasonForLeaving()%></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="text-left"><%=scheduleDAO.getAllPendingJobInfo().get(i).getFormerJob()%></td>
+                                                                                <td class="text-left"><%=scheduleDAO.getAllPendingJobInfo().get(i).getFormerEmployer()%></td>
+                                                                                <td class="text-left"><%=scheduleDAO.getAllPendingJobInfo().get(i).getReasonForLeaving()%></td>
+                                                                            </tr>
+
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+
+
+
+                                                            </div>                                                  
+                                                            <!-- /.tab-content -->
+
+                                                        </div>                                                           
+                                                        <!-- nav-tabs-custom -->
+                                                    </div>                                                       
+                                                    <!-- /.col -->
+                                                </div>                                                        
+                                                <!-- /.row -->
+                                                <!-- END TABS -->
+                                                <div class="modal-footer pull-right-container" >
+                                                    <span style="float:right;">
+                                                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="NewTicketSubmit">Close</button>
+                                                    </span>
+
+                                                </div> 
+                                            </div>
+                                        </div> 
+                                    </div>                                                        
+                                </div>                                                        
+                            </div>    
+                            <%}%>
+                        </div>     
+
+                        <div class="container">
+
+                            <% for (int i = 0; i < employeeDAO.getAllWaitlistedPersonalInfo().size(); i++) {%>
+
+
+                            <div class="modal fade bs-example-modal-lg" tabindex="-1" id="ViewWaitlisted<%=+i%>" role="dialog" name="ViewWaitlisted<%=+i%>">
+                                <div class="modal-dialog modal-lg">
+
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+
+                                        <div class="modal-header">
+                                            <div class="modal-body">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <!-- START TABS -->
+                                                <h2 class="page-header"></h2>
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <!-- Custom Tabs -->
+                                                        <div class="nav-tabs-custom">
+
+                                                            <ul class="nav nav-tabs">
+                                                                <li class="active"><a href="#PersonalData<%=+i%>" data-toggle="tab">Data</a></li>
+                                                                <li><a href="#PersonalCharacteristics<%=+i%>" data-toggle="tab">Characteristics</a></li>
+                                                                <li><a href="#OfficialData<%=+i%>" data-toggle="tab">Official Data</a></li>
+                                                                <li><a href="#EmploymentBackground<%=+i%>" data-toggle="tab">Employment Background</a></li>
+                                                            </ul>
+                                                            <!-- /.tab-pane -->
+                                                            <div class="tab-content">
+                                                                <div class="tab-pane active" id="PersonalData<%=+i%>">
                                                                     <table class="table table-striped" id="tblGrid">
                                                                         <thead id="tblHead">
                                                                             <tr>
@@ -404,7 +623,8 @@
 
                                                                 </div>
 
-                                                                <div class="tab-pane" id="WaitlistedPersonalCharacteristics<%=+i%>">
+                                                                <!-- /.tab-pane -->
+                                                                <div class="tab-pane" id="PersonalCharacteristics<%=+i%>">
 
 
                                                                     <table class="table table-striped" id="tblGrid">
@@ -452,7 +672,7 @@
                                                                     </table>
                                                                 </div>
 
-                                                                <div class="tab-pane" id="WaitlistedOfficialData<%=+i%>">
+                                                                <div class="tab-pane" id="OfficialData<%=+i%>">
 
                                                                     <table class="table table-striped" id="tblGrid">
                                                                         <thead id="tblHead">
@@ -466,12 +686,12 @@
                                                                             </tr>
                                                                             <tr>
                                                                                 <td class="text-left"><%=employeeDAO.getAllWaitlistedJobInfo().get(i).getTrainingAttended()%></td>
-                                                                            </tr>   
+                                                                            </tr>
                                                                     </table>
                                                                 </div>
 
 
-                                                                <div class="tab-pane" id="WaitlistedEmploymentBackground<%=+i%>">
+                                                                <div class="tab-pane" id="EmploymentBackground<%=+i%>">
                                                                     <table class="table table-striped" id="tblGrid">
                                                                         <thead id="tblHead">
                                                                             <tr>
@@ -507,12 +727,10 @@
                                                                     </table>
                                                                 </div>
 
-                                                                <!-- /.tab-pane -->
-
 
 
                                                             </div>                                                  
-                                                            <!-- /.tab-content --
+                                                            <!-- /.tab-content -->
 
                                                         </div>                                                           
                                                         <!-- nav-tabs-custom -->
@@ -525,13 +743,14 @@
                                                     <span style="float:right;">
                                                         <button type="button" class="btn btn-primary" data-dismiss="modal" id="NewTicketSubmit">Close</button>
                                                     </span>
+
                                                 </div> 
                                             </div>
                                         </div> 
                                     </div>                                                        
                                 </div>                                                        
-                            </div>
-                            <%}%>  
+                            </div>    
+                            <%}%>
                         </div>
 
                         <div class="container">
@@ -539,7 +758,7 @@
                             <% for (int i = 0; i < employeeDAO.getAllRejectedPersonalInfo().size(); i++) {%>
 
 
-                            <div class="modal fade bs-example-modal-lg" tabindex="-1" id="ViewProfileNew<%=+i%>" role="dialog" name="ViewWaitListed<%=+i%>">
+                            <div class="modal fade bs-example-modal-lg" tabindex="-1" id="ViewRejected<%=+i%>" role="dialog" name="ViewRejected<%=+i%>">
                                 <div class="modal-dialog modal-lg">
 
                                     <!-- Modal content-->
@@ -557,14 +776,14 @@
                                                         <div class="nav-tabs-custom">
 
                                                             <ul class="nav nav-tabs">
-                                                                <li class="active"><a href="#PersonalData<%=+i%>" data-toggle="tab">Data</a></li>
-                                                                <li><a href="#PersonalCharacteristics<%=+i%>" data-toggle="tab">Characteristics</a></li>
-                                                                <li><a href="#OfficialData<%=+i%>" data-toggle="tab">Official Data</a></li>
-                                                                <li><a href="#EmploymentBackground<%=+i%>" data-toggle="tab">Employment Background</a></li>
+                                                                <li class="active"><a href="#RejectedPersonalData<%=+i%>" data-toggle="tab">Data</a></li>
+                                                                <li><a href="#RejectedPersonalCharacteristics<%=+i%>" data-toggle="tab">Characteristics</a></li>
+                                                                <li><a href="#RejectedOfficialData<%=+i%>" data-toggle="tab">Official Data</a></li>
+                                                                <li><a href="#RejectedEmploymentBackground<%=+i%>" data-toggle="tab">Employment Background</a></li>
                                                             </ul>
                                                             <!-- /.tab-pane -->
                                                             <div class="tab-content">
-                                                                <div class="tab-pane active" id="PersonalData<%=+i%>">
+                                                                <div class="tab-pane active" id="RejectedPersonalData<%=+i%>">
                                                                     <table class="table table-striped" id="tblGrid">
                                                                         <thead id="tblHead">
                                                                             <tr>
@@ -623,7 +842,8 @@
 
                                                                 </div>
 
-                                                                <div class="tab-pane" id="PersonalCharacteristics<%=+i%>">
+                                                                <!-- /.tab-pane -->
+                                                                <div class="tab-pane" id="RejectedPersonalCharacteristics<%=+i%>">
 
 
                                                                     <table class="table table-striped" id="tblGrid">
@@ -671,7 +891,7 @@
                                                                     </table>
                                                                 </div>
 
-                                                                <div class="tab-pane" id="OfficialData<%=+i%>">
+                                                                <div class="tab-pane" id="RejectedOfficialData<%=+i%>">
 
                                                                     <table class="table table-striped" id="tblGrid">
                                                                         <thead id="tblHead">
@@ -685,12 +905,12 @@
                                                                             </tr>
                                                                             <tr>
                                                                                 <td class="text-left"><%=employeeDAO.getAllRejectedJobInfo().get(i).getTrainingAttended()%></td>
-                                                                            </tr>   
+                                                                            </tr>
                                                                     </table>
                                                                 </div>
 
 
-                                                                <div class="tab-pane" id="EmploymentBackground<%=+i%>">
+                                                                <div class="tab-pane" id="RejectedEmploymentBackground<%=+i%>">
                                                                     <table class="table table-striped" id="tblGrid">
                                                                         <thead id="tblHead">
                                                                             <tr>
@@ -726,8 +946,6 @@
                                                                     </table>
                                                                 </div>
 
-                                                                <!-- /.tab-pane -->
-
 
 
                                                             </div>                                                  
@@ -744,14 +962,16 @@
                                                     <span style="float:right;">
                                                         <button type="button" class="btn btn-primary" data-dismiss="modal" id="NewTicketSubmit">Close</button>
                                                     </span>
+
                                                 </div> 
                                             </div>
                                         </div> 
                                     </div>                                                        
                                 </div>                                                        
-                            </div>
-                            <%}%>  
+                            </div>    
+                            <%}%>
                         </div>
+
 
 
 
