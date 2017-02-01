@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.io.InputStream;
 
 /**
  *
@@ -21,11 +22,11 @@ import java.util.logging.Logger;
  */
 public class ClientDAO {
     
-    public boolean inputClient(Client client) {
+    public boolean inputClient(Client client, InputStream inputStream) {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
-            String query = "insert into `client` (clientName, contactPerson, contactNumber, email, address, city, numberOfGuards, type) values (?,?,?,?,?,?,?,?);";
+            String query = "insert into `client` (clientName, contactPerson, contactNumber, email, address, city, numberOfGuards, type, sla, dateJoined) values (?,?,?,?,?,?,?,?,?,?);";
             PreparedStatement pstmt = conn.prepareStatement(query);
 
             pstmt.setString(1, client.getClientName());
@@ -36,6 +37,8 @@ public class ClientDAO {
             pstmt.setString(6, client.getCity());
             pstmt.setInt(7, client.getNumberOfGuards());
             pstmt.setString(8, client.getType());
+            pstmt.setBlob(9, inputStream);
+            pstmt.setDate(10, client.getDateJoined());
 
             int rows = pstmt.executeUpdate();
             conn.close();

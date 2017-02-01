@@ -40,7 +40,7 @@
                             </ul>
                         </div>
                         
-                        <form role="form" action="addClient" method="post">
+                        <form role="form" action="addClient" method="post" enctype="multipart/form-data">
                         <!-- PART 1 ADD CLIENT START-->
 
                         
@@ -102,16 +102,24 @@
                                                 </select>
                                             </div>  
                                               
-                                           
+                                           <div class="form-group col-xs-4">
+                                                <label for="guardsNeeded">Number of Guards</label>
+                                                <input type="number" class="form-control" name="guardsNeeded" id="guardsNeeded" placeholder="Enter Number of Guards" required>
+                                            </div>  
                                      
                                                <div class="form-group col-xs-4">
-                                                <label>City</label>
+                                                <label>Client Type</label>
                                                 <select class="form-control select2" style="width: 100%;" name="clientType" id="clientType" required>
                                                     <option>Basic</option>
                                                     <option>Bank</option>
                                                     <option>Mall</option>
                                                 </select>
                                             </div>  
+                                              
+                                              <div class="form-group col-xs-3">
+                                                <label for="clientSLA">Client SLA</label>
+                                                <input type="file" name="clientSLA" id="clientSLA" required>
+                                                </div>
                                              
                                               <div class="form-group col-xs-12" align="center">
                                               <button type="submit" class="btn btn-primary" id="clientSubmit" onclick="checkFields()">Submit</button>
@@ -179,7 +187,7 @@
                 var email = document.getElementById('clientEmail').value;
                 var address = document.getElementById('clientAddress').value;
                 var city = document.getElementById('clientCity').value;
-                var numberOfGuards = document.getElementById('numberOfGuards').value;
+                var numberOfGuards = document.getElementById('guardsNeeded').value;
                 var type = document.getElementById('clientType').value;
                 
                 

@@ -5,6 +5,9 @@
  */
 package entity;
 
+import java.sql.Blob;
+import java.sql.Date;
+
 /**
  *
  * @author JohnMichael
@@ -20,7 +23,25 @@ public class Client {
     private String city;
     private int numberOfGuards;
     private String type;
+    private Blob sla;
+    private Date dateJoined;
 
+    public Date getDateJoined() {
+        return dateJoined;
+    }
+
+    public void setDateJoined(Date dateJoined) {
+        this.dateJoined = dateJoined;
+    }
+            
+    public Blob getSla() {
+        return sla;
+    }
+
+    public void setSla(Blob sla) {
+        this.sla = sla;
+    }
+    
     public int getClientID() {
         return clientID;
     }

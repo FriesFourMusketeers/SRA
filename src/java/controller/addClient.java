@@ -8,19 +8,24 @@ package controller;
 import dao.ClientDAO;
 import entity.Client;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import static java.lang.System.out;
+import java.util.Calendar;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 /**
  *
  * @author John San Agustin
  */
+@MultipartConfig(maxFileSize = 16177215) 
 public class addClient extends HttpServlet {
 
     /**
@@ -79,13 +84,27 @@ public class addClient extends HttpServlet {
             client.setEmail(request.getParameter("clientEmail"));
             client.setAddress(request.getParameter("clientAddress"));
             client.setCity(request.getParameter("clientCity"));
-            client.setNumberOfGuards(Integer.parseInt(request.getParameter("numberOfGuards")));
+            client.setNumberOfGuards(Integer.parseInt(request.getParameter("guardsNeeded")));
             client.setType(request.getParameter("clientType"));
             
-          
+            InputStream inputStream = null; 
+            Part clientSLA = request.getPart("clientSLA");
+            
+            if (clientSLA != null) {
+            
+            System.out.println(clientSLA.getName());
+            System.out.println(clientSLA.getSize());
+            System.out.println(clientSLA.getContentType());
+             
+            inputStream = clientSLA.getInputStream();
+            }
+            
+            java.sql.Date dateJoined = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+
+            client.setDateJoined(dateJoined);
             
      
-            boolean successful = clientDAO.inputClient(client);
+            boolean successful = clientDAO.inputClient(client, inputStream);
         
         
             if (successful == true){
