@@ -4,6 +4,7 @@
     Author     : Eugene
 --%>
 
+<%@page import="dao.ClientDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@include file= "blankpage.jsp" %>
@@ -136,7 +137,48 @@
                                 <div id="ClientList" class="tab-pane">
                                     <div class="box box-info">
                                         <div class="box-header with-border">
-                                            <h3 class="box-title"><strong><u>II. Personal Characteristics</u></strong></h3>
+                                            <h3 class="box-title"><strong><u>II. Client List</u></strong></h3>
+                                        </div>
+                                        
+                                         <div class="box-body">
+
+
+
+                                            <table id="example1" class="table table-bordered table-striped">
+                                                <thead>
+                                                    <tr>
+                                                       
+                                                        <th>Client Name</th>
+                                                        <th>Contact Person</th>
+                                                        <th>Contact Number</th>
+                                                        <th>Email</th>
+                                                        <th>Address</th>
+                                                        <th>City</th>
+                                                        <th>Number of Guards</th>
+                                                        <th>Type</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <% ClientDAO client = new ClientDAO();%>
+                                                    <% for (int i = 0; i < client.getAllClients().size(); i++) {%>
+                                                    <tr>
+
+                                                        <td for="clientName" id="applicantName<%=+i%>"><%=client.getAllClients().get(i).getClientName()%></td>
+                                                        <td for="contactPerson" id="scheduledDate<%=+i%>"><%=client.getAllClients().get(i).getContactPerson()%></td>
+                                                        <td for="contactNumber" id="scheduledTime<%=+i%>"><%=client.getAllClients().get(i).getContactNumber()%></td>
+                                                        <td for="email" id="scheduledTime<%=+i%>"><%=client.getAllClients().get(i).getEmail()%></td>
+                                                        <td for="address" id="scheduledTime<%=+i%>"><%=client.getAllClients().get(i).getAddress()%></td>
+                                                        <td for="city" id="scheduledTime<%=+i%>"><%=client.getAllClients().get(i).getCity()%></td>
+                                                        <td for="numberOfGuards" id="scheduledTime<%=+i%>"><%=client.getAllClients().get(i).getNumberOfGuards()%></td>
+                                                        <td for="type" id="scheduledTime<%=+i%>"><%=client.getAllClients().get(i).getType()%></td>
+
+                                                       
+                                                    </tr>
+                                                    <%}%>
+                                                </tbody>
+
+                                            </table>
+
                                         </div>
 
                                     </div>
@@ -178,7 +220,18 @@
                                                         }
         </script>
         <script>
-
+            $(function () {
+                $("#example1").DataTable();
+                $('#example2').DataTable({
+                    "paging": true,
+                    "lengthChange": false,
+                    "searching": true,
+                    "ordering": true,
+                    "info": true,
+                    "autoWidth": false,
+                    "scrollX": true
+                });
+            });
 
             function checkFields() {
                 var clientName = document.getElementById('clientName').value;

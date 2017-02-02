@@ -92,6 +92,48 @@ public class ClientDAO {
         return null;
     }
       
+      public ArrayList<Client> getNoAllocationClients() {
+        try {
+            ArrayList<Client> clientList = new ArrayList();
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+            String query = "select * from client where allocation = 'No'";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                Client client = new Client();
+
+                int clientID = rs.getInt("clientID");
+                String clientName = rs.getString("clientName");
+                String contactPerson = rs.getString("contactPerson");
+                String contactNumber = rs.getString("contactNumber");
+                String email = rs.getString("email");
+                String address = rs.getString("address");
+                String city = rs.getString("city");
+                int numberOfGuards = rs.getInt("numberOfGuards");
+                String type = rs.getString("type");
+
+                client.setClientID(clientID);
+                client.setClientName(clientName);
+                client.setContactPerson(contactPerson);
+                client.setContactNumber(contactNumber);
+                client.setEmail(email);
+                client.setAddress(address);
+                client.setCity(city);
+                client.setNumberOfGuards(numberOfGuards);
+                client.setType(type);
+
+                clientList.add(client);
+            }
+            conn.close();
+            return clientList;
+        } catch (SQLException ex) {
+            Logger.getLogger(ClientDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+      
       public Client searchClient(int clientID) {
         try {
             

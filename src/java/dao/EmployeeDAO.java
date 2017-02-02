@@ -837,18 +837,18 @@ public class EmployeeDAO {
                 int employeeID = rs.getInt("employeeID");
                 String driversLicense = rs.getString("driversLicense");
                 Date driversLicenseExpDate = rs.getDate("driversLicenseExpDate");
-                String license = rs.getString("license");
                 Date licenseExpDate = rs.getDate("licenseExpDate");
                 String trainingAttended = rs.getString("trainingAttended");
                 String formerEmployer = rs.getString("formerEmployer");
                 String inclusiveDate = rs.getString("inclusiveDate");
                 String formerJob = rs.getString("formerJob");
                 String reasonForLeaving = rs.getString("reasonForLeaving");
+                String licenseType = rs.getString("licenseType");
 
                 jobInfo.setEmployeeID(employeeID);
                 jobInfo.setDriversLicense(driversLicense);
                 jobInfo.setDriversLicenseExpDate((java.sql.Date) driversLicenseExpDate);
-                jobInfo.setLicense(license);
+                jobInfo.setLicenseType(licenseType);
                 jobInfo.setLicenseExpDate((java.sql.Date) licenseExpDate);
                 jobInfo.setTrainingAttended(trainingAttended);
                 jobInfo.setFormerEmployer(formerEmployer);
@@ -1059,7 +1059,7 @@ public class EmployeeDAO {
         }
         return null;
     }
-
+    
 
     /*
      This function inputs the Applicants Job Info
@@ -1156,7 +1156,7 @@ public class EmployeeDAO {
             ArrayList<Employee> personalList = new ArrayList();
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
-            String query = "select * from `employee-personal-information` p left join `Employee-Physical-Information` e on p.employeeID = e.employeeID  left join `Employee-Safeguard-Information` s on p.employeeID = s.employeeID where p.status = 'Qualified' and s.status = 'Unallocated';";
+            String query = "select * from `employee-personal-information` p left join `Employee-Job-Information` j on p.employeeID = j.employeeID left join `Employee-Physical-Information` e on p.employeeID = e.employeeID  left join `Employee-Safeguard-Information` s on p.employeeID = s.employeeID where p.status = 'Qualified' and s.status='Unallocated'";
             PreparedStatement pstmt = conn.prepareStatement(query);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
@@ -1182,7 +1182,7 @@ public class EmployeeDAO {
                 String bodyBuild = rs.getString("bodyBuild");
                 String skinColor = rs.getString("skinColor");
                 String stateOfHealth = rs.getString("stateOfHealth");
-                String license = rs.getString("license");
+                String licenseType = rs.getString("licenseType");
 
                 personalInfo.setEmployeeID(employeeID);
                 personalInfo.setPicture(picture);
@@ -1207,7 +1207,7 @@ public class EmployeeDAO {
                 personalInfo.setSkinColor(skinColor);
                 personalInfo.setStateOfHealth(stateOfHealth);
 
-                personalInfo.setLicense(license);
+                personalInfo.setLicenseType(licenseType);
                 personalList.add(personalInfo);
             }
             conn.close();

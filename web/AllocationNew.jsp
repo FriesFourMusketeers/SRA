@@ -56,7 +56,7 @@
                                     <div class="form-group">
                                         <label>Client</label>
                                         <% ClientDAO clientDAO = new ClientDAO();
-                                            ArrayList<Client> clientList = clientDAO.getAllClients();%>
+                                            ArrayList<Client> clientList = clientDAO.getNoAllocationClients();%>
 
                                         <select class="form-control select2" id="Establishment" name="Establishment" style="width: 100%;">
                                             <% for (int i = 0; i < clientList.size(); i++) {%>
@@ -166,7 +166,7 @@
                                                                 <td class="table"><%=personalInfo.getAllUnallocated().get(i).getSkinColor()%></td> 
                                                                 <td class="table"><%=personalInfo.getAllUnallocated().get(i).getMarriageStatus()%></td>
                                                                 <td class="table">90</td>  
-                                                                <td class="table"><%=personalInfo.getAllUnallocated().get(i).getLicense()%></td>  
+                                                                <td class="table"><%=personalInfo.getAllUnallocated().get(i).getLicenseType()%></td>  
 
 
                                                                 <%};%>

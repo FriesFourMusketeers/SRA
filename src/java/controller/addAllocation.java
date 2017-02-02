@@ -84,7 +84,7 @@ public class addAllocation extends HttpServlet {
             for(int i = 0; i < Array.length; i++){
             int employeeID = Integer.parseInt(Array[i]);
             
-            String license = employeeDAO.getSingleSafeguardInfo(employeeID).getLicense();
+            String license = employeeDAO.getSingleJobInfo(employeeID).getLicenseType();
             
             allocation.setAllocationID(allocationID);
             allocation.setClientID(Integer.parseInt(request.getParameter("Establishment")));
