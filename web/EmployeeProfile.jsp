@@ -224,9 +224,6 @@
                                                         <label>Position</label><br>
                                                         <text type="text" name="employeeBadgeNoExpiryDate" id="employeeBadgeNoExpiryDate">Position</text>
                                                     </div>
-                                                    <div class=" col-xs-3">
-                                                        <button type="submit" class="btn btn-primary">Renew Security License</button>
-                                                    </div>
 
 
                                                 </div>

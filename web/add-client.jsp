@@ -121,8 +121,113 @@
                                                 <label for="clientSLA">Client SLA</label>
                                                 <input type="file" name="clientSLA" id="clientSLA" required>
                                                 </div>
+                                              
+
+                                                    <div class="form-group col-xs-3">
+                                                        <label>Minimum Age</label>
+                                                        <input type="number" min="0" max="99" class="form-control" name="ageMinCriteria" id="ageMinCriteria" placeholder="Enter Minimum Age"  > 
+                                                    </div>
+
+                                                    <div class="form-group col-xs-3">
+                                                        <label>Maximum Age</label>
+                                                        <input type="number" min="0" max="99" class="form-control" name="ageMaxCriteria" id="ageMaxCriteria" placeholder="Enter Maximum Age"  >
+                                                    </div>
+
+                                                    <div class="form-group col-xs-3">
+                                                        <label>Minimum Height</label>
+
+                                                        <input type="number" name="heightMinCriteria" class="form-control" id="heightMinCriteria" placeholder="Enter Minimum Height (cm)"  > 
+
+
+                                                    </div>
+
+                                                    <div class="form-group col-xs-3">
+                                                        <label>Maximum Height</label>
+
+                                                        <input type="number" name="heightMaxCriteria" class="form-control" id="heightMaxCriteria" placeholder="Enter Maximum Height(cm)"  > 
+                                                    </div>
+
+                                                    <div class="form-group col-xs-3">
+                                                        <label>Minimum Weight</label>
+
+                                                        <input type="number" name="weightMinCriteria" class="form-control" id="weightMinCriteria" placeholder="Enter Minimum Weight (kg)"  > 
+                                                    </div>
+
+                                                    <div class="form-group col-xs-3">
+                                                        <label>Maximum Weight</label>
+
+                                                        <input type="number" name="weightMaxCriteria" class="form-control" id="weightMaxriteria" placeholder="Enter Maximum Weight (kg)"  > 
+                                                    </div>
+
+                                                    <div class="form-group col-xs-3">
+                                                        <label>Minimum Grade</label>
+
+                                                        <input type="number" min="0" max="100" class="form-control" name="gradeMinCriteria" id="gradeMinCriteria" placeholder="Enter Minimum Grade"  >
+
+                                                    </div>
+
+                                                    <div class="form-group col-xs-3">
+                                                        <label>Maximum Grade</label>
+
+                                                        <input type="number" min="0" max="100" class="form-control" name="gradeMaxCriteria" id="gradeMaxCriteria" placeholder="Enter Maximum Grade"  >
+                                                    </div>
+
+                                                    <div class="form-group col-xs-2">
+                                                        <label>City</label>
+                                                        <select class="form-control select2" style="width: 100%;" name="cityCriteria" id="cityCriteria"  >
+                                                            <option>City 1</option>
+                                                            <option>City 2</option>
+                                                            <option>City 3</option>
+                                                            <option>City 4</option>
+                                                            <option>City 5</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="form-group col-xs-2">
+                                                        <label>Sex</label>
+                                                        <select class="form-control select2" style="width: 100%;" name="sexCriteria" id="sexCriteria"  >
+                                                            <option>Male</option>
+                                                            <option>Female</option>
+                                                            <option>Either</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="form-group col-xs-2">
+                                                        <label>Status</label>
+                                                        <select class="form-control select2" style="width: 100%;" name="marriageStatusCriteria" id="marriageStatusCriteria"  >
+                                                            <option>Single</option>
+                                                            <option>Married</option>
+                                                            <option>Divorced</option>
+                                                            <option>Widowed</option>
+                                                            <option>Single or Married</option>
+                                                            <option>Any</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="form-group col-xs-2">
+                                                        <label>Body Build</label>
+                                                        <select class="form-control select2" style="width: 100%;" name="bodyBuildCriteria" id="bodyBuildCriteria"  >
+                                                            <option>Light</option>
+                                                            <option>Medium</option>
+                                                            <option>Heavy</option>
+                                                            <option>Any</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="form-group col-xs-2">
+                                                        <label>Skin Complexion</label>
+                                                        <select class="form-control select2" style="width: 100%;" name="skinComplexionCriteria" id="skinComplexionCriteria"  > 
+                                                            <option>Dark</option>
+                                                            <option>Fair</option>
+                                                            <option>Light</option>
+                                                            <option>Any</option>
+                                                        </select>
+                                                    </div>
+
+
+
                                              
-                                              <div class="form-group col-xs-12" align="center">
+                                              <div class="form-group col-xs-3" align="center">
                                               <button type="submit" class="btn btn-primary" id="clientSubmit" onclick="checkFields()">Submit</button>
                                               </div>
                                         </div>
