@@ -18,6 +18,7 @@ public class KPI {
     private int greenTarget;
     private int yellowTarget;
     private int redTarget;
+    private int question;
 
     /**
      * @return the clientID
@@ -115,6 +116,20 @@ public class KPI {
      */
     public void setRedTarget(int redTarget) {
         this.redTarget = redTarget;
+    }
+
+    /**
+     * @return the question
+     */
+    public int getQuestion() {
+        return question;
+    }
+
+    /**
+     * @param question the question to set
+     */
+    public void setQuestion(int question) {
+        this.question = question;
     }
 
 }

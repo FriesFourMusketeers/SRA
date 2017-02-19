@@ -120,7 +120,7 @@ public class KpiDAO {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
-            String query1 = "insert into `KPI-List`(clientID,kpiID,measureID,weight,greenTarget,yellowTarget,redTarget) values (?,?,?,?,?,?,?)";
+            String query1 = "insert into `KPI-List`(clientID,kpiID,measureID,weight,greenTarget,yellowTarget,redTarget,question) values (?,?,?,?,?,?,?,?)";
             PreparedStatement pstmt = conn.prepareStatement(query1);
             pstmt.setInt(1, kpi.getClientID());
             pstmt.setInt(2, kpi.getKpiID());
@@ -129,6 +129,7 @@ public class KpiDAO {
             pstmt.setInt(5, kpi.getGreenTarget());
             pstmt.setInt(6, kpi.getYellowTarget());
             pstmt.setInt(7, kpi.getRedTarget());
+            pstmt.setInt(8, kpi.getQuestion());
 
             int rows = pstmt.executeUpdate();
 

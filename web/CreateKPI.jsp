@@ -316,100 +316,101 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td class="text-left" rowspan="3" name="kpi" id="kpi" value="2"><b>Compliance to Rules and Regulations</b></td>
+                                                    <tr name="tabkpi1" id="tabkpi1">
+                                                        <td class="text-left" rowspan="3" name="kpi1" id="kpi1" value="2"><b>Compliance to Rules and Regulations</b></td>
                                                     </tr>
-                                                    <tr>
-                                                        <td class="text-left"># of company violations</td>
+                                                    <tr class="tabPM1">
+                                                        <td class="text-left" name="pm" id="pm" value="1"># of company violations</td>
                                                         <td class="text-left"><input readonly type="number" class="form-control" style="width: 40%; display: inline-block" placeholder="0"> - <input type="number" min="0" max="99" class="form-control" style="width: 49%; display: inline-block"  placeholder="Target" name="weeklytarget" id="weeklytarget"></td>
                                                         <td class="text-left"><input readonly type="number" min="0" max="99" class="form-control" style="width: 40%; display: inline-block" placeholder="0" name="belowtargetstart" id="belowtargetstart"> - <input type="number" min="0" max="99" class="form-control" style="width: 49%; display: inline-block"  placeholder="Target" name="belowtargetend" id="belowtargetend"></td>
                                                         <td class="text-left"><input type="number" min="0" max="99" class="form-control" placeholder="Enter Target" name="wellbelowtarget" id="wellbelowtarget"></td>
                                                         <td class="text-left"><input type="number" min="0" max="99" class="form-control" placeholder="Enter %" name="defaultweight" id="defaultweight"></td>
-                                                        <td class="text-left" style="width:25px;"><button class="fa fa-close remove" type="button" ></button></td>
+                                                        <td class="text-left" style="width:25px;"><button class="fa fa-close remove1" type="button" ></button></td>
                                                     </tr>
-                                                    <tr>
-                                                        <td class="text-left"># of client violations</td>
+                                                    <tr class="tabPM1">
+                                                        <td class="text-left" name="pm" id="pm" value="2"># of client violations</td>
                                                         <td class="text-left"><input readonly type="number" class="form-control" style="width: 40%; display: inline-block" placeholder="0"> - <input type="number" min="0" max="99" class="form-control" style="width: 49%; display: inline-block"  placeholder="Target" name="weeklytarget" id="weeklytarget"></td>
                                                         <td class="text-left"><input readonly type="number" min="0" max="99" class="form-control" style="width: 40%; display: inline-block" placeholder="0" name="belowtargetstart" id="belowtargetstart"> - <input type="number" min="0" max="99" class="form-control" style="width: 49%; display: inline-block"  placeholder="Target" name="belowtargetend" id="belowtargetend"></td>
                                                         <td class="text-left"><input type="number" min="0" max="99" class="form-control" placeholder="Enter Target" name="wellbelowtarget" id="wellbelowtarget"></td>
                                                         <td class="text-left"><input type="number" min="0" max="99" class="form-control" placeholder="Enter %" name="defaultweight" id="defaultweight"></td>
-                                                        <td class="text-left" style="width:25px;"><button class="fa fa-close remove" type="button" ></button></td>
+                                                        <td class="text-left" style="width:25px;"><button class="fa fa-close remove1" type="button" ></button></td>
                                                     </tr>
-                                                    <tr>
-                                                        <td class="text-left" rowspan="4" name="kpi" id="kpi" value="3"><b>Guard Grooming and Appearance</b></td>
+                                                    <tr  name="tabkpi2" id="tabkpi2">
+                                                        <td class="text-left" rowspan="4" name="kpi2" id="kpi2" value="3"><b>Guard Grooming and Appearance</b></td>
                                                     </tr>
-                                                    <tr>
-                                                        <td class="text-left">Complete and Proper Uniform and Paraphernalia (% of completeness)</td>
+                                                    <tr class="tabPM2">
+                                                        <td class="text-left" name="pm" id="pm" value="3">Complete and Proper Uniform and Paraphernalia (% of completeness)</td>
                                                         <td class="text-left"><input readonly type="number" class="form-control" style="width: 40%; display: inline-block" placeholder="100"> - <input type="number" min="0" max="99" class="form-control" style="width: 49%; display: inline-block"  placeholder="Target" name="weeklytarget" id="weeklytarget"></td>
                                                         <td class="text-left"><input readonly type="number" min="0" max="99" class="form-control" style="width: 40%; display: inline-block" placeholder="0" name="belowtargetstart" id="belowtargetstart"> - <input type="number" min="0" max="99" class="form-control" style="width: 49%; display: inline-block"  placeholder="Target" name="belowtargetend" id="belowtargetend"></td>
                                                         <td class="text-left"><input type="number" min="0" max="99" class="form-control" placeholder="Enter Target" name="wellbelowtarget" id="wellbelowtarget"></td>
                                                         <td class="text-left"><input type="number" min="0" max="99" class="form-control" placeholder="Enter %" name="defaultweight" id="defaultweight"></td>
-                                                        <td class="text-left" style="width:25px;"><button class="fa fa-close remove" type="button" ></button></td>
+                                                        <td class="text-left" style="width:25px;"><button class="fa fa-close remove2" type="button" ></button></td>
                                                     </tr>
-                                                    <tr>
-                                                        <td class="text-left">Proper Haircut (Frequency in %)</td>
+                                                    <tr class="tabPM2">
+                                                        <td class="text-left" name="pm" id="pm" value="4">Proper Haircut (Frequency in %)</td>
                                                         <td class="text-left"><input readonly type="number" class="form-control" style="width: 40%; display: inline-block" placeholder="100"> - <input type="number" min="0" max="99" class="form-control" style="width: 49%; display: inline-block"  placeholder="Target" name="weeklytarget" id="weeklytarget"></td>
                                                         <td class="text-left"><input readonly type="number" min="0" max="99" class="form-control" style="width: 40%; display: inline-block" placeholder="0" name="belowtargetstart" id="belowtargetstart"> - <input type="number" min="0" max="99" class="form-control" style="width: 49%; display: inline-block"  placeholder="Target" name="belowtargetend" id="belowtargetend"></td>
                                                         <td class="text-left"><input type="number" min="0" max="99" class="form-control" placeholder="Enter Target" name="wellbelowtarget" id="wellbelowtarget"></td>
                                                         <td class="text-left"><input type="number" min="0" max="99" class="form-control" placeholder="Enter %" name="defaultweight" id="defaultweight"></td>
-                                                        <td class="text-left" style="width:25px;"><button class="fa fa-close remove" type="button" ></button></td>
+                                                        <td class="text-left" style="width:25px;"><button class="fa fa-close remove2" type="button" ></button></td>
                                                     </tr>
-                                                    <tr>
-                                                        <td class="text-left">Proper Hygiene (Frequency in %)</td>
+                                                    <tr class="tabPM2">
+                                                        <td class="text-left" name="pm" id="pm" value="5">Proper Hygiene (Frequency in %)</td>
                                                         <td class="text-left"><input readonly type="number" class="form-control" style="width: 40%; display: inline-block" placeholder="100"> - <input type="number" min="0" max="99" class="form-control" style="width: 49%; display: inline-block"  placeholder="Target" name="weeklytarget" id="weeklytarget"></td>
                                                         <td class="text-left"><input readonly type="number" min="0" max="99" class="form-control" style="width: 40%; display: inline-block" placeholder="0" name="belowtargetstart" id="belowtargetstart"> - <input type="number" min="0" max="99" class="form-control" style="width: 49%; display: inline-block"  placeholder="Target" name="belowtargetend" id="belowtargetend"></td>
                                                         <td class="text-left"><input type="number" min="0" max="99" class="form-control" placeholder="Enter Target" name="wellbelowtarget" id="wellbelowtarget"></td>
                                                         <td class="text-left"><input type="number" min="0" max="99" class="form-control" placeholder="Enter %" name="defaultweight" id="defaultweight"></td>
-                                                        <td class="text-left" style="width:25px;"><button class="fa fa-close remove" type="button" ></button></td>
+                                                        <td class="text-left" style="width:25px;"><button class="fa fa-close remove2" type="button" ></button></td>
                                                     </tr>
-                                                    <tr>
-                                                        <td class="text-left" rowspan="3" name="kpi" id="kpi" value="2"><b>Attendance</b></td>
+                                                    <tr  name="tabkpi3" id="tabkpi3">
+                                                        <td class="text-left" rowspan="3" name="kpi3" id="kpi3" value="2"><b>Attendance</b></td>
                                                     </tr>
-                                                    <tr>
-                                                        <td class="text-left"># of Absences</td>
+                                                    <tr class="tabPM3">
+                                                        <td class="text-left" name="pm" id="pm" value="6"># of Absences</td>
                                                         <td class="text-left"><input readonly type="number" class="form-control" style="width: 40%; display: inline-block" placeholder="0"> - <input type="number" min="0" max="99" class="form-control" style="width: 49%; display: inline-block"  placeholder="Target" name="weeklytarget" id="weeklytarget"></td>
                                                         <td class="text-left"><input readonly type="number" min="0" max="99" class="form-control" style="width: 40%; display: inline-block" placeholder="0" name="belowtargetstart" id="belowtargetstart"> - <input type="number" min="0" max="99" class="form-control" style="width: 49%; display: inline-block"  placeholder="Target" name="belowtargetend" id="belowtargetend"></td>
                                                         <td class="text-left"><input type="number" min="0" max="99" class="form-control" placeholder="Enter Target" name="wellbelowtarget" id="wellbelowtarget"></td>
                                                         <td class="text-left"><input type="number" min="0" max="99" class="form-control" placeholder="Enter %" name="defaultweight" id="defaultweight"></td>
-                                                        <td class="text-left" style="width:25px;"><button class="fa fa-close remove" type="button" ></button></td>
+                                                        <td class="text-left" style="width:25px;"><button class="fa fa-close remove3" type="button" ></button></td>
                                                     </tr>
-                                                    <tr>
-                                                        <td class="text-left"># of tardiness</td>
+                                                    <!--lol-->
+                                                    <tr class="tabPM3">
+                                                        <td class="text-left" name="pm" id="pm" value="7"># of tardiness</td>
                                                         <td class="text-left"><input readonly type="number" class="form-control" style="width: 40%; display: inline-block" placeholder="0"> - <input type="number" min="0" max="99" class="form-control" style="width: 49%; display: inline-block"  placeholder="Target" name="weeklytarget" id="weeklytarget"></td>
                                                         <td class="text-left"><input readonly type="number" min="0" max="99" class="form-control" style="width: 40%; display: inline-block" placeholder="0" name="belowtargetstart" id="belowtargetstart"> - <input type="number" min="0" max="99" class="form-control" style="width: 49%; display: inline-block"  placeholder="Target" name="belowtargetend" id="belowtargetend"></td>
                                                         <td class="text-left"><input type="number" min="0" max="99" class="form-control" placeholder="Enter Target" name="wellbelowtarget" id="wellbelowtarget"></td>
                                                         <td class="text-left"><input type="number" min="0" max="99" class="form-control" placeholder="Enter %" name="defaultweight" id="defaultweight"></td>
-                                                        <td class="text-left" style="width:25px;"><button class="fa fa-close remove" type="button" ></button></td>
+                                                        <td class="text-left" style="width:25px;"><button class="fa fa-close remove3" type="button" ></button></td>
                                                     </tr>
-                                                    <tr>
-                                                        <td class="text-left" rowspan="2" name="kpi" id="kpi" value="1"><b>Documentation</b></td>
+                                                    <tr name="tabkpi4" id="tabkpi4">
+                                                        <td class="text-left" rowspan="2" name="kpi4" id="kpi4" value="1"><b>Documentation</b></td>
                                                     </tr>
-                                                    <tr>
-                                                        <td class="text-left">Completeness of Routine Logs (In percentage)</td>
+                                                    <tr class="tabPM4">
+                                                        <td class="text-left" name="pm" id="pm" value="8">Completeness of Routine Logs (In percentage)</td>
                                                         <td class="text-left"><input readonly type="number" class="form-control" style="width: 40%; display: inline-block" placeholder="100"> - <input type="number" min="0" max="100" class="form-control" style="width: 49%; display: inline-block"  placeholder="Target" name="weeklytarget" id="weeklytarget"></td>
-                                                        <td class="text-left"><input readonly type="number" min="0" max="99" class="form-control" style="width: 40%; display: inline-block" placeholder="0" name="belowtargetstart1" id="belowtargetstart1"> - <input type="number" min="0" max="99" class="form-control" style="width: 49%; display: inline-block"  placeholder="Target" name="belowtargetend1" id="belowtargetend1"></td>
+                                                        <td class="text-left"><input readonly type="number" min="0" max="99" class="form-control" style="width: 40%; display: inline-block" placeholder="0" name="belowtargetstart" id="belowtargetstart"> - <input type="number" min="0" max="99" class="form-control" style="width: 49%; display: inline-block"  placeholder="Target" name="belowtargetend" id="belowtargetend"></td>
                                                         <td class="text-left"><input type="number" min="0" max="99" class="form-control" placeholder="Enter Target" name="wellbelowtarget" id="wellbelowtarget"></td>
                                                         <td class="text-left"><input type="number" min="0" max="99" class="form-control" placeholder="Enter %" name="defaultweight" id="defaultweight"></td>
-                                                        <td class="text-left" style="width:25px;"><button class="fa fa-close remove" type="button" ></button></td>
+                                                        <td class="text-left" style="width:25px;"><button class="fa fa-close remove4" type="button" ></button></td>
                                                     </tr>
-                                                    <tr>
-                                                        <td class="text-left" rowspan="3" name="kpi" id="kpi" value="2"><b>Customer Relationship</b></td>
+                                                    <tr  name="tabkpi5" id="tabkpi5">
+                                                        <td class="text-left" rowspan="3" name="kpi5" id="kpi5" value="2"><b>Customer Relationship</b></td>
                                                     </tr>
-                                                    <tr>
-                                                        <td class="text-left">Courteousness </td>
+                                                    <tr class="tabPM5">
+                                                        <td class="text-left" name="pm" id="pm" value="9">Courteousness </td>
                                                         <td class="text-left"><input readonly type="number" class="form-control" style="width: 40%; display: inline-block" placeholder="100"> - <input type="number" min="0" max="99" class="form-control" style="width: 49%; display: inline-block"  placeholder="Target" name="weeklytarget" id="weeklytarget"></td>
-                                                        <td class="text-left"><input readonly type="number" min="0" max="99" class="form-control" style="width: 40%; display: inline-block" placeholder="0" name="belowtargetstart1" id="belowtargetstart1"> - <input type="number" min="0" max="99" class="form-control" style="width: 49%; display: inline-block"  placeholder="Target" name="belowtargetend1" id="belowtargetend1"></td>
+                                                        <td class="text-left"><input readonly type="number" min="0" max="99" class="form-control" style="width: 40%; display: inline-block" placeholder="0" name="belowtargetstart" id="belowtargetstart"> - <input type="number" min="0" max="99" class="form-control" style="width: 49%; display: inline-block"  placeholder="Target" name="belowtargetend" id="belowtargetend"></td>
                                                         <td class="text-left"><input type="number" min="0" max="99" class="form-control" placeholder="Enter Target" name="wellbelowtarget" id="wellbelowtarget"></td>
                                                         <td class="text-left"><input type="number" min="0" max="99" class="form-control" placeholder="Enter %" name="defaultweight" id="defaultweight"></td>
-                                                        <td class="text-left" style="width:25px;"><button class="fa fa-close remove" type="button" ></button></td>
+                                                        <td class="text-left" style="width:25px;"><button class="fa fa-close remove5" type="button" ></button></td>
                                                     </tr>
-                                                    <tr>
-                                                        <td class="text-left">Answerers Queries (Frequency in %)</td>
+                                                    <tr class="tabPM5">
+                                                        <td class="text-left" name="pm" id="pm" value="10">Answerers Queries (Frequency in %)</td>
                                                         <td class="text-left"><input readonly type="number" class="form-control" style="width: 40%; display: inline-block" placeholder="100"> - <input type="number" min="0" max="99" class="form-control" style="width: 49%; display: inline-block"  placeholder="Target" name="weeklytarget" id="weeklytarget"></td>
-                                                        <td class="text-left"><input readonly type="number" min="0" max="99" class="form-control" style="width: 40%; display: inline-block" placeholder="0" name="belowtargetstart1" id="belowtargetstart1"> - <input type="number" min="0" max="99" class="form-control" style="width: 49%; display: inline-block"  placeholder="Target" name="belowtargetend1" id="belowtargetend1"></td>
+                                                        <td class="text-left"><input readonly type="number" min="0" max="99" class="form-control" style="width: 40%; display: inline-block" placeholder="0" name="belowtargetstart" id="belowtargetstart"> - <input type="number" min="0" max="99" class="form-control" style="width: 49%; display: inline-block"  placeholder="Target" name="belowtargetend" id="belowtargetend"></td>
                                                         <td class="text-left"><input type="number" min="0" max="99" class="form-control" placeholder="Enter Target" name="wellbelowtarget" id="wellbelowtarget"></td>
                                                         <td class="text-left"><input type="number" min="0" max="99" class="form-control" placeholder="Enter %" name="defaultweight" id="defaultweight"></td>
-                                                        <td class="text-left" style="width:25px;"><button class="fa fa-close remove" type="button" ></button></td>
+                                                        <td class="text-left" style="width:25px;"><button class="fa fa-close remove5" type="button" ></button></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -420,7 +421,7 @@
 
 
                             <table class="table" id="tblMain" name="tblMain">
-                                <tbody>
+                                <tbody> 
 
                                 </tbody>
                             </table>
@@ -450,7 +451,7 @@
             <!-- ./wrapper -->
 
             <script type="text/javascript">
-                var belowtarget1 = document.getElementById("belowtargetstart1");
+                var belowtarget1 = document.getElementById("belowtargetstart");
 
                 $("#weeklytarget1").change(function () {
                     belowtarget1.value = parseInt(this.value, 10) + 1;
@@ -467,34 +468,47 @@
                                 '<tr class="tabRow">' +
                                 '<td>' +
                                 '<button class="fa fa-close removekpi" type="button" ></button>' +
-                                '<input class ="col-xs-4 form-control" type="text" name="kpiname" id="kpikpiname" value="Insert Performance Indicator" style="width: 50%">' +
+                                '<input class ="col-xs-4 form-control" type="text" name="kpiname" id="kpiname" value="Insert Performance Indicator" style="width: 50%">' +
                                 '<table class="table" id="tblGrid" CELLPADDING="3" CELLSPACING="3">' +
                                 '<thead>' +
-                                '<tr>' +
+                                '<tr class="head">' +
                                 '<th class="text-left">Performance Measure</th>' +
                                 '<th class="text-left" style="border-bottom: 1px solid green;" >Weekly Target</th>' +
                                 '<th class="text-left" style="border-bottom: 1px solid gold;" >Below Target</th> ' +
                                 '<th class="text-left" style="border-bottom: 1px solid red;" >Well Below Target</th> ' +
                                 '<th class="text-left">Specify Weight</th>' +
-                                '<th><button class="fa fa-plus btn btn-success" id="addPM" type="button"></button></th>' +
+                                '<th><button class="fa fa-plus btn btn-success" id="addPM" type="button"></button><input type="hidden" name="pmcount" id="pmcount" value="1"></th>' +
                                 '</tr>' +
                                 '</thead>' +
-                                '<tbody>' +
+                                '<tbody class="custombody">' +
                                 '<tr class="tabRow1">' +
                                 '<td class="text-left"><input name="name" id="name" class="form-control" placeholder="Insert Performance Measure"></td>' +
-                                '<td class="text-left"><input type="number" min="0" max="99" class="form-control" placeholder="Target Score" name="belowtargetend1" id="belowtargetend1"></td>' +
-                                '<td class="text-left"><input type="number" min="0" max="99" class="form-control" placeholder="Enter Target" name="wellbelowtarget" id="wellbelowtarget"></td>' +
-                                '<td class="text-left"><input type="number" min="0" max="99" class="form-control" placeholder="Enter Target" name="defaultweight" id="defaultweight"></td>' +
-                                '<td class="text-left"><input type="number" min="0" max="99" class="form-control" placeholder="Enter %" name="defaultweight" id="defaultweight"></td>' +
-                                '<td><button class="fa fa-close remove" type="button" ></button></td>' +
+                                '<td class="text-left"><input type="number" min="0" max="99" class="form-control" placeholder="Target Score" name="customtarget" id="customtarget"></td>' +
+                                '<td class="text-left"><input type="number" min="0" max="99" class="form-control" placeholder="Enter Target" name="custombelowtarget" id="custombelowtarget"></td>' +
+                                '<td class="text-left"><input type="number" min="0" max="99" class="form-control" placeholder="Enter Target" name="customwellbelowtarget" id="customwellbelowtarget"></td>' +
+                                '<td class="text-left"><input type="number" min="0" max="99" class="form-control" placeholder="Enter %" name="customweight" id="customweight"></td>' +
+                                '<td><button class="fa fa-close removepm" type="button" ></button></td>' +
                                 '</tr>' +
                                 '<tr class="tabOption">' +
-                                '<td class="text-center" colspan="2"><input type="radio" class="iradio_minimal-grey" name="iCheck"><input class="form-control" name="question" id="question" placeholder="Option" style="width: 93%; float: right;"></td>' +
-                                '<td class="text-center" colspan="2"><input class="form-control" type="number" min="0" max="100" name="score" id="question" placeholder="Option score" style="width: 90%;"></td>' +
-                                '<td><button class="fa fa-close removeoption" type="button"></button> <input type="hidden" class="lols" value="1"></td>' +
+                                '<td class="text-left" name="pm" id="pm">Linear Scale Question from 1 - 5</td>' +
                                 '</tr>' +
-                                '<tr class="tabTarget">' +
-                                '<td><button class="btn btn-block btn-primary btn-sm addOption" type="button" >Add option</button></td>' +
+                                '<tr class="tabOption">' +
+                                '<td class="text-left" name="pm" id="pm">(5 being the highest and 1 being the lowest)</td>' +
+                                '</tr>' +
+                                '<tr class="tabOption">' +
+                                '<td class="text-center"><input type="radio" class="iradio_minimal-grey" name="iCheck">1<input class="form-control" type="number" min="0" max="100" name="score" id="score" placeholder="Score" style="width: 93%; float: right;"></td>' +
+                                '</tr>' +
+                                '<tr class="tabOption">' +
+                                '<td class="text-center"><input type="radio" class="iradio_minimal-grey" name="iCheck">2<input class="form-control" type="number" min="0" max="100" name="score" id="score" placeholder="Score" style="width: 93%; float: right;"></td>' +
+                                '</tr>' +
+                                '<tr class="tabOption">' +
+                                '<td class="text-center"><input type="radio" class="iradio_minimal-grey" name="iCheck">3<input class="form-control" type="number" min="0" max="100" name="score" id="score" placeholder="Score" style="width: 93%; float: right;"></td>' +
+                                '</tr>' +
+                                '<tr class="tabOption">' +
+                                '<td class="text-center"><input type="radio" class="iradio_minimal-grey" name="iCheck">4<input class="form-control" type="number" min="0" max="100" name="score" id="score" placeholder="Score" style="width: 93%; float: right;"></td>' +
+                                '</tr>' +
+                                '<tr class="tabOption">' +
+                                '<td class="text-center"><input type="radio" class="iradio_minimal-grey" name="iCheck">5<input class="form-control" type="number" min="0" max="100" name="score" id="score" placeholder="Score" style="width: 93%; float: right;"></td>' +
                                 '</tr>' +
                                 '</tbody>' +
                                 '</table>' +
@@ -522,25 +536,113 @@
                         }
                     });
 
+                    $(document).on("click", "button.remove1", function () {
+                        if ($(this).parents("tr").siblings("tr.tabPM1").length > 0) {
+                            $(this).closest("tr.tabPM1").remove();
+                            var kpi = $("#kpi1").attr("rowspan");
+                            $("#kpi1").attr("rowspan", kpi - 1);
+                            var kpival = $("#kpi1").attr("value");
+                            $("#kpi1").attr("value", kpival - 1);
+                        }
+                        else {
+                            $(this).closest("tr.tabPM1").remove();
+                            $("#tabkpi1").remove();
+                        }
+                    });
+
+                    $(document).on("click", "button.remove2", function () {
+                        if ($(this).parents("tr").siblings("tr.tabPM2").length > 0) {
+                            $(this).closest("tr.tabPM2").remove();
+                            var kpi = $("#kpi2").attr("rowspan");
+                            $("#kpi2").attr("rowspan", kpi - 1);
+                            var kpival = $("#kpi2").attr("value");
+                            $("#kpi2").attr("value", kpival - 1);
+                        }
+                        else {
+                            $(this).closest("tr.tabPM2").remove();
+                            $("#tabkpi2").remove();
+                        }
+                    });
+
+                    $(document).on("click", "button.remove3", function () {
+                        if ($(this).parents("tr").siblings("tr.tabPM3").length > 0) {
+                            $(this).closest("tr.tabPM3").remove();
+                            var kpi = $("#kpi3").attr("rowspan");
+                            $("#kpi3").attr("rowspan", kpi - 1);
+                            var kpival = $("#kpi3").attr("value");
+                            $("#kpi3").attr("value", kpival - 1);
+                        }
+                        else {
+                            $(this).closest("tr.tabPM3").remove();
+                            $("#tabkpi3").remove();
+                        }
+                    });
+
+                    $(document).on("click", "button.remove4", function () {
+                        if ($(this).parents("tr").siblings("tr.tabPM4").length > 0) {
+                            $(this).closest("tr.tabPM4").remove();
+                            var kpi = $("#kpi4").attr("rowspan");
+                            $("#kpi4").attr("rowspan", kpi - 1);
+                            var kpival = $("#kpi4").attr("value");
+                            $("#kpi4").attr("value", kpival - 1);
+                        }
+                        else {
+                            $(this).closest("tr.tabPM4").remove();
+                            $("#tabkpi4").remove();
+                        }
+                    });
+
+                    $(document).on("click", "button.remove5", function () {
+                        if ($(this).parents("tr").siblings("tr.tabPM5").length > 0) {
+                            $(this).closest("tr.tabPM5").remove();
+                            var kpi = $("#kpi5").attr("rowspan");
+                            $("#kpi5").attr("rowspan", kpi - 1);
+                            var kpival = $("#kpi5").attr("value");
+                            $("#kpi5").attr("value", kpival - 1);
+                        }
+                        else {
+                            $(this).closest("tr.tabPM5").remove();
+                            $("#tabkpi5").remove();
+                        }
+                    });
+                    
+                    $(document).on("click", "button.removepm", function () {
+                        $(".lol").remove();
+                    });
+
                     $(document).on("click", "#addPM", function () {
+                        var pmval = parseInt($(this).siblings().attr("value"));
+                        $(this).siblings().attr("value", pmval + 1);
                         $(this).parents("thead").next("tbody").append(
                                 '<tr class="tabRow1">' +
                                 '<td class="text-left"><input name="name" id="name" class="form-control" placeholder="Insert Performance Measure"></td>' +
-                                '<td class="text-left"><input type="number" min="0" max="99" class="form-control" placeholder="Target Score" name="belowtargetend1" id="belowtargetend1"></td>' +
+                                '<td class="text-left"><input type="number" min="0" max="99" class="form-control" placeholder="Target Score" name="belowtargetend" id="belowtargetend"></td>' +
                                 '<td class="text-left"><input type="number" min="0" max="99" class="form-control" placeholder="Enter Target" name="wellbelowtarget" id="wellbelowtarget"></td>' +
                                 '<td class="text-left"><input type="number" min="0" max="99" class="form-control" placeholder="Enter Target" name="defaultweight" id="defaultweight"></td>' +
                                 '<td class="text-left"><input type="number" min="0" max="99" class="form-control" placeholder="Enter %" name="defaultweight" id="defaultweight"></td>' +
                                 '<td><button class="fa fa-close remove" type="button" ></button></td>' +
                                 '</tr>' +
                                 '<tr class="tabOption">' +
-                                '<td class="text-center" colspan="2"><input type="radio" class="iradio_minimal-grey" name="iCheck"><input class="form-control" name="question" id="question" placeholder="Option" style="width: 93%; float: right;"></td>' +
-                                '<td class="text-center" colspan="2"><input class="form-control" type="number" min="0" max="100" name="score" id="question" placeholder="Option score" style="width: 90%;"></td>' +
-                                '<td><button class="fa fa-close removeoption" type="button"></button> <input type="hidden" class="lols" value="1"></td>' +
+                                '<td class="text-center"><input type="radio" class="iradio_minimal-grey" name="iCheck"><input class="form-control" type="number" min="0" max="100" name="score" id="score" placeholder="Option" style="width: 93%; float: right;"></td>' +
+                                '<td class="text-center"><input class="form-control" type="number" min="0" max="100" name="score" id="score" placeholder="Option score" style="width: 93%; float: right;"></td>' +
                                 '</tr>' +
-                                '<tr class="tabTarget">' +
-                                '<td><button class="btn btn-block btn-primary btn-sm addOption" type="button" >Add option</button></td>' +
+                                '<tr class="tabOption">' +
+                                '<td class="text-center"><input type="radio" class="iradio_minimal-grey" name="iCheck"><input class="form-control" type="number" min="0" max="100" name="score" id="score" placeholder="Option" style="width: 93%; float: right;"></td>' +
+                                '<td class="text-center"><input class="form-control" type="number" min="0" max="100" name="score" id="score" placeholder="Option score" style="width: 93%; float: right;"></td>' +
+                                '</tr>' +
+                                '<tr class="tabOption">' +
+                                '<td class="text-center"><input type="radio" class="iradio_minimal-grey" name="iCheck"><input class="form-control" type="number" min="0" max="100" name="score" id="score" placeholder="Option" style="width: 93%; float: right;"></td>' +
+                                '<td class="text-center"><input class="form-control" type="number" min="0" max="100" name="score" id="score" placeholder="Option score" style="width: 93%; float: right;"></td>' +
+                                '</tr>' +
+                                '<tr class="tabOption">' +
+                                '<td class="text-center"><input type="radio" class="iradio_minimal-grey" name="iCheck"><input class="form-control" type="number" min="0" max="100" name="score" id="score" placeholder="Option" style="width: 93%; float: right;"></td>' +
+                                '<td class="text-center"><input class="form-control" type="number" min="0" max="100" name="score" id="score" placeholder="Option score" style="width: 93%; float: right;"></td>' +
+                                '</tr>' +
+                                '<tr class="tabOption">' +
+                                '<td class="text-center"><input type="radio" class="iradio_minimal-grey" name="iCheck"><input class="form-control" type="number" min="0" max="100" name="score" id="score" placeholder="Option" style="width: 93%; float: right;"></td>' +
+                                '<td class="text-center"><input class="form-control" type="number" min="0" max="100" name="score" id="score" placeholder="Option score" style="width: 93%; float: right;"></td>' +
                                 '</tr>'
-                            );
+                                );
                     }
                     );
                 });

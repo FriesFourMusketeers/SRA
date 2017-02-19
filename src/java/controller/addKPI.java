@@ -50,12 +50,37 @@ public class addKPI extends HttpServlet {
             int length = 0;
 
             String[] green = request.getParameterValues("weeklytarget");
-            String[] yellow = request.getParameterValues("belowtargetend");
+            String[] yellow = request.getParameterValues("belowtarget");
             String[] red = request.getParameterValues("wellbelowtarget");
             String[] weight = request.getParameterValues("defaultweight");
+            
+            String[] customgreen = request.getParameterValues("customtarget");
+            String[] customyellow = request.getParameterValues("custombelowtarget");
+            String[] customred = request.getParameterValues("customwellbelowtarget");
+            String[] customweight = request.getParameterValues("customweight");
+            
+            String[] kpi1 = request.getParameterValues("kpi1");
+            String[] kpi2 = request.getParameterValues("kpi2");
+            String[] kpi3 = request.getParameterValues("kpi3");
+            String[] kpi4 = request.getParameterValues("kpi4");
+            String[] kpi5 = request.getParameterValues("kpi5");
+            
+            String[] customkpi = request.getParameterValues("kpiname");
+            String[] pmcount = request.getParameterValues("pmcount");
 
-            String[] kpimeasurenumber = request.getParameterValues("kpi");
 
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             for (int i = 0; i < kpimeasurenumber.length; i++) {
                 int measurenumber = Integer.parseInt(kpimeasurenumber[i]);
 
