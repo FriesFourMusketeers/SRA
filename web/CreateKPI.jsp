@@ -490,25 +490,13 @@
                                 '<td><button class="fa fa-close removepm" type="button" ></button></td>' +
                                 '</tr>' +
                                 '<tr class="tabOption">' +
+                                '<td class="text-left"><input name="name" id="name" class="form-control" placeholder="Form Question"></td>' +
+                                '</tr>' +
+                                '<tr class="tabOption">' +
                                 '<td class="text-left" name="pm" id="pm">Linear Scale Question from 1 - 5</td>' +
                                 '</tr>' +
                                 '<tr class="tabOption">' +
                                 '<td class="text-left" name="pm" id="pm">(5 being the highest and 1 being the lowest)</td>' +
-                                '</tr>' +
-                                '<tr class="tabOption">' +
-                                '<td class="text-center"><input type="radio" class="iradio_minimal-grey" name="iCheck">1<input class="form-control" type="number" min="0" max="100" name="score" id="score" placeholder="Score" style="width: 93%; float: right;"></td>' +
-                                '</tr>' +
-                                '<tr class="tabOption">' +
-                                '<td class="text-center"><input type="radio" class="iradio_minimal-grey" name="iCheck">2<input class="form-control" type="number" min="0" max="100" name="score" id="score" placeholder="Score" style="width: 93%; float: right;"></td>' +
-                                '</tr>' +
-                                '<tr class="tabOption">' +
-                                '<td class="text-center"><input type="radio" class="iradio_minimal-grey" name="iCheck">3<input class="form-control" type="number" min="0" max="100" name="score" id="score" placeholder="Score" style="width: 93%; float: right;"></td>' +
-                                '</tr>' +
-                                '<tr class="tabOption">' +
-                                '<td class="text-center"><input type="radio" class="iradio_minimal-grey" name="iCheck">4<input class="form-control" type="number" min="0" max="100" name="score" id="score" placeholder="Score" style="width: 93%; float: right;"></td>' +
-                                '</tr>' +
-                                '<tr class="tabOption">' +
-                                '<td class="text-center"><input type="radio" class="iradio_minimal-grey" name="iCheck">5<input class="form-control" type="number" min="0" max="100" name="score" id="score" placeholder="Score" style="width: 93%; float: right;"></td>' +
                                 '</tr>' +
                                 '</tbody>' +
                                 '</table>' +
